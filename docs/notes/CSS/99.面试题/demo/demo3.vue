@@ -23,18 +23,18 @@ div[class="container"], div[class="top"], div[class="bottom"] {
 .container {
   display: grid;
   grid-template-rows: auto auto;
-  gap: 10px;
+  gap: 5px;
 }
 
 .top {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 5px;
 }
 
 .bottom {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* 三列等宽 */
-  gap: 10px;
+  gap: 5px;
 }
 </style>

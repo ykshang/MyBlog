@@ -24,7 +24,7 @@ div {
 /* 让第一行的两个元素各占1.5fr(相当于两列) */
 .item1,
 .item2 {
-  grid-column: span 3;
+  grid-column: 3;
 }
 
 /* 或者更精确的控制 */

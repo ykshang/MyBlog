@@ -15,7 +15,7 @@
   grid-template-areas:
     "top-left top-right ."
     "bottom-left bottom-center bottom-right";
-  gap: 10px;
+  gap: 5px;
   background: lightslategray;
 }
 div {
