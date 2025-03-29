@@ -1,48 +1,41 @@
 <template>
-  <div class="container">
-    <div class="top-left">上左</div>
-    <div class="top-right">上右</div>
-    <div class="bottom-1">下1</div>
-    <div class="bottom-2">下2</div>
-    <div class="bottom-3">下3</div>
+  <div class="grid-container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
   </div>
 </template>
 
 <style scoped>
-.container {
-  color: white;
+.grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 两列等宽 */
-  grid-template-rows: auto auto; /* 两行自适应 */
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
-    "top-left top-right"
-    "bottom-1 bottom-2"
-    "bottom-1 bottom-3"; /* 下1跨两行 */
-  gap: 10px; /* 网格间隙 */
+    "top-left top-right ."
+    "bottom-left bottom-center bottom-right";
+  gap: 10px;
+  background: lightslategray;
+}
+div {
+  background: lightblue;
+  text-align: center;
 }
 
-.top-left {
-  height: 40px;
+.item1 {
   grid-area: top-left;
-  background: slategray;
 }
-.top-right {
-  height: 40px;
-  background: slategray;
+.item2 {
   grid-area: top-right;
 }
-.bottom-1 {
-  background: slategray;
-  grid-area: bottom-1;
+.item3 {
+  grid-area: bottom-left;
 }
-.bottom-2 {
-  background: slategray;
-  height: 40px;
-  grid-area: bottom-2;
+.item4 {
+  grid-area: bottom-center;
 }
-.bottom-3 {
-  background: slategray;
-  height: 40px;
-  grid-area: bottom-3;
+.item5 {
+  grid-area: bottom-right;
 }
 </style>

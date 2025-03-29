@@ -1,38 +1,46 @@
 <template>
-  <div class="container">
-    <div class="item top-left">上左</div>
-    <div class="item top-right">上右</div>
-    <div class="item bottom-1">下1</div>
-    <div class="item bottom-2">下2</div>
-    <div class="item bottom-3">下3</div>
+  <div class="grid-container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
   </div>
 </template>
 
 <style scoped>
-.container {
+div {
+  background: lightblue;
+  text-align: center;
+}
+.grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 两列等宽 */
-  grid-auto-rows: 100px; /* 行高固定（可选） */
-  gap: 10px;
+  grid-template-columns: repeat(6, 1fr); /* 最大列数 */
+  grid-template-rows: 40px 40px; /* 两行 */
+  gap: 5px;
+  background: lightslategray;
 }
 
-/* 上方两栏 */
-.top-left,
-.top-right {
-  grid-column: span 1; /* 各占一列 */
+/* 让第一行的两个元素各占1.5fr(相当于两列) */
+.item1,
+.item2 {
+  grid-column: span 3;
 }
 
-/* 下方三栏 */
-.bottom-1 {
-  grid-column: 1; /* 第一列 */
-  grid-row: 2 / 4; /* 跨两行 */
+/* 或者更精确的控制 */
+.item1 {
+  grid-column: 1 / 4;
 }
-.bottom-2 {
-  grid-column: 2; /* 第二列 */
-  grid-row: 2; /* 第二行 */
+.item2 {
+  grid-column: 4 / 7;
 }
-.bottom-3 {
-  grid-column: 2; /* 第二列 */
-  grid-row: 3; /* 第三行 */
+.item3 {
+  grid-column: 1 / 3;
+}
+.item4 {
+  grid-column: 3 / 5;
+}
+.item5 {
+  grid-column: 5 / 7;
 }
 </style>
