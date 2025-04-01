@@ -133,7 +133,12 @@ const MongoDBNote = defineNoteConfig({
   link: '/MongoDB',
   sidebar: 'auto',
 })
-
+// Sass 笔记配置
+const SassNote = defineNoteConfig({
+  dir: 'Sass',
+  link: '/Sass',
+  sidebar: 'auto',
+})
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
@@ -154,6 +159,7 @@ export const notes = defineNotesConfig({
     NodeJsNote,
     NetworkNote,
     ReactNote,
+    SassNote,
     SecurityNote,
     UniAppNote,
     ViteNote,

@@ -10,10 +10,10 @@ export const navbar = defineNavbarConfig([
     items: [{
       text: '基础',
       items: [
+        { text: 'Web 基础知识', link: '/notes/WebBasic/' },
         { text: 'Html', link: '/notes/Html/' },
         { text: 'CSS', link: '/notes/CSS/' },
         { text: 'Javascript', link: '/notes/Javascript/' },
-        { text: 'Web 基础知识', link: '/notes/WebBasic/' },
       ]
     }, {
       text: '主流框架',
@@ -22,6 +22,11 @@ export const navbar = defineNavbarConfig([
         { text: 'React', link: '/notes/React/' },
         { text: 'Angular', link: '/notes/Angular/' },
         { text: 'UniApp', link: '/notes/UniApp/' },
+      ]
+    }, {
+      text: 'CSS 预处理器',
+      items: [
+        { text: 'Sass', link: '/notes/Sass/' },
       ]
     }]
   }, {
