@@ -37,11 +37,11 @@ export default defineUserConfig({
      */
     // blog: false, // 禁用博客
     blog: {
-    //   postList: true, // 是否启用文章列表页
-    //   tags: true, // 是否启用标签页
-    //   archives: true, // 是否启用归档页
-    //   categories: true, // 是否启用分类页
-    //   postCover: 'right', // 文章封面位置
+      //   postList: true, // 是否启用文章列表页
+      //   tags: true, // 是否启用标签页
+      //   archives: true, // 是否启用归档页
+      //   categories: true, // 是否启用分类页
+      //   postCover: 'right', // 文章封面位置
       pagination: 5, // 每页显示文章数量
     },
 
@@ -72,7 +72,25 @@ export default defineUserConfig({
        */
       shiki: {
         // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-        languages: ['html', 'css', 'java', 'powershell', 'nginx', 'sass', 'scss', 'http', 'php', 'jsx', 'vue', 'shell', 'bash', 'typescript', 'javascript'],
+        languages: [
+          'bash',
+          'css',
+          'html',
+          'http',
+          'java',
+          'javascript',
+          'jsx',
+          'less',
+          'markdown',
+          'nginx',
+          'php',
+          'powershell',
+          'sass',
+          'scss',
+          'shell',
+          'typescript',
+          'vue'
+        ],
         twoslash: true, // 启用 twoslash
         whitespace: true, // 启用 空格/Tab 高亮
         lineNumbers: true, // 启用行号

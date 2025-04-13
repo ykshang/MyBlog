@@ -139,6 +139,12 @@ const SassNote = defineNoteConfig({
   link: '/Sass',
   sidebar: 'auto',
 })
+// Less 笔记配置
+const LessNote = defineNoteConfig({
+  dir: 'Less',
+  link: '/Less',
+  sidebar: 'auto',
+})
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
@@ -155,6 +161,7 @@ export const notes = defineNotesConfig({
     HtmlNote,
     JavaScriptNote,
     KoaNote,
+    LessNote,
     MongoDBNote,
     NodeJsNote,
     NetworkNote,

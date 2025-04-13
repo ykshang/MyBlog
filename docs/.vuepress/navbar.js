@@ -27,6 +27,7 @@ export const navbar = defineNavbarConfig([
       text: 'CSS 预处理器',
       items: [
         { text: 'Sass', link: '/notes/Sass/' },
+        { text: 'Less', link: '/notes/Less/' },
       ]
     }]
   }, {
