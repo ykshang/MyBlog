@@ -89,7 +89,8 @@ export default defineUserConfig({
           'scss',
           'shell',
           'typescript',
-          'vue'
+          'vue',
+          'xml'
         ],
         twoslash: true, // 启用 twoslash
         whitespace: true, // 启用 空格/Tab 高亮
