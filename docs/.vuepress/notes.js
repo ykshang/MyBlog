@@ -145,6 +145,12 @@ const LessNote = defineNoteConfig({
   link: '/Less',
   sidebar: 'auto',
 })
+// Stylus
+const StylusNote = defineNoteConfig({
+  dir: 'Stylus',
+  link: '/Stylus',
+  sidebar: 'auto',
+})
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
@@ -168,6 +174,7 @@ export const notes = defineNotesConfig({
     ReactNote,
     SassNote,
     SecurityNote,
+    StylusNote,
     UniAppNote,
     ViteNote,
     VueNote,
