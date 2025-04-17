@@ -88,6 +88,8 @@ export default defineUserConfig({
           'sass',
           'scss',
           'shell',
+          'styl',
+          'stylus',
           'typescript',
           'vue',
           'xml'
