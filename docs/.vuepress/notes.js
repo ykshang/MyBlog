@@ -151,6 +151,12 @@ const StylusNote = defineNoteConfig({
   link: '/Stylus',
   sidebar: 'auto',
 })
+// OtherToolForNodeJs 基于Node.js 的一些实用工具
+const OtherToolForNodeJsNote = defineNoteConfig({
+  dir: 'OtherToolForNodeJs',
+  link: '/OtherToolForNodeJs',
+  sidebar: 'auto',
+})
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
@@ -171,6 +177,7 @@ export const notes = defineNotesConfig({
     MongoDBNote,
     NodeJsNote,
     NetworkNote,
+    OtherToolForNodeJsNote,
     ReactNote,
     SassNote,
     SecurityNote,
