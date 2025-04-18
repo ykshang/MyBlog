@@ -40,7 +40,7 @@ export const navbar = defineNavbarConfig([
           { text: 'Node.js', link: '/notes/NodeJs/' },
           { text: 'Express', link: '/notes/Express/' },
           { text: 'Koa', link: '/notes/Koa/' },
-          { text: '其他工具', link: '/notes/OtherToolForNodeJs' },
+          { text: '其他工具', link: '/notes/OtherToolForNodeJs/' },
         ]
       }, {
         text: '数据库',
