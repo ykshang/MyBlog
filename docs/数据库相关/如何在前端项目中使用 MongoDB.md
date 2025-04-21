@@ -10,6 +10,8 @@ tags:
 
 ## 一、安装
 
+1234
+
 我们需要在项目里安装`mongodb`
 
 ```bash no-line-numbers
