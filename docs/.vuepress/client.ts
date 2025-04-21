@@ -8,6 +8,9 @@ import { defineClientConfig } from 'vuepress/client'
 
 // import './theme/styles/custom.css'
 
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
 export default defineClientConfig({
   enhance({ app }) {
     // built-in components
@@ -15,6 +18,7 @@ export default defineClientConfig({
     // app.component('NpmBadge', NpmBadge)
     // app.component('NpmBadgeGroup', NpmBadgeGroup)
     // app.component('Swiper', Swiper) // you should install `swiper`
+    app.use(ElementPlus);
 
     // your custom components
     // app.component('CustomComponent', CustomComponent)
