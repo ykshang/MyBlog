@@ -145,17 +145,17 @@ export default defineUserConfig({
      * 评论 comments
      * @see https://theme-plume.vuejs.press/guide/features/comments/
      */
-    // comment: {
-    //   provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
-    //   comment: true,
-    //   repo: '',
-    //   repoId: '',
-    //   category: '',
-    //   categoryId: '',
-    //   mapping: 'pathname',
+    comment: {
+      provider: 'Giscus', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
+      comment: true,
+      repo: 'ykshang/CommetForMyBlog',
+      repoId: 'R_kgDOOdJESw',
+      category: 'Announcements',
+      categoryId: 'DIC_kwDOOdJES84CpT90',
+      mapping: 'url',
     //   reactionsEnabled: true,
     //   inputPosition: 'top',
-    // },
+    },
 
     /**
      * 资源链接替换
