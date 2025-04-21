@@ -1,0 +1,39 @@
+---
+title: 什么是 loader？列举常用 loader？
+createTime: 2025/03/15 14:24:21
+permalink: /Webpack/gn8tu5td/
+---
+
+## 一、什么是loader
+
+Webpack 的 loader 是用于处理模块文件的转换工具。
+
+它们可以将不同类型的文件（如 CSS、LESS、图片等）转换为可以被 Webpack 处理的有效模块，以便将其包含在最终的打包结果中。
+
+## 二、常见 Loader
+
+### 1、babel-loader
+
+处理 `JS` 和 `JSX` 文件，将 ES6+代码转换为 ES5 语法，以便在旧版本的浏览器中运行。
+
+### 2、style-loader 和 css-loader
+
+用于处理 `CSS` 文件。css-loader 主要负责处理样式文件中的`import`和`url`语句，而 style-loader 将转换后的 CSS 模块直接注入到 HTML 页面中。
+
+### 3、file-loader 和 url-loader
+
+用于处理图片、字体和其他资源文件。file-loader 会为每一个文件生成一个对应的文件，而 url-loader 将小于设定大小的文件转换为 base64 编码的 URL，减少 HTTP 请求。
+
+### 4、sass-loader 和 less-loader
+
+用于处理 `Sass` 和 `Less` 预处理器。它们将 Sass 和 Less 代码转换为普通的 CSS 代码，然后利用`style-loader` 和 `css-loader`去处理转化后的 css 代码。
+
+### 5、postcss-loader
+
+用于处理 CSS 代码的兼容性，即添加浏览器兼容性前缀，以确保在不同浏览器上的一致性。
+
+### 6、html-loader
+
+用于处理 HTML 文件，将其中的图片等资源转换为 Webpack 可以识别的模块。
+
+这只是一些常用的 Webpack loader，实际上还有很多其他的 loader 可以根据具体的需求进行选择和配置。使用适当的 loader 可以提高开发效率并优化最终打包结果。
