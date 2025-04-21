@@ -3,14 +3,14 @@ import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
-  base: '/',
+  base: '/MyBlog/',
   lang: 'zh-CN',
-  title: 'My Vuepress Site',
+  title: '重构人生',
   description: '',
 
   head: [
     // 配置站点图标
-    ['link', { rel: 'icon', type: 'image/png', href: 'https://theme-plume.vuejs.press/favicon-32x32.png' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'https://theme-plume.vuejs.press/favicon-32x32.png' }],
   ],
 
   bundler: viteBundler(),
