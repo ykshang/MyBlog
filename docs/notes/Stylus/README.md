@@ -8,7 +8,11 @@ Stylus 是一款功能强大的 CSS 预处理器，它提供了比传统 CSS 更
 
 ## 一、核心特性
 
-### 1. 极简语法（可选括号/分号/冒号）
+### 1. 完全兼容 CSS 语法
+
+由于 Stylus 是 CSS 的超集，所以它可以直接使用标准的 CSS 语法。
+
+### 2. 极简语法（可选括号/分号/冒号）
 
 ```stylus
 // 传统CSS语法
@@ -21,7 +25,7 @@ body
   font 12px Helvetica, Arial, sans-serif
 ```
 
-### 2. 变量支持
+### 3. 变量支持
 
 ```stylus
 primary-color = #3bbfce
@@ -32,7 +36,7 @@ margin = 16px
   margin margin
 ```
 
-### 3. 嵌套规则
+### 4. 嵌套规则
 
 ```stylus
 nav
@@ -47,7 +51,7 @@ nav
           color red
 ```
 
-### 4. 混合(Mixins)
+### 5. 混合(Mixins)
 
 ```stylus
 border-radius(n)
@@ -59,7 +63,7 @@ button
   border-radius(5px)
 ```
 
-### 5. 函数功能
+### 6. 函数功能
 
 ```stylus
 add(a, b)
