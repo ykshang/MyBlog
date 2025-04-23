@@ -60,5 +60,6 @@ size-fun()
     color-minxin()
   > .span2
     color $primary-color
+    background: $val-color
     font-size size-fun()
 </style>
