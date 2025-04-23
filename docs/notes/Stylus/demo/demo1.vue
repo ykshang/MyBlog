@@ -9,6 +9,8 @@
     <br />
     <br />
     <span class="span2">测试 2</span>
+    <br />
+    <span class="span3">测试 3</span>
   </div>
 </template>
 
@@ -22,6 +24,7 @@ export default {
 // 定义变量
 $primary-color = #42b983
 $font-size-base = 16px
+$margin-val = 30px
 color-minxin() 
   color $primary-color
   text-decoration underline
@@ -54,7 +57,7 @@ size-fun()
       opacity 0.6
 
 
-
+  $test-text = margin 16px;
   $primary-color = red
   > .span1 
     color-minxin()
@@ -62,4 +65,7 @@ size-fun()
     color $primary-color
     background: $val-color
     font-size size-fun()
+  > .span3
+    // margin: $margin-val
+    -webkit-{text}-stroke 1px {black}
 </style>
