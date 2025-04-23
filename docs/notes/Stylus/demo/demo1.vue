@@ -67,5 +67,5 @@ size-fun()
     font-size size-fun()
   > .span3
     // margin: $margin-val
-    -webkit-{text}-stroke 1px {black}
+    -webkit-{text}-stroke 1px black
 </style>
