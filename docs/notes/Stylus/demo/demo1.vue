@@ -61,10 +61,8 @@ margin-fun(x=10px ,y = x,z = x)
     padding 10px 20px
     border-radius 5px
     cursor pointer
-
     &:hover
       opacity 0.6
-
 
   $test-text = margin 16px;
   $primary-color = red
