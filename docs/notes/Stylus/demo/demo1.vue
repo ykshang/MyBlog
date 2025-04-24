@@ -31,6 +31,8 @@ color-minxin()
   font-size 20px
 size-fun()
   30px
+content-fun()
+  content
 
 .container
   padding 20px
@@ -59,6 +61,7 @@ size-fun()
 
   $test-text = margin 16px;
   $primary-color = red
+  $content = 'content'
   > .span1 
     color-minxin()
   > .span2
@@ -67,5 +70,6 @@ size-fun()
     font-size size-fun()
   > .span3
     // margin: $margin-val
-    -webkit-{text}-stroke 1px black
+    -webkit-{text}-stroke: 1px black
+    {content-fun()} 2
 </style>
