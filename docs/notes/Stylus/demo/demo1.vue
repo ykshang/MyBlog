@@ -13,6 +13,8 @@
     <span class="span2">测试 2</span>
     <br />
     <span class="span3">测试 3</span>
+    <br />
+    <span class="span4">测试 4</span>
   </div>
 </template>
 
@@ -35,6 +37,9 @@ size-fun()
   30px
 content-fun()
   content
+
+margin-fun(x=10px ,y = x,z = x)
+  (x y z)
 
 .container
   padding 20px
@@ -76,4 +81,8 @@ content-fun()
     // margin: $margin-val
     -webkit-{text}-stroke: 1px black
     {content-fun()} 2
+  > .span4
+    color red
+    font-size 30px
+    margin margin-fun()
 </style>
