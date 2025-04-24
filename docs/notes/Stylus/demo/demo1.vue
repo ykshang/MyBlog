@@ -5,7 +5,9 @@
     <button class="btn">点击我</button>
     <br />
     <br />
-    <span class="span1">测试 1</span>
+    <span class="span1">
+      <span>测试 1</span>
+    </span>
     <br />
     <br />
     <span class="span2">测试 2</span>
@@ -25,10 +27,9 @@ export default {
 $primary-color = #42b983
 $font-size-base = 16px
 $margin-val = 30px
-border-radius1(m) 
+border-radius1() 
   color $primary-color
   text-decoration underline
-  font-size m
   margin 20px
 size-fun()
   30px
@@ -64,7 +65,9 @@ content-fun()
   $primary-color = red
   $content = 'content'
   > .span1 
-    border-radius1(20px)
+    border-radius1
+    span
+      color red
   > .span2
     color $primary-color
     background: $val-color
