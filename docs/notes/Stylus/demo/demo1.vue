@@ -25,10 +25,11 @@ export default {
 $primary-color = #42b983
 $font-size-base = 16px
 $margin-val = 30px
-color-minxin() 
+border-radius1(m) 
   color $primary-color
   text-decoration underline
-  font-size 20px
+  font-size m
+  margin 20px
 size-fun()
   30px
 content-fun()
@@ -63,7 +64,7 @@ content-fun()
   $primary-color = red
   $content = 'content'
   > .span1 
-    color-minxin()
+    border-radius1(20px)
   > .span2
     color $primary-color
     background: $val-color
