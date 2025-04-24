@@ -30,15 +30,18 @@ $primary-color = #42b983
 $font-size-base = 16px
 $margin-val = 30px
 border-radius1() 
+  $block-2 = 1px
   color $primary-color
   text-decoration underline
   margin 20px
+
 size-fun()
   30px
 content-fun()
   content
 
 margin-fun(x=10px ,y = x,z = x)
+  $block-1 = 1px;
   (x y z)
 
 .container
@@ -82,5 +85,6 @@ margin-fun(x=10px ,y = x,z = x)
   > .span4
     color red
     font-size 30px
-    margin margin-fun()
+    margin $block-2
+    padding margin-fun(10px,20px,30px)
 </style>
