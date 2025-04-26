@@ -38,16 +38,6 @@ Stylus 动态解析并内联文件内容。
 
 - **默认路径**‌：以当前 Stylus 文件所在目录为基准（由 `filename` 选项定义）。
 
-- **自定义路径**：通过 `paths` 配置项扩展搜索目录，例如：
-
-  ```js
-  stylus(css).set("paths", ["./src/styles", "./vendor"]); // 编译配置
-  ```
-
-  ```styl
-  // 优先搜索 ./src/styles/colors.styl
-  @import "colors"
-  ```
 
 ## 二、高级特性
 
@@ -66,22 +56,8 @@ Stylus 动态解析并内联文件内容。
 
 :::
 
-### 2、条件导入（动态逻辑）
 
-可结合 Stylus 的条件语句按需导入文件：
 
-```styl
-if env == "development"
-  @import "debug-tools"  // 开发环境加载调试工具
-```
-
-### 3、媒体查询与原生 CSS 混合
-
-导入 CSS 文件时支持媒体查询参数：
-
-```styl
-@import "print.css" screen and (min-width: 768px) // 输出带条件的 @import
-```
 
 ## ‌ 三、注意事项
 
@@ -110,34 +86,6 @@ Stylus 默认不会检查重复导入，可能导致代码冗余：
 
 ## 四、代码示例 ‌
 
-#### 1. 基础导入
-
-<pre><div class="code-header"><span rl-type="stop">stylus</span><span class="cosd-markdown-code-copy cos-link" rl-type="stop">Copy Code</span></div><div class="code-wrapper"><div class="code-left"><div data-line-number="1" class="code-number"></div><div data-line-number="2" class="code-number"></div><div data-line-number="3" class="code-number"></div><div data-line-number="4" class="code-number"></div><div data-line-number="5" class="code-number"></div></div><div class="code-right"><code class="hljs language-stylus">// 导入 .styl 文件（编译后合并）
-@import "components/button"
-
-// 导入 CSS 文件（原样输出）
-@import "vendor/normalize.css"
-</code></div></div></pre>
-
-#### 2. 路径解析
-
-<pre><div class="code-header"><span rl-type="stop">stylus</span><span class="cosd-markdown-code-copy cos-link" rl-type="stop">Copy Code</span></div><div class="code-wrapper"><div class="code-left"><div data-line-number="1" class="code-number"></div><div data-line-number="2" class="code-number"></div><div data-line-number="3" class="code-number"></div><div data-line-number="4" class="code-number"></div><div data-line-number="5" class="code-number"></div><div data-line-number="6" class="code-number"></div><div data-line-number="7" class="code-number"></div><div data-line-number="8" class="code-number"></div><div data-line-number="9" class="code-number"></div></div><div class="code-right"><code class="hljs language-stylus">// 文件结构
-// /project
-//   /styles
-//     main.styl
-//     /utils
-//       index.styl
-
-// main.styl 中导入
-@import "utils" // 加载 /styles/utils/index.styl
-</code></div></div></pre>
-
-#### 3. 动态条件导入
-
-<pre><div class="code-header"><span rl-type="stop">stylus</span><span class="cosd-markdown-code-copy cos-link" rl-type="stop">Copy Code</span></div><div class="code-wrapper"><div class="code-left"><div data-line-number="1" class="code-number"></div><div data-line-number="2" class="code-number"></div><div data-line-number="3" class="code-number"></div></div><div class="code-right"><code class="hljs language-stylus">$theme = "dark"
-
-@import "themes/" + $theme  // 动态拼接路径，导入 themes/dark.styl
-</code></div></div></pre>
 
 ---
 
