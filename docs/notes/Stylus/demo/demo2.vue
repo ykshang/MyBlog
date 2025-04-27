@@ -15,7 +15,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@require "./style/demo.styl"
 
 .container
   .test1
@@ -26,7 +25,16 @@ export default {
 
   .test2
     mixin-1()
+  .info
+    color #333
+    
+  @require "./style/demo.styl"
+  
   .test3
-    @extends .extend-1
-    color red
+    // @extend .warning, .error
+
+    @extends .error
+    @extends .warning
+    @extends .info
+    // color blue
 </style>
