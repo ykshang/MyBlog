@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <h1 class="title">Stylus 导入导出</h1>
+    <div class="test1">Stylus 导入导出</div>
+    <div class="test2">测试</div>
   </div>
 </template>
 
@@ -14,6 +15,14 @@ export default {
 @require "./style/demo.styl"
 
 .container
-  color: $global-color
-  margin: margin-fun()
+  .test1
+    font-size: 30px
+    color: $global-color
+    background: $local-color
+    margin: margin-fun()
+
+  .test2
+    mixin-1()
+    @extends .extend-1
+    
 </style>

@@ -1,3 +1,16 @@
 $global-color = red
 margin-fun()
-  10px
+  $local-color = yellow
+  20px 30px
+
+mixin-1()
+  font-size 30px
+  margin 20px
+  color green
+
+.extend-1 {
+  color blue
+  .sss {
+    font-size: 20px; 
+  }
+}
