@@ -1,13 +1,16 @@
 <template>
   <div class="container">
     <div class="test1">Stylus 导入导出</div>
-    <div class="test2">测试</div>
+    <br/>
+    <div class="test2">测试混入</div>
+    <br/>
+    <div class="test3">测试继承</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "StylusPracticePage",
+  name: "StylusPracticePage2",
 };
 </script>
 
@@ -23,6 +26,7 @@ export default {
 
   .test2
     mixin-1()
+  .test3
     @extends .extend-1
-    
+    color red
 </style>
