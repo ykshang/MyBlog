@@ -11,7 +11,7 @@ export const navbar = defineNavbarConfig([
       {
         text: "基础",
         items: [
-          { text: "前端经典面试题", link: "/notes/ClassicFrontInterviewNote/" },
+          { text: "前端经典面试题", link: "/notes/ClassicFrontInterview/" },
           { text: "Web 基础", link: "/notes/WebBasic/" },
           { text: "Html", link: "/notes/Html/" },
           { text: "CSS", link: "/notes/CSS/" },
