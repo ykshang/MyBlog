@@ -18,6 +18,9 @@ export const navbar = defineNavbarConfig([
       ]
     }, {
       text: '主流框架',
+      link: '/notes/ClassicFrontInterviewNote/'
+    }, {
+      text: '主流框架',
       items: [
         { text: 'Vue', link: '/notes/Vue/' },
         { text: 'React', link: '/notes/React/' },

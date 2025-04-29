@@ -163,7 +163,12 @@ const BrowserNote = defineNoteConfig({
   link: '/Browser',
   sidebar: 'auto',
 })
-
+// ClassicFrontInterview js 经典面试题
+const ClassicFrontInterviewNote = defineNoteConfig({
+  dir: 'ClassicFrontInterview',
+  link: '/ClassicFrontInterview',
+  sidebar: 'auto',
+})
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
@@ -172,6 +177,7 @@ export const notes = defineNotesConfig({
     AngularNote,
     BabelNote,
     BrowserNote,
+    ClassicFrontInterviewNote,
     CssNote,
     DesignPatternNote,
     ExpressNote,
