@@ -10,6 +10,7 @@ export const navbar = defineNavbarConfig([
     items: [
       {
         text: "基础",
+        icon: 'icon-park:book-one',
         items: [
           { text: "前端经典面试题", link: "/notes/ClassicFrontInterview/" },
           { text: "Web 基础", link: "/notes/WebBasic/" },
