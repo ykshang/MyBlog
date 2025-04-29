@@ -1,7 +1,7 @@
 ---
 title: Webpack 如何提高构建速度？
 createTime: 2025/03/15 14:24:59
-permalink: /article/1nxo855s/
+permalink: /Webpack/1nxo855s/
 tags:
   - Webpack
   - 构建
