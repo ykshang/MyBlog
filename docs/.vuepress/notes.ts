@@ -157,6 +157,13 @@ const OtherToolForNodeJsNote = defineNoteConfig({
   link: '/OtherToolForNodeJs',
   sidebar: 'auto',
 })
+// Browser 浏览器 笔记配置
+const BrowserNote = defineNoteConfig({
+  dir: 'Browser',
+  link: '/Browser',
+  sidebar: 'auto',
+})
+
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
@@ -164,6 +171,7 @@ export const notes = defineNotesConfig({
     AlgorithmNote,
     AngularNote,
     BabelNote,
+    BrowserNote,
     CssNote,
     DesignPatternNote,
     ExpressNote,
