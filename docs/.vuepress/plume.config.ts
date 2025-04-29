@@ -1,6 +1,7 @@
 import { defineThemeConfig } from "vuepress-theme-plume";
 import { navbar } from "./navbar";
 import { notes } from "./notes";
+import path from 'node:path'
 
 /**
  * @see https://theme-plume.vuejs.press/config/basic/
@@ -50,12 +51,13 @@ export default defineThemeConfig({
    * 公告板
    * @see https://theme-plume.vuejs.press/guide/features/bulletin/
    */
-  // bulletin: {
-  //   layout: 'top-right',
-  //   contentType: 'markdown',
-  //   title: '公告板标题',
-  //   content: '公告板内容',
-  // },
+  bulletin: {
+    layout: 'top-right',
+    contentType: 'markdown',
+    title: '遗留任务',
+    contentFile: path.join(__dirname, '_bulletin.md'),
+    border: true,
+  },
 
   /* 过渡动画 @see https://theme-plume.vuejs.press/config/basic/#transition */
   // transition: {
