@@ -93,7 +93,7 @@ export const navbar = defineNavbarConfig([
           },
           {
             text: "其他工具",
-            icon: "vscode-icons:file-type-light-config",
+            icon: "/logo/jsconfig.png",
             link: "/notes/OtherToolForNodeJs/",
           },
         ],
