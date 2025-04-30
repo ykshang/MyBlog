@@ -13,7 +13,7 @@ export const navbar = defineNavbarConfig([
         items: [
           {
             text: "前端经典面试题",
-            icon: "noto-v1:star",
+            icon: "/logo/frontInterview.png",
             link: "/notes/ClassicFrontInterview/",
           },
           {
@@ -53,7 +53,7 @@ export const navbar = defineNavbarConfig([
           },
           {
             text: "React",
-            icon: "skill-icons:react-dark",
+            icon: "material-icon-theme:react",
             link: "/notes/React/",
           },
           {
@@ -138,7 +138,7 @@ export const navbar = defineNavbarConfig([
           },
           {
             text: "Gulp",
-            icon: "vscode-icons:file-type-gulp",
+            icon: "/logo/gulp.png",
             link: "/notes/Gulp/",
           },
           {
@@ -195,12 +195,12 @@ export const navbar = defineNavbarConfig([
       },
       {
         text: "网络相关",
-        icon: "fluent-color:wifi-20",
+        icon: "/logo/network.png",
         link: "/notes/Network/",
       },
       {
         text: "信息安全",
-        icon: "fluent-color:shield-checkmark-48",
+        icon: "/logo/security.png",
         link: "/notes/Security/",
       },
     ],
