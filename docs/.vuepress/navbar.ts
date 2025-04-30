@@ -185,12 +185,12 @@ export const navbar = defineNavbarConfig([
     items: [
       {
         text: "算法",
-        icon: "material-icon-theme:react",
+        icon: "/logo/Algorithm.png",
         link: "/notes/Algorithm/",
       },
       {
         text: "设计模式",
-        icon: "streamline-emojis:artist-palette",
+        icon: "/logo/DesignPattern.png",
         link: "/notes/DesignPattern/",
       },
       {
