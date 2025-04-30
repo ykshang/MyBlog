@@ -12,7 +12,7 @@ export const navbar = defineNavbarConfig([
         text: "基础",
         items: [
           {
-            text: "前端经典面试题",
+            text: "经典面试题",
             icon: "/logo/frontInterview.png",
             link: "/notes/ClassicFrontInterview/",
           },
