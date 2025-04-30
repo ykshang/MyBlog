@@ -10,23 +10,62 @@ export const navbar = defineNavbarConfig([
     items: [
       {
         text: "基础",
-        icon: 'icon-park:book-one',
         items: [
-          { text: "前端经典面试题", link: "/notes/ClassicFrontInterview/" },
-          { text: "Web 基础", link: "/notes/WebBasic/" },
-          { text: "Html", link: "/notes/Html/" },
-          { text: "CSS", link: "/notes/CSS/" },
-          { text: "Javascript", link: "/notes/Javascript/" },
-          { text: "浏览器相关", link: "/notes/Browser/" },
+          {
+            text: "前端经典面试题",
+            icon: "noto-v1:star",
+            link: "/notes/ClassicFrontInterview/",
+          },
+          {
+            text: "Web 基础",
+            icon: "logos:internetexplorer",
+            link: "/notes/WebBasic/",
+          },
+          {
+            text: "Html",
+            icon: "logos:html-5",
+            link: "/notes/Html/",
+          },
+          {
+            text: "CSS",
+            icon: "vscode-icons:file-type-css",
+            link: "/notes/CSS/",
+          },
+          {
+            text: "Javascript",
+            icon: "skill-icons:javascript",
+            link: "/notes/Javascript/",
+          },
+          {
+            text: "浏览器相关",
+            icon: "logos:chrome",
+            link: "/notes/Browser/",
+          },
         ],
       },
       {
         text: "主流框架",
         items: [
-          { text: "Vue", link: "/notes/Vue/" },
-          { text: "React", link: "/notes/React/" },
-          { text: "Angular", link: "/notes/Angular/" },
-          { text: "UniApp", link: "/notes/UniApp/" },
+          {
+            text: "Vue",
+            icon: "logos:vue",
+            link: "/notes/Vue/",
+          },
+          {
+            text: "React",
+            icon: "skill-icons:react-dark",
+            link: "/notes/React/",
+          },
+          {
+            text: "Angular",
+            icon: "skill-icons:angular-light",
+            link: "/notes/Angular/",
+          },
+          {
+            text: "UniApp",
+            icon: "/logo/uni-app.png",
+            link: "/notes/UniApp/",
+          },
         ],
       },
     ],
@@ -37,35 +76,89 @@ export const navbar = defineNavbarConfig([
       {
         text: "轻应用框架",
         items: [
-          { text: "Node.js", link: "/notes/NodeJs/" },
-          { text: "Express", link: "/notes/Express/" },
-          { text: "Koa", link: "/notes/Koa/" },
-          { text: "其他工具", link: "/notes/OtherToolForNodeJs/" },
+          {
+            text: "Node.js",
+            icon: "devicon:nodejs",
+            link: "/notes/NodeJs/",
+          },
+          {
+            text: "Express",
+            icon: "vscode-icons:file-type-js-official",
+            link: "/notes/Express/",
+          },
+          {
+            text: "Koa",
+            icon: "logos:koa",
+            link: "/notes/Koa/",
+          },
+          {
+            text: "其他工具",
+            icon: "vscode-icons:file-type-light-config",
+            link: "/notes/OtherToolForNodeJs/",
+          },
         ],
       },
       {
         text: "CSS 预处理器",
         items: [
-          { text: "Stylus", link: "/notes/Stylus/" },
-          { text: "Sass", link: "/notes/Sass/" },
-          { text: "Less", link: "/notes/Less/" },
+          {
+            text: "Stylus",
+            icon: "material-icon-theme:stylus",
+            link: "/notes/Stylus/",
+          },
+          {
+            text: "Sass",
+            icon: "skill-icons:sass",
+            link: "/notes/Sass/",
+          },
+          {
+            text: "Less",
+            icon: "la:less",
+            link: "/notes/Less/",
+          },
         ],
       },
       {
         text: "构建工具",
         items: [
-          { text: "Webpack", link: "/notes/Webpack/" },
-          { text: "Vite", link: "/notes/Vite/" },
-          { text: "Babel", link: "/notes/Babel/" },
-          { text: "Gulp", link: "/notes/Gulp/" },
-          { text: "Grunt", link: "/notes/Grunt/" },
+          {
+            text: "Webpack",
+            icon: "devicon:webpack",
+            link: "/notes/Webpack/",
+          },
+          {
+            text: "Vite",
+            icon: "vscode-icons:file-type-vite",
+            link: "/notes/Vite/",
+          },
+          {
+            text: "Babel",
+            icon: "vscode-icons:file-type-light-babel2",
+            link: "/notes/Babel/",
+          },
+          {
+            text: "Gulp",
+            icon: "vscode-icons:file-type-gulp",
+            link: "/notes/Gulp/",
+          },
+          {
+            text: "Grunt",
+            icon: "vscode-icons:file-type-grunt",
+            link: "/notes/Grunt/",
+          },
         ],
       },
     ],
   },
   {
     text: "数据库",
-    items: [{ text: "MongoDB", link: "/notes/MongoDB/" }],
+    items: [
+      {
+        text: "MongoDB",
+        icon: "devicon:mongodb-wordmark",
+        link: "/notes/MongoDB/",
+      },
+    ],
   },
   {
     text: "项目管理",
@@ -73,8 +166,16 @@ export const navbar = defineNavbarConfig([
       {
         text: "代码管理",
         items: [
-          { text: "Git", link: "/notes/Git/" },
-          { text: "SVN", link: "/notes/SVN/" },
+          {
+            text: "Git",
+            icon: "devicon:git",
+            link: "/notes/Git/",
+          },
+          {
+            text: "SVN",
+            icon: "file-icons:tortoisesvn",
+            link: "/notes/SVN/",
+          },
         ],
       },
     ],
@@ -82,10 +183,26 @@ export const navbar = defineNavbarConfig([
   {
     text: "计算机基础",
     items: [
-      { text: "算法", link: "/notes/Algorithm/" },
-      { text: "设计模式", link: "/notes/DesignPattern/" },
-      { text: "网络相关", link: "/notes/Network/" },
-      { text: "信息安全", link: "/notes/Security/" },
+      {
+        text: "算法",
+        icon: "material-icon-theme:react",
+        link: "/notes/Algorithm/",
+      },
+      {
+        text: "设计模式",
+        icon: "streamline-emojis:artist-palette",
+        link: "/notes/DesignPattern/",
+      },
+      {
+        text: "网络相关",
+        icon: "fluent-color:wifi-20",
+        link: "/notes/Network/",
+      },
+      {
+        text: "信息安全",
+        icon: "fluent-color:shield-checkmark-48",
+        link: "/notes/Security/",
+      },
     ],
   },
 ]);
