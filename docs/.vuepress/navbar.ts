@@ -37,6 +37,11 @@ export const navbar = defineNavbarConfig([
             link: "/notes/Javascript/",
           },
           {
+            text: "TypeScript",
+            icon: "skill-icons:typescript",
+            link: "/notes/TypeScript/",
+          },
+          {
             text: "浏览器相关",
             icon: "logos:chrome",
             link: "/notes/Browser/",

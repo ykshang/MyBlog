@@ -169,6 +169,12 @@ const ClassicFrontInterviewNote = defineNoteConfig({
   link: '/ClassicFrontInterview',
   sidebar: 'auto',
 })
+// TypeScript 笔记配置
+const TypeScriptNote = defineNoteConfig({
+  dir: 'TypeScript',
+  link: '/TypeScript',
+  sidebar: 'auto',
+})
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
@@ -196,6 +202,7 @@ export const notes = defineNotesConfig({
     SassNote,
     SecurityNote,
     StylusNote,
+    TypeScriptNote,
     UniAppNote,
     ViteNote,
     VueNote,
