@@ -55,6 +55,7 @@ export default defineThemeConfig({
     layout: 'top-right',
     contentType: 'markdown',
     title: '遗留任务',
+    lifetime: "session",
     contentFile: path.join(__dirname, '_bulletin.md'),
     border: true,
   },
