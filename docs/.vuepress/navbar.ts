@@ -160,7 +160,7 @@ export const navbar = defineNavbarConfig([
     items: [
       {
         text: "MongoDB",
-        icon: "devicon:mongodb-wordmark",
+        icon: "devicon:mongodb",
         link: "/notes/MongoDB/",
       },
     ],
