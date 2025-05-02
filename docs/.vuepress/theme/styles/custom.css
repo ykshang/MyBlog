@@ -68,7 +68,9 @@
     white-space: nowrap;
     overflow: hidden;
   }
-
+  .vp-sidebar-item.sidebar-item.level-0 .vp-link.link>.text span strong {
+    color: #333;
+  }
   .vp-menu-group>.title {
     font-size: 14px;
     font-weight: 600;
