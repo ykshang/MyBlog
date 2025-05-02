@@ -7,6 +7,7 @@ import { defineClientConfig } from 'vuepress/client'
 import MyNavMenu from './theme/components/MyNavMenu.vue'
 
 import './theme/styles/custom.css'
+import './theme/styles/diy.sass'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
