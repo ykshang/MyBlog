@@ -98,7 +98,7 @@ export const navbar = defineNavbarConfig([
           },
           {
             text: "其他工具",
-            icon: "/logo/jsconfig.png",
+            icon: "/logo/FrontTools.png",
             link: "/notes/OtherToolForNodeJs/",
           },
         ],
