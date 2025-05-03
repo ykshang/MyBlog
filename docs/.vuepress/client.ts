@@ -5,6 +5,7 @@ import { defineClientConfig } from 'vuepress/client'
 // import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
 
 import MyNavMenu from './theme/components/MyNavMenu.vue'
+import test from './theme/components/test.vue'
 
 import './theme/styles/custom.css'
 import './theme/styles/diy.sass'
@@ -24,5 +25,6 @@ export default defineClientConfig({
     // your custom components
     // app.component('CustomComponent', CustomComponent)
     app.component('MyNavMenu', MyNavMenu)
+    app.component('test', test)
   },
 })
