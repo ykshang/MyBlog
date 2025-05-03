@@ -9,9 +9,14 @@
       font-weight: 600;
     .vp-sidebar-item.sidebar-item.level-0 .vp-link.link>.text span strong
       color: #333
-    .vp-doc.plume-content > div > p > code 
-      margin: auto 5px; 
-    
+    .vp-doc.plume-content > div 
+      > p > code,
+      >h2 code,
+      >h3 code,
+      >h4 code, 
+      >h5 code
+        margin: auto 5px; 
+
 [data-theme="dark"]
   @media screen and (min-width: 960px)
     .vp-menu-group>.title
@@ -21,5 +26,12 @@
     .vp-sidebar-item.sidebar-item.level-0 .vp-link.link>.text 
       color: #c5c5c5
       font-size: 15px;
-    .vp-doc.plume-content > div > p > code 
-      margin: auto 5px; 
+    .vp-doc.plume-content > div 
+      > p > code
+        margin: auto 5px
+      > h2,
+      > h3,
+      > h4,
+      > h5
+        > a > span > code
+          margin: auto 5px
