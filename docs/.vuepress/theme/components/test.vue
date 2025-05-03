@@ -17,10 +17,9 @@ const title = ref('Vue3 + TS Component')
 const increment = () => {
   count.value++
 }
-const a: unique symbol = Symbol();
-const b: unique symbol = Symbol();
-
-//  console.log(a === b); // 报错
+const a: unique symbol = Symbol.for("foo");
+const b: unique symbol = Symbol.for("foo");
+// console.log(a === b); 
 </script>
 
 <style scoped>
