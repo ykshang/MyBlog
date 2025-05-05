@@ -17,15 +17,17 @@ const title = ref('Vue3 + TS Component')
 const increment = () => {
   count.value++
 }
-function f(x: string): 0 | 1;
-function f(x: any): number;
-function f(x: any): any {
-  // ...
+
+interface MyInterface {
+  toString(): string; // 继承的属性
+  prop: number; // 自身的属性
+  a: number;
 }
 
-const a: 0 | 1 = f("hi"); // 报错
-console.log(a);
-
+const obj:MyInterface = { // 正确
+  prop: 123,
+  a: 123,
+};
 </script>
 
 <style scoped>
