@@ -17,22 +17,17 @@ const title = ref('Vue3 + TS Component')
 const increment = () => {
   count.value++
 }
+class MyClass {
+  static x = 0;
+  static printX() {
+    console.log(MyClass.x);
+  }
+}
 
-interface MyInterface {
-  toString(): string; // 继承的属性
-  prop: number; // 自身的属性
-  a: number;
-}
-let obj: MyInterface = {
-  toString() {
-    return 'Hello';
-  },
-  prop: 123,
-  a: 1
-}
-console.log(obj.toString()); // 输出: Hello
-console.log(obj.prop); // 输出: Hello
-</script>
+MyClass.x; // 0
+MyClass.printX(); // 0
+// console.log(MyClass.prototype.x);
+</script> 
 
 <style scoped>
 .test-container {
