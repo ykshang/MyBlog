@@ -17,16 +17,9 @@ const title = ref('Vue3 + TS Component')
 const increment = () => {
   count.value++
 }
-class MyClass {
-  static x = 0;
-  static printX() {
-    console.log(MyClass.x);
-  }
+function isString(value: unknown): asserts value is string {
+  if (typeof value !== "number") throw new Error("Not a number");
 }
-
-MyClass.x; // 0
-MyClass.printX(); // 0
-// console.log(MyClass.prototype.x);
 </script> 
 
 <style scoped>
