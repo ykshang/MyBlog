@@ -23,11 +23,15 @@ interface MyInterface {
   prop: number; // 自身的属性
   a: number;
 }
-
-const obj:MyInterface = { // 正确
+let obj: MyInterface = {
+  toString() {
+    return 'Hello';
+  },
   prop: 123,
-  a: 123,
-};
+  a: 1
+}
+console.log(obj.toString()); // 输出: Hello
+console.log(obj.prop); // 输出: Hello
 </script>
 
 <style scoped>
