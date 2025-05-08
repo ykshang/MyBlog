@@ -1,26 +1,6 @@
 <template>
   <div class="container">
     <canvas ref="canvasRef"></canvas>
-    <div class="head-social">
-      <a
-        href="https://github.com/XingJi-love"
-        target="_blank"
-        class="head-social-btn"
-      >
-        <icon name="mdi:github" />
-      </a>
-      <router-link to="/blog/" class="head-social-avatar"
-        ><img
-          src="https://i.p-i.vip/47/20241024-67192acae3bb8.png"
-          alt="avatar"
-      /></router-link>
-      <a
-        href="mailto:fingawjavier@gmail.com"
-        target="_blank"
-        class="head-social-btn"
-        ><Icon class="head-social-btn" name="ic:baseline-email"></Icon
-      ></a>
-    </div>
     <div class="about-me">
       <div class="about-me-3-2-row">
         <AboutMeName />
@@ -105,7 +85,7 @@ canvas
 
 .about-me
   max-width: 1380px
-  margin: 0 auto
+  margin: 60px auto 0 auto
   width: 90%
   @media screen and (max-width: 770px)
     width: 94%
