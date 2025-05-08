@@ -1,0 +1,42 @@
+/*
+主页
+*/
+
+/*单个卡片背景*/
+.about-me-card-bg{
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: var(--main-card-background);
+  border: 1px solid var(--main-card-border);
+  box-shadow: 0 8px 12px -4px var(--main-border-shadow);
+  overflow: hidden;
+}
+/*卡片 小 title*/
+.about-me-card-title-normal{
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+/*卡片 大 text*/
+.about-me-card-text-big{
+  color: var(--vp-c-text-1);
+  margin: 10px 0;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  @media screen and (max-width: 770px) {
+      font-size: 24px;
+      margin: 7px 0;
+  }
+}
+/*卡片 暗色 text*/
+.about-me-card-text-soft{
+  color: var(--vp-c-text-2);
+}
+/*卡片 彩色 text*/
+.about-me-card-text-color{
+  background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 10%, var(--vp-c-brand-2) 75%, var(--vp-c-brand-2) 100%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

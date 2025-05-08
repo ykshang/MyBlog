@@ -9,6 +9,7 @@ import test from "./theme/components/test.vue";
 import CustomIndex from "./theme/CustomIndex/Custom.vue"; // 自定义组件
 
 import "./theme/styles/custom.css";
+import "./theme/styles/index.css";
 import "./theme/styles/diy.sass";
 
 import ElementPlus from "element-plus";
