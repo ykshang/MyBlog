@@ -110,6 +110,8 @@ const tools = ref([
   padding: 0 20px;
   transition: opacity 0.5s;
   flex-wrap: wrap;
+  overflow: auto;
+  max-height: 300px;
   >span{
     display: flex;
     justify-content: center;
