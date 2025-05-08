@@ -118,7 +118,7 @@ export const navbar = defineNavbarConfig([
           },
           {
             text: "Less",
-            icon: "la:less",
+            icon: "logos:less",
             link: "/notes/Less/",
           },
         ],
