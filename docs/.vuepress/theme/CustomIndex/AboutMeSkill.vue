@@ -68,6 +68,7 @@ const technology = ref([
   { type: "Eslint", icon: "logos:eslint" },
   { type: "Prettier", icon: "logos:prettier" },
   { type: "jQuery", icon: "skill-icons:jquery" },
+  { type: "Bootstrap", icon: "skill-icons:bootstrap" },
 ]);
 
 const tools = ref([

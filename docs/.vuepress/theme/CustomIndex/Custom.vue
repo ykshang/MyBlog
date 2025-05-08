@@ -8,9 +8,9 @@
           <template #motto>
             <slot name="motto">
               <p class="about-me-card-title-normal">座右铭</p>
-              <p class="about-me-card-text-big">迄今所有人生都大写着失败，</p>
+              <p class="about-me-card-text-big">重构人生</p>
               <p class="about-me-card-text-big about-me-card-text-color">
-                但不妨碍我继续向前✨
+                在调试中成长，在代码中追梦✨
               </p>
             </slot>
           </template>
@@ -50,7 +50,7 @@
   height: 100%;
   overflow-x: hidden !important;
   overflow-y: hidden !important;
-  
+
 }
 
 canvas {
