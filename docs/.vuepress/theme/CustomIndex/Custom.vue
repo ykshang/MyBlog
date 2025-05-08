@@ -43,79 +43,95 @@
   </div>
 </template>
 
-<style lang="sass" scoped>
-.container
-  z-index: 1
-  width: 100%
-  height: 100%
-  overflow-x: hidden!important
-  overflow-y: hidden!important
+<style lang="scss" scoped>
+.container {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  
+}
 
-canvas
-  z-index: -1
-  position: fixed
-  top: -1px
-  left: -1px
+canvas {
+  z-index: -1;
+  position: fixed;
+  top: -1px;
+  left: -1px;
   pointer-events: none; /* 允许鼠标事件穿透 */
-  overflow: hidden
+  overflow: hidden;
+}
 
-.head-social
-  display: flex
-  width: fit-content
-  margin: 0 auto
-  align-items: center
-  &-avatar
-    margin: 20px
-    border-radius: 30%
-    overflow: hidden
-    width: 60px
-    transition: transform 0.2s
-    &:hover
-      transform: scale(1.1)
+.head-social{
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  align-items: center;
+  .head-social-avatar{
+    margin: 20px;
+    border-radius: 30%;
+    overflow: hidden;
+    width: 60px;
+    transition: transform 0.2s;
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
+  .head-social-btn{
+    cursor: pointer;
+    font-size: 30px;
+    margin: 20px;
+    transition: transform 0.2s,color 0.3s;
+    color: var(--vp-c-text-2);
+    &:hover{
+      color: var(--vp-c-brand-1);
+      transform: scale(1.2);
+    }
+  }
+}
 
-    &-btn
-      cursor: pointer
-      font-size: 30px
-      margin: 20px
-      transition: transform 0.2s,color 0.3s
-      color: var(--vp-c-text-2)
-    &:hover
-      color: var(--vp-c-brand-1)
-      transform: scale(1.2)
+.about-me{
+  max-width: 1380px;
+  margin: 0 auto;
+  width: 90%;
+  @media screen and (max-width: 770px) {
+    width: 94%;
+  }
+}
+.about-me-3-2-row{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 20px;
+  @media screen and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
 
-.about-me
-  max-width: 1380px
-  margin: 60px auto 0 auto
-  width: 90%
-  @media screen and (max-width: 770px)
-    width: 94%
+  }
+}
 
-.about-me-3-2-row
-  margin-top: 20px
-  display: grid
-  grid-template-columns: 3fr 2fr
-  gap: 20px
-  @media screen and (max-width: 770px)
-    display: flex
-    flex-direction: column
+.about-me-1-1-row{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  @media screen and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.about-me-1-row{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  @media screen and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
-.about-me-1-1-row
-  margin-top: 20px
-  display: grid
-  grid-template-columns: 1fr 1fr
-  gap: 20px
-  @media screen and (max-width: 770px)
-    display: flex
-    flex-direction: column
 
-.about-me-1-row
-  margin-top: 20px
-  display: grid
-  grid-template-columns: 1fr
-  gap: 20px
-  @media screen and (max-width: 770px)
-    display: flex
-    flex-direction: column
 </style>
 
 
