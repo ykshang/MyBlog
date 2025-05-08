@@ -13,7 +13,7 @@ export const navbar = defineNavbarConfig([
         items: [
           {
             text: "经典面试题",
-            icon: "/logo/frontInterview.png",
+            icon: "fxemoji:bookmarktab",
             link: "/notes/ClassicFrontInterview/",
           },
           {
@@ -98,7 +98,7 @@ export const navbar = defineNavbarConfig([
           },
           {
             text: "其他工具",
-            icon: "/logo/FrontTools.png",
+            icon: "icon-park:toolkit",
             link: "/notes/OtherToolForNodeJs/",
           },
         ],
@@ -190,22 +190,22 @@ export const navbar = defineNavbarConfig([
     items: [
       {
         text: "算法",
-        icon: "/logo/Algorithm.png",
+        icon: "devicon:networkx",
         link: "/notes/Algorithm/",
       },
       {
         text: "设计模式",
-        icon: "/logo/DesignPattern.png",
+        icon: "fxemoji:artistpalette",
         link: "/notes/DesignPattern/",
       },
       {
         text: "网络相关",
-        icon: "/logo/network.png",
+        icon: "marketeq:signal-2",
         link: "/notes/Network/",
       },
       {
         text: "信息安全",
-        icon: "/logo/security.png",
+        icon: "fluent-color:shield-checkmark-48",
         link: "/notes/Security/",
       },
     ],

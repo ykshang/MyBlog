@@ -8,9 +8,9 @@
           <template #motto>
             <slot name="motto">
               <p class="about-me-card-title-normal">座右铭</p>
-              <p class="about-me-card-text-big">重构人生</p>
-              <p class="about-me-card-text-big about-me-card-text-color">
-                在调试中成长，在代码中追梦✨
+              <p class="about-me-card-text-big">选择之诗</p>
+              <p class="about-me-card-text-big about-me-card-text-color change_size">
+                每条未知的路，都是繁星藏起的诗✨
               </p>
             </slot>
           </template>
@@ -26,10 +26,10 @@
             <slot name="motto">
               <p class="about-me-card-title-normal">追求</p>
               <p class="about-me-card-text-big about-me-card-text-soft">
-                用心去<span style="color: #3a5ccc">感受</span>
+                在调试中<span style="color: #3a5ccc">成长</span>
               </p>
               <p class="about-me-card-text-big">
-                用热爱去<span style="color: #d53737">创造</span>
+                在代码中<span style="color: #d53737">追梦</span>
               </p>
             </slot>
           </template>
@@ -130,7 +130,10 @@ canvas {
     flex-direction: column;
   }
 }
-
+.change_size {
+  font-size: 30px;
+  line-height: 44px;
+}
 
 </style>
 
