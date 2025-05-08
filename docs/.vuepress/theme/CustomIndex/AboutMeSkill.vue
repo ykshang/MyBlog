@@ -136,6 +136,7 @@ const tools = ref([
   display: inline-flex;
   animation: marquee-left 30s linear infinite;
   >span{
+    display: flex;
     border-radius: 20%;
     align-content: center;
     align-items: center;
