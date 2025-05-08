@@ -18,7 +18,7 @@
         href="mailto:fingawjavier@gmail.com"
         target="_blank"
         class="head-social-btn"
-        ><icon class="head-social-btn" name="ic:baseline-email"></icon
+        ><Icon class="head-social-btn" name="ic:baseline-email"></Icon
       ></a>
     </div>
     <div class="about-me">
@@ -57,7 +57,7 @@
         <AboutMeCharacter />
       </div>
       <div class="about-me-1-row">
-        <AboutMeFriendLink />
+        <!-- <AboutMeFriendLink /> -->
       </div>
     </div>
   </div>
@@ -146,7 +146,7 @@ import AboutMeText from "./AboutMeText.vue";
 import AboutMeSkill from "./AboutMeSkill.vue";
 import AboutMeCharacter from "./AboutMeCharacter.vue";
 import AboutMeLife from "./AboutMeLife.vue";
-import AboutMeFriendLink from "./AboutMeFriendLink.vue";
+// import AboutMeFriendLink from "./AboutMeFriendLink.vue";
 
 interface Comet {
   direction: "horizontal" | "vertical";
