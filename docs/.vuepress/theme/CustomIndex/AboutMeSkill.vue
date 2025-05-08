@@ -87,16 +87,16 @@ const tools = ref([
     padding: 0 20px
     transition: opacity 0.5s
     flex-wrap: wrap
-  > span
-    display: flex
-    justify-content: center
-    align-items: center
-    margin: 0 6px 6px 0
-    border-radius: 8px
-    padding: 7px
-    font-size: 16px
-    color: var(--vp-c-text-2)
-    background-color: var(--home-action-bnt-bg)
+    > span
+      display: flex
+      justify-content: center
+      align-items: center
+      margin: 0 6px 6px 0
+      border-radius: 8px
+      padding: 7px
+      font-size: 16px
+      color: var(--vp-c-text-2)
+      background-color: var(--home-action-bnt-bg)
 
 .marquee-row
   transition: opacity 0.6s 0.1s
