@@ -6,8 +6,8 @@
     <p class="about-me-card-title-normal">性格</p>
     <div class="about-me-character-content">
       <div class="about-me-character-type">
-        <p class="about-me-card-text-big about-me-card-text-color">建筑师</p>
-        <p class="about-me-card-text-big">INTJ-A</p>
+        <p class="about-me-card-text-big about-me-card-text-color">辩论家</p>
+        <p class="about-me-card-text-big">ENTP</p>
       </div>
       <div class="about-me-character-img"></div>
     </div>
@@ -34,7 +34,8 @@
     transition: transform 1s
     width: fit-content
     min-height: 110px
-    background-image: url("/INTJ-A.png")
+    margin-right: 30px
+    background-image: url("/ENTP.png")
     background-position: right bottom
     background-size: contain
     background-repeat: no-repeat

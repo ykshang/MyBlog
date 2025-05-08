@@ -143,7 +143,7 @@ export const navbar = defineNavbarConfig([
           },
           {
             text: "Gulp",
-            icon: "/logo/gulp.png",
+            icon: "vscode-icons:file-type-gulp",
             link: "/notes/Gulp/",
           },
           {
