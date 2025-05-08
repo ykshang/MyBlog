@@ -1,17 +1,18 @@
-import { defineClientConfig } from 'vuepress/client'
+import { defineClientConfig } from "vuepress/client";
 // import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 // import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
 // import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
 // import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
 
-import MyNavMenu from './theme/components/MyNavMenu.vue'
-import test from './theme/components/test.vue'
+import MyNavMenu from "./theme/components/MyNavMenu.vue";
+import test from "./theme/components/test.vue";
+import CustomIndex from "./theme/CustomIndex/Custom.vue"; // 自定义组件
 
-import './theme/styles/custom.css'
-import './theme/styles/diy.sass'
+import "./theme/styles/custom.css";
+import "./theme/styles/diy.sass";
 
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -24,7 +25,8 @@ export default defineClientConfig({
 
     // your custom components
     // app.component('CustomComponent', CustomComponent)
-    app.component('MyNavMenu', MyNavMenu)
-    app.component('test', test)
+    app.component("MyNavMenu", MyNavMenu);
+    app.component("test", test);
+    app.component("CustomIndex", CustomIndex);
   },
-})
+});

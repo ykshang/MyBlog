@@ -67,89 +67,78 @@ const tools = ref([
 </script>
 
 <style lang="sass" scoped>
-.about-me-skill {
-  position: relative;
-  min-height: 316px;
-  padding: 20px 0;
-  z-index: 1;
-  &:hover .marquee-row {
-    opacity: 0;
-  }
-  &:hover .about-me-skill-detail {
-    opacity: 1;
-  }
-}
+.about-me-skill
+  position: relative
+  min-height: 316px
+  padding: 20px 0
+  z-index: 1
+  &:hover .marquee-row
+    opacity: 0
 
-.about-me-skill-detail {
-  position: absolute;
-  top: 100px;
-  opacity: 0;
-  z-index: 2;
-  display: flex;
-  padding: 0 20px;
-  transition: opacity 0.5s;
-  flex-wrap: wrap;
-  > span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 6px 6px 0;
-    border-radius: 8px;
-    padding: 7px;
-    font-size: 16px;
-    color: var(--vp-c-text-2);
-    background-color: var(--home-action-bnt-bg);
-  }
-}
+    &:hover &-detail
+      opacity: 1
 
-.marquee-row {
-  transition: opacity 0.6s 0.1s;
-  width: 105%;
-  margin-left: -6px;
-  overflow: hidden;
-  white-space: nowrap;
-  transform: rotateZ(-6deg);
-}
+  &-detail
+    position: absolute
+    top: 100px
+    opacity: 0
+    z-index: 2
+    display: flex
+    padding: 0 20px
+    transition: opacity 0.5s
+    flex-wrap: wrap
+  > span
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 0 6px 6px 0
+    border-radius: 8px
+    padding: 7px
+    font-size: 16px
+    color: var(--vp-c-text-2)
+    background-color: var(--home-action-bnt-bg)
 
-.marquee-content {
-  display: inline-flex;
-  animation: marquee-left 30s linear infinite;
-  > span {
-    border-radius: 20%;
-    align-content: center;
-    align-items: center;
-    background-color: var(--about-me-skill-item-bg);
-    width: 80px;
-    height: 80px;
-    font-size: 50px;
-    margin: 0 10px;
-  }
-}
-.first-row {
-  margin-top: 20px;
-}
-.second-row {
-  margin-top: 20px;
-}
-.second-row .marquee-content {
-  animation: marquee-right 50s linear infinite;
-}
+.marquee-row
+  transition: opacity 0.6s 0.1s
+  width: 105%
+  margin-left: -6px
+  overflow: hidden
+  white-space: nowrap
+  transform: rotateZ(-6deg)
 
-@keyframes marquee-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+.marquee-content
+  display: inline-flex
+  animation: marquee-left 30s linear infinite
+  > span
+    border-radius: 20%
+    align-content: center
+    align-items: center
+    background-color: var(--about-me-skill-item-bg)
+    width: 80px
+    height: 80px
+    font-size: 50px
+    margin: 0 10px
 
-@keyframes marquee-right {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
+.first-row
+  margin-top: 20px
+
+.second-row
+  margin-top: 20px
+
+  & .marquee-content
+    animation: marquee-right 50s linear infinite
+
+@keyframes marquee-left
+  0%
+    transform: translateX(0%)
+
+  100%
+    transform: translateX(-50%)
+
+@keyframes marquee-right
+  0%
+    transform: translateX(-50%)
+
+  100%
+    transform: translateX(0%)
 </style>
