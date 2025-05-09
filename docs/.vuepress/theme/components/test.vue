@@ -20,6 +20,16 @@ const increment = () => {
 function isString(value: unknown): asserts value is string {
   if (typeof value !== "number") throw new Error("Not a number");
 }
+type Person = {
+  name: string;
+  age: number;
+  address?: string;
+};
+
+const user = {
+  name: "Alice",
+  age: 30,
+} satisfies Person;
 </script> 
 
 <style scoped>
