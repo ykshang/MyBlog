@@ -89,27 +89,21 @@ Tree Shaking 的大致过程如下：
 - 压缩代码：移除不必要的空格、注释等
 - 生成最终包：输出只包含必要代码的打包文件
 
-## 三、有效的利用 Tree Shaking 功能
+## 三、如何有效的利用 Tree Shaking 功能
 
 要配置 Webpack 实现代码的无用代码剔除，需要确保一下几点：
 
-### 1、确保使用 ES 模块化
+### 1、确保使用 ES6 模块化
 
 Webpack 的 Tree Shaking 功能主要依赖于 ES 模块的静态结构。
 
-- 确保你的代码使用 ES 模块（`import`/`export`），而不是 CommonJS 模块（`require`/`module.exports`）。
-- 确保你的代码中没有使用动态导入（`import()`）或其他动态特性，因为这些特性会导致 Tree Shaking 失效。
-- 如果你的代码使用了 CommonJS 模块，你需要使用 Babel 等工具将其转换为 ES 模块。例如，Babel 的  @babel/preset-env  默认可能会这样做，需要配置  modules: false  来保留 ES6 模块语法供 Webpack 处理。
+- 确保你的代码使用 ES 模块，而不是 CommonJS 模块。
+- 确保你的代码中没有使用动态拼接的路径。
+- 如果你的代码使用了 CommonJS 模块，你需要使用 Babel 等工具将其转换为 ES6 模块。同时防止 Babel 把 ES6 模块转成 CommonJS 模块。
 
-### 2、标记副作用
+### 2、开启生产模式
 
-有些模块在被导入时可能会产生“副作用”，例如修改全局变量、在  window  上挂载对象，或者仅仅是导入一个 CSS 文件（它会直接影响页面样式，即使没有显式使用其导出）
-
-### 2、开启 Tree Shaking 功能
-
-在 Webpack 中，Tree Shaking 功能在**生产环境下是默认开启** 的。但是，为了确保 Tree Shaking 功能生效，需要进行以下配置：
-
-#### 2.1、配置 `mode` 为 `production`
+配置`mode`为`production`，Webpack 会自动启用相关优化。
 
 ```js
 module.exports = {
@@ -118,74 +112,49 @@ module.exports = {
 };
 ```
 
-#### 2.2、配置`optimization.usedExports` 为 `true`
-
-```js
-module.exports = {
-  mode: "production", // 生产模式会自动启用 Tree Shaking
-  optimization: {
-    usedExports: true, // 标记未被使用的导出
-    minimize: true, // 启用代码压缩（删除标记的代码）
-    // 如果你需要更细粒度的控制：
-    sideEffects: true, // 识别 package.json 中的 sideEffects 标志
-  },
-};
-```
-
-#### 3、配置 sideEffects 字段
-
-- 确保你的`package.json`文件中的`sideEffects`字段被正确配置。
-- `sideEffects`字段告诉 Webpack 哪些文件是没有副作用的，可以进行 Tree Shaking。
-- 如果你的应用是无任何副作用，可以将`sideEffects`设置为`"sideEffects": false`。
-- 如果你的应用使用了一些有副作用的模块（例如 CSS 文件），你需要将这些模块添加到`sideEffects`字段中。这样 Webpack 就不会将这些有副作用的模块进行 Tree Shaking。
-
-配置完成后，运行 Webpack 打包构建，未被引用的代码将会被删除，从而减小文件体积。
-
-## 三、文件的副作用
-
-### 1、什么是副作用？
+### 3、标记副作用
 
 在 Webpack 的 Tree Shaking 过程中，**副作用**指的是模块执行时除了导出值之外的其他行为。这些行为可能包括：
 
-1. 修改全局变量
-2. 执行 I/O 操作
-3. 调用其他模块的函数
-4. 动态拼接路径引入的模块或者路由
-5. 特殊语法：`eval`、`with`
+- 修改全局变量、在`window`上挂载对象
+- 执行 I/O 操作
+- 调用其他模块的函数
+- 动态拼接路径引入的模块或者路由
+- 特殊语法：`eval`、`with`
+- 仅仅是导入一个 CSS 文件（它会直接影响页面样式）
 
-### 2、为什么副作用重要？
-
-Tree Shaking 会移除未使用的代码，但如果模块有副作用，直接删除可能导致程序出错。因此，Webpack 需要谨慎处理这些模块。
-
-### 3、如何处理？
+所以，我们需要进行相关的配置，来告诉 Webpack 哪些模块是有副作用的，哪些模块是无副作用的。
 
 #### 3.1、`sideEffects`属性
 
-在`package.json`中设置`sideEffects`为`false`，表示模块没有副作用，Webpack 可以安全移除未使用的导出。若部分文件有副作用，可指定文件路径数组。
+在`package.json`中设置`sideEffects`为`false`，表示模块没有副作用，Webpack 可以安全移除未使用的导出。如果存在有副作用的代码，我们可以配置一个数组来告诉 Webpack 谨慎处理。
 
-```json
+```js
 {
+  // 标记所有的代码都没有副作用
   "sideEffects": false
-}
-```
-
-或
-
-```json
-{
-  "sideEffects": ["./src/some-side-effectful-file.js"]
+  // 标记有副作用的文件
+  "sideEffects": [
+    "./src/some-side-effectful-file.js"
+    "./src/polyfill.js",
+    "*.css"
+  ]
 }
 ```
 
 #### 3.2、`/*#__PURE__*/`注释
 
-标记函数调用为无副作用，帮助 Webpack 识别可安全移除的代码。
+标记函数调用为无副作用，等于告诉 Webpack，如果该函数未被调用，可以被安全的移除。
 
 ```javascript
 const result = /*#__PURE__*/ someFunction();
 ```
 
-### 4、示例
+### 4、编写纯模块
+
+尽量编写无副作用的模块。函数尽量是纯函数、尽量不导入其他的依赖包、模块的导入不应该改变全局状态。
+
+## 四、示例
 
 假设模块`math.js`如下：
 
@@ -200,4 +169,4 @@ export function cube(x) {
 }
 ```
 
-如果只使用`square`，`cube`中的`console.log`是副作用，Webpack 可能不会移除`cube`。
+如果只使用`square`，`cube`中的`console.log`是副作用，Webpack 可能会因此不会移除`cube`。
