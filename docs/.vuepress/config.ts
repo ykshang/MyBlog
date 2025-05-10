@@ -2,7 +2,7 @@ import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import { plumeTheme } from "vuepress-theme-plume";
 export default defineUserConfig({
-  base: process.env.VUEPRESS_BASE ? "/MyBlog/" : "/",
+  base: process.env.VUEPRESS_BASE === "/MyBlog/" ? "/MyBlog/" : "/",
   lang: "zh-CN",
   title: "重构人生",
   description: "",
