@@ -10,7 +10,7 @@
               <p class="about-me-card-title-normal">座右铭</p>
               <p class="about-me-card-text-big">选择之诗</p>
               <p class="about-me-card-text-big about-me-card-text-color change_size">
-                每条未知的路，都是繁星藏起的诗✨
+                每条未知的路，都是繁星藏起的诗1✨
               </p>
             </slot>
           </template>
