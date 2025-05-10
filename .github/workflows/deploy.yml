@@ -28,6 +28,7 @@ jobs:
       - name: Setup install env
         env:
           ACTION_DEPLOY_KEY: ${{ secrets.ACTION_DEPLOY_KEY }}
+          VUEPRESS_BASE: '/MyBlog/'
         run: |
           # set up private key for deploy
           mkdir -p ~/.ssh/
