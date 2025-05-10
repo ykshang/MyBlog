@@ -6,6 +6,7 @@ import { defineClientConfig } from "vuepress/client";
 
 import MyNavMenu from "./theme/components/MyNavMenu.vue";
 import test from "./theme/components/test.vue";
+import gonglue from "./theme/gonglue/gonglue.vue";
 import CustomIndex from "./theme/CustomIndex/Custom.vue"; // 自定义组件
 
 import "./theme/styles/custom.css";
@@ -29,5 +30,6 @@ export default defineClientConfig({
     app.component("MyNavMenu", MyNavMenu);
     app.component("test", test);
     app.component("CustomIndex", CustomIndex);
+    app.component("gonglue", gonglue);
   },
 });
