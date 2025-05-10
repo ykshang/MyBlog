@@ -19,49 +19,118 @@ Webpack 的 Tree Shaking 是一个用于 **移除代码中未被引用的代码�
 
 它可以显著减小打包后的文件体积，提高网页加载速度。
 
-Tree Shaking 的魔法主要依赖于  ES6 模块（ESM）的静态结构。ES6 模块使用  import  和  export  语句来管理模块间的依赖关系。
+Tree Shaking 主要依赖于 ES6 模块（ESM）的静态结构。ES6 模块使用`import`和`export`语句来管理模块间的依赖关系。
 
 这些语句的特点是：
 
 - 静态性：`import`和`export`只能在模块的顶层声明，不能在条件语句、循环或函数内部动态使用。
 - 明确性：导入和导出的名称是明确的，不能是动态计算的字符串。
 
-## 二、工作流程
+## 二、前提条件
 
-#### 阶段 1 ：依赖关系分析
+我们开启 Tree Shaking 功能时，需要满足以下前提条件：
 
-1. **构建依赖图**：打包工具从入口文件开始，分析所有模块的导入导出关系
-2. **标记依赖**：识别哪些导出被其他模块使用，哪些从未被引用
-3. **静态分析**：基于 ES6 模块的静态结构（`import`/`export` 必须是顶层声明）
+- 必须使用 ES6 模块语法（import/export），CommonJS 模块无法被 Tree Shaking
+- 设置 production 模式（会自动启用相关优化）
+- 确保没有编译器（如 Babel）将 ES6 模块转译为 CommonJS 模块
 
-#### 阶段 2 ：代码标记
+::: tip 为什么必须使用 ES6 模块？
+Webpack 的 Tree Shaking 主要依赖于 ES6 模块的静态结构。相对来说，CommonJS 中：
 
-1.  标记"活的"代码：从入口开始，标记所有被直接或间接引用的导出
-2.  识别副作用：通过`package.json`的`sideEffects`属性或 ==魔法注释== 标记有副作用的模块
+1. `require()`是动态的，可以在任何地方调用，导入的模块名也可以是变量。
+2. `module.exports`也可以在运行时动态修改。
 
-#### 阶段 3 ：代码消除
+```js
+const helper = require("./helper.js"); // 动态的,helper.js 可能在运行时改变
+module.exports.foo = function () {
+  /*··*/
+};
+if (Math.random() > 0.5) {
+  module.exports.bar = function () {
+    /*···*/
+  }; // 条件导出
+}
+```
 
-1.  移除未引用代码：删除所有未被标记的导出和相关的代码
-2.  保留副作用代码：即使某些代码未被直接使用，但如果它有副作用也会被保留
+这种动态性使得静态分析变得非常困难，打包工具无法在编译时准确判断哪些代码会被使用。而 ES6 模块的静态特性，使得打包工具可以安全地进行分析和移除未使用代码。
+:::
 
-#### 阶段 4 ：优化输出
+## 三、工作流程
 
-1.  合并代码块：将多个小文件合并成一个大文件
-2.  压缩代码：移除不必要的空格、注释等
-3.  生成最终包：输出只包含必要代码的打包文件
+Tree Shaking 的大致过程如下：
 
-## 二、配置
+#### 1、依赖关系分析阶段
+
+该阶段主要完成以下任务：
+
+- 构建依赖图：打包工具从入口文件开始，分析所有模块的导入导出关系
+- 标记依赖：识别哪些导出被其他模块使用，哪些从未被引用
+- 静态分析：基于 ES6 模块的静态结构（`import`/`export` 必须是顶层声明）
+
+#### 2、代码标记阶段
+
+该阶段主要完成以下任务：
+
+- 标记"活的"代码：从入口开始，标记所有被直接或间接引用的导出
+- 识别副作用：通过`package.json`的`sideEffects`属性或 ==魔法注释== 标记有副作用的模块
+
+#### 3、代码消除阶段
+
+该阶段主要完成以下任务：
+
+- 移除未引用代码：删除所有未被标记的导出和相关的代码
+- 保留副作用代码：即使某些代码未被直接使用，但如果它有副作用也会被保留
+
+#### 4、优化输出阶段
+
+该阶段主要完成以下任务：
+
+- 合并代码块：将多个小文件合并成一个大文件
+- 压缩代码：移除不必要的空格、注释等
+- 生成最终包：输出只包含必要代码的打包文件
+
+## 三、有效的利用 Tree Shaking 功能
 
 要配置 Webpack 实现代码的无用代码剔除，需要确保一下几点：
 
-### 1、使用 ES6 模块化
+### 1、确保使用 ES 模块化
 
-因为 Tree Shaking 只对 ES6 模块有效。
+Webpack 的 Tree Shaking 功能主要依赖于 ES 模块的静态结构。
 
-### 2、确保启用 Tree Shaking 功能
+- 确保你的代码使用 ES 模块（`import`/`export`），而不是 CommonJS 模块（`require`/`module.exports`）。
+- 确保你的代码中没有使用动态导入（`import()`）或其他动态特性，因为这些特性会导致 Tree Shaking 失效。
+- 如果你的代码使用了 CommonJS 模块，你需要使用 Babel 等工具将其转换为 ES 模块。例如，Babel 的  @babel/preset-env  默认可能会这样做，需要配置  modules: false  来保留 ES6 模块语法供 Webpack 处理。
 
-- 在 Webpack 配置文件中，通过设置`mode`为`production`，启用 Webpack 的生产模式，此时 Tree Shaking 功能会 **默认开启**。
-- 如果 Tree Shaking 功能没有开启，再配置`optimization.usedExports`的值为`true`，启用 Tree Shaking。
+### 2、标记副作用
+
+有些模块在被导入时可能会产生“副作用”，例如修改全局变量、在  window  上挂载对象，或者仅仅是导入一个 CSS 文件（它会直接影响页面样式，即使没有显式使用其导出）
+
+### 2、开启 Tree Shaking 功能
+
+在 Webpack 中，Tree Shaking 功能在**生产环境下是默认开启** 的。但是，为了确保 Tree Shaking 功能生效，需要进行以下配置：
+
+#### 2.1、配置 `mode` 为 `production`
+
+```js
+module.exports = {
+  mode: "production",
+  // 其他配置...
+};
+```
+
+#### 2.2、配置`optimization.usedExports` 为 `true`
+
+```js
+module.exports = {
+  mode: "production", // 生产模式会自动启用 Tree Shaking
+  optimization: {
+    usedExports: true, // 标记未被使用的导出
+    minimize: true, // 启用代码压缩（删除标记的代码）
+    // 如果你需要更细粒度的控制：
+    sideEffects: true, // 识别 package.json 中的 sideEffects 标志
+  },
+};
+```
 
 #### 3、配置 sideEffects 字段
 
