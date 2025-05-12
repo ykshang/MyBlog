@@ -122,6 +122,7 @@ const tools = ref([
     font-size: 16px;
     color: var(--vp-c-text-2);
     background-color: var(--home-action-bnt-bg);
+    cursor: pointer;
   }
 }
 
