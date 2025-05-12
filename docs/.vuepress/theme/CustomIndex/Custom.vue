@@ -8,9 +8,9 @@
           <template #motto>
             <slot name="motto">
               <p class="about-me-card-title-normal">座右铭</p>
-              <p class="about-me-card-text-big">选择之诗</p>
+              <p class="about-me-card-text-big">成长之诗</p>
               <p class="about-me-card-text-big about-me-card-text-color change_size">
-                每条未知的路，都是繁星藏起的诗1✨
+                成长的路不止鲜花，还有荆棘<Icon name="streamline-emojis:cactus-1" />
               </p>
             </slot>
           </template>
@@ -26,10 +26,10 @@
             <slot name="motto">
               <p class="about-me-card-title-normal">追求</p>
               <p class="about-me-card-text-big about-me-card-text-soft">
-                在调试中<span style="color: #3a5ccc">成长</span>
+                荆棘之后，必有<span style="color: #07be10">绿洲<Icon name="twemoji:desert-island" /></span>
               </p>
-              <p class="about-me-card-text-big">
-                在代码中<span style="color: #d53737">追梦</span>
+              <p class="about-me-card-text-big ">
+                Bug 改完，必有<span class="about-me-card-text-rainbow-color">彩虹<Icon name="token-branded:rainbow" /></span>
               </p>
             </slot>
           </template>
@@ -134,7 +134,11 @@ canvas {
   font-size: 30px;
   line-height: 44px;
 }
-
+.about-me-card-text-rainbow-color {
+  background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+  -webkit-background-clip: text;
+  color: transparent;
+}
 </style>
 
 
