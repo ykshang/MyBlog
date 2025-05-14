@@ -1,0 +1,77 @@
+
+type user_id = number;
+type user_name = string;
+type user_isAdult = boolean;
+type address = string | null;
+type skill = string & any;
+type user_experience = {
+  company: string;
+  position: string;
+}
+interface user {
+  id: user_id;
+  name: user_name;
+  isAdult: user_isAdult;
+}
+class user {
+  id: user_id;
+  name: user_name;
+  isAdult: user_isAdult;
+}
+type man = user;
+type woman = user;
+type fun = (user: user) => user;
+
+// 简单类型的定义
+type User_Name = string; // 姓名
+type User_Age = number; // 年龄
+
+// 联合类型 + 字面量类型
+type User_Gender = "male" | "female"; // 性别
+// 交叉类型
+type Address_City = {
+  city: string;
+}
+type Address_Street = {
+  street: string;
+};
+type User_Address = Address_City & Address_Street; // 家庭住址
+type User_Address = {
+  country: string; // 国家
+}
+// let userAddress: User_Address = {
+//   city: "Shanghai",
+//   street: "Xinjiang Road"
+// };
+
+// 复杂类型的定义，定义用户工作经验
+type User_Experience = {
+  company: string; // 公司名称
+  position: string; // 职位
+  startDate: Date; // 开始日期
+  endDate: Date; // 结束日期
+};
+
+// 用户类型
+type User = {
+  name: User_Name;
+  age: User_Age;
+  isAdult: boolean;
+  sex: User_Gender;
+  experience: Array<User_Experience>;
+  address: User_Address;
+};
+
+// const user: User = {
+//   name: "Alice",
+//   age: 25,
+//   isAdult: true,
+//   experience: [
+//     {
+//       company: "Company A",
+//       position: "Software Engineer",
+//       startDate: new Date("2015-01-01"),
+//       endDate: new Date("2020-01-01"),
+//     },
+//   ]
+// };
