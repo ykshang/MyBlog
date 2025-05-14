@@ -38,6 +38,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: build
         env:
-          VUEPRESS_BASE: /MyBlog/
           NODE_OPTIONS: --max_old_space_size=8192
+          VUEPRESS_BASE: /MyBlog/
         run: bash deploy.sh
