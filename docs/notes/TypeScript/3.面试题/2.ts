@@ -1,10 +1,8 @@
 type User = {
-  id: number;
-  name: string;
-  isAdult: boolean;
+  [s: string]: boolean;
 }
 const user: User = {
-  id: 1,
-  name: "John",
-  isAdult: true
+  name: true,
+  age: true,
+  isAdult: true,
 }
