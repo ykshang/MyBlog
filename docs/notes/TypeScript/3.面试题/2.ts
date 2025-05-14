@@ -1,8 +1,10 @@
 type User = {
-  [s: string]: boolean;
+  name: string;
+};
+interface Man extends User {
+  age: number;
 }
-const user: User = {
-  name: true,
-  age: true,
-  isAdult: true,
+const user: Man = {
+  name: '123',
+  age: 123
 }
