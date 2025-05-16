@@ -1,10 +1,11 @@
-interface Person {
-  firstName: string;
-  lastName: string;
-  age: number;
+interface A {
+  name: string;
+  age?: number;
+  readonly email: string;
+  [key: string]: any;
 }
-const person: Person = {
-  firstName: "John",
-  lastName: "Doe",
-  age: 30,
+const a: A = {
+  name: "123",
+  age: 123,
+  email: "123@qq.com",
 };
