@@ -1,7 +1,6 @@
-let a = {
-    name: '123',
-    age: 123
+type Address_City = {
+  city: string;
 }
-let b:any = a & {
-  id: 11
+const address: Address_City = {
+  city: 123,
 }
