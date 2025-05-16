@@ -1,13 +1,6 @@
-type A = {
-  x: number;
-};
-type B = {
-  x: number;
-  y: number;
-};
-let b: B = {
-  x: 2,
-  y: 3,
-};
-let a: A = b;
-console.log(a); // { x: 2 }
+let alice = { name: "Alice", age: 30, isAdult: true };
+let bob = { name: "Bob", age: 30, isAdult: true } as const;
+alice = bob; // 成功
+alice.name = "new name"; // 修改成功
+
+// bob = alice;
