@@ -1,10 +1,7 @@
-type User = {
-  name: string;
-};
-interface Man extends User {
-  age: number;
+let a = {
+    name: '123',
+    age: 123
 }
-const user: Man = {
-  name: '123',
-  age: 123
+let b:any = a & {
+  id: 11
 }
