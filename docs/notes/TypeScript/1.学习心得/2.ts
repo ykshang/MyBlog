@@ -14,7 +14,7 @@ function MyFunc(x?: boolean | string, y?: string): number | boolean | string {
   throw new Error("wrong parameters");
 }
 
-const xiaohong: User = {
+let xiaohong: User = {
   speak: MyFunc,
 };
 const xiaobai: User = {
