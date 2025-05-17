@@ -83,7 +83,6 @@ const tools = ref([
   { type: "Vim", icon: "logos:vim" },
   { type: "Markdown", icon: "skill-icons:markdown-light" },
   { type: "Powershell", icon: "skill-icons:powershell-light" },
-
 ]);
 </script>
 
@@ -93,10 +92,10 @@ const tools = ref([
   min-height: 316px;
   padding: 20px 0;
   z-index: 1;
-  &:hover .marquee-row{
+  &:hover .marquee-row {
     opacity: 0;
   }
-  &:hover .about-me-skill-detail{
+  &:hover .about-me-skill-detail {
     opacity: 1;
   }
 }
@@ -112,7 +111,7 @@ const tools = ref([
   flex-wrap: wrap;
   overflow: auto;
   max-height: 300px;
-  >span{
+  > span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,7 +137,7 @@ const tools = ref([
 .marquee-content {
   display: inline-flex;
   animation: marquee-left 30s linear infinite;
-  >span{
+  > span {
     display: flex;
     border-radius: 20%;
     align-content: center;
@@ -149,12 +148,11 @@ const tools = ref([
     font-size: 50px;
     margin: 0 10px;
   }
-
 }
-.first-row{
+.first-row {
   margin-top: 20px;
 }
-.second-row{
+.second-row {
   margin-top: 20px;
 }
 .second-row .marquee-content {
@@ -162,12 +160,20 @@ const tools = ref([
 }
 
 @keyframes marquee-left {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marquee-right {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 </style>
