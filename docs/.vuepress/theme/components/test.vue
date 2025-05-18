@@ -20,42 +20,52 @@ const increment = () => {
 
 /// ------------------
 console.clear();
-interface Vehicle {
-  name: string;
-  drive(): void;
+// 实例接口
+interface DatabaseInstance {
+  query(sql: string): Promise<any[]>;
+  close(): void;
 }
 
-interface VehicleConstructor {
-  new (model: string): Vehicle;
+// 静态部分接口（包含构造函数和其他静态成员）
+interface DatabaseConstructor {
+  new (connectionString: string): DatabaseInstance;
+  readonly version: string;
+  getSupportedDrivers(): string[];
 }
 
-class Car implements Vehicle {
-  constructor(private model: string) {}
-  name: string;
-  drive() {
-      console.log(`Driving ${this.model} car`);
+// 实现
+const Database: DatabaseConstructor = class Database
+  implements DatabaseInstance
+{
+  static version = "2.3.1";
+
+  static getSupportedDrivers() {
+    return ["postgres", "mysql", "sqlite"];
   }
-}
 
-class Truck implements Vehicle {
-  constructor(private model: string) {}
-  name: string;
-  drive() {
-      console.log(`Hauling with ${this.model} truck`);
+  constructor(private connectionString: string) {
+    // 初始化连接
   }
-}
 
-function createVehicle(ctor: VehicleConstructor, model: string): Vehicle {
-  return new ctor(model);
-}
+  async query(sql: string) {
+    console.log(`Executing: ${sql}`);
+    return [
+      /* 结果 */
+    ];
+  }
 
-const myCar = createVehicle(Car, "Tesla");
-const myTruck = createVehicle(Truck, "Ford F-150");
-myCar.drive(); // Output: Driving Tesla car
-myTruck.drive(); // Output: Hauling with Ford F-150 truck
-console.log(myCar); // Output: undefined
-// 测试函数方法 和 属性并存
+  close() {
+    console.log("Connection closed");
+  }
+};
 
+// 使用
+const db = new Database("postgres://user:pass@localhost:5432/db");
+console.log(Database.version); // "2.3.1"
+db.query("SELECT * FROM users").then((res) => {
+  console.log(res); // 执行查询
+  db.close(); // 关闭连接
+});
 /// --------------------------
 </script> 
 
