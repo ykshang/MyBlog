@@ -20,31 +20,40 @@ const increment = () => {
 
 /// ------------------
 console.clear();
-class User {
+interface Vehicle {
   name: string;
-  age: number;
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
-  static id: "1";
-  greet() {
-    console.log(
-      `Hello, my name is ${this.name} and I am ${this.age} years old.`
-    );
-  }
+  drive(): void;
 }
-interface UserInterface {
-  (name: string, age: number): string;
-  new (name: string, age: number): User;
-}
-const UserClass: UserInterface = function (name: string, age: number) {
-  return name;
-} as UserInterface;
-UserClass.prototype = User.prototype;
-console.log(UserClass("xiaoming", 12));
-console.log(new UserClass("xiaoming", 12));
 
+interface VehicleConstructor {
+  new (model: string): Vehicle;
+}
+
+class Car implements Vehicle {
+  constructor(private model: string) {}
+  name: string;
+  drive() {
+      console.log(`Driving ${this.model} car`);
+  }
+}
+
+class Truck implements Vehicle {
+  constructor(private model: string) {}
+  name: string;
+  drive() {
+      console.log(`Hauling with ${this.model} truck`);
+  }
+}
+
+function createVehicle(ctor: VehicleConstructor, model: string): Vehicle {
+  return new ctor(model);
+}
+
+const myCar = createVehicle(Car, "Tesla");
+const myTruck = createVehicle(Truck, "Ford F-150");
+myCar.drive(); // Output: Driving Tesla car
+myTruck.drive(); // Output: Hauling with Ford F-150 truck
+console.log(myCar); // Output: undefined
 // 测试函数方法 和 属性并存
 
 /// --------------------------

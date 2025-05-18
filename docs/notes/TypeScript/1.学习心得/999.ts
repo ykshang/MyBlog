@@ -1,23 +1,24 @@
-class User {
+interface Person {
   name: string;
   age: number;
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
-  static id: "1";
-  greet() {
-    console.log(
-      `Hello, my name is ${this.name} and I am ${this.age} years old.`
-    );
-  }
 }
-interface UserInterface {
-  (name: string, age: number): void;
-  new (name: string, age: number): UserInterface;
+interface GetName {
+  prop: string;
+  version: string;
+  (val: Person): string;
 }
-const UserClass: UserInterface = function (name: string, age: number) {
-  console.log(name, age);
-} as UserInterface;
-UserClass.prototype = User.prototype;
-console.log(UserClass("xiaoming", 12));
+let user: Person = {
+  name: "zhangsan",
+  age: 18,
+};
+// const getUserName: GetName = function (user) {
+//   return user.name;
+// }
+const getUserName: GetName = (user) => {
+  return user.name;
+};
+
+// 必须同时给 prop 和 version 赋值，否则 ts 会报错
+getUserName.prop = "任何有意义的语句";
+getUserName.version = "v1.0.0";
+getUserName(user);
