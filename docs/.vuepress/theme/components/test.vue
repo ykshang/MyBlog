@@ -20,54 +20,28 @@ const increment = () => {
 
 /// ------------------
 console.clear();
-// 实例接口
-interface DatabaseInstance {
-  query(sql: string): Promise<any[]>;
-  close(): void;
+interface Parent {
+  greet(name: string): string;
 }
 
-// 静态部分接口（包含构造函数和其他静态成员）
-interface DatabaseConstructor {
-  new (connectionString: string): DatabaseInstance;
-  readonly version: string;
-  getSupportedDrivers(): string[];
+interface Child extends Parent {
+  // 保持相同签名
+  greet(name: string): string;
+
+  // 添加重载
+  greet(name: string, age: number): string;
+
+  // 或者完全覆盖（不推荐，可能会导致类型不兼容）
+  greet(name: number): string;
 }
-
-// 实现
-const Database: DatabaseConstructor = class Database
-  implements DatabaseInstance
-{
-  static version = "2.3.1";
-
-  static getSupportedDrivers() {
-    return ["postgres", "mysql", "sqlite"];
+class Nino implements Child {
+  greet(name: any): string {
+    return "Hello, " + name;
   }
-
-  constructor(private connectionString: string) {
-    // 初始化连接
-    console.log(`正在连接数据库 => ${connectionString}`);
-  }
-
-  async query(sql: string) {
-    console.log(`正在执行 SQL => ${sql}`);
-    return [
-      /* 结果 */
-    ];
-  }
-
-  close() {
-    console.log("Connection closed");
-  }
-};
-
-// 使用
-const db = new Database("postgres://user:pass@localhost:5432/db");
-console.log(Database.version); // "2.3.1"
-db.query("SELECT * FROM users").then((res) => {
-  console.log(res); // 执行查询
-  db.close(); // 关闭连接
-});
-
+}
+const child = new Nino();
+console.log(child.greet("John")); // 输出: Hello, John
+console.log(child.greet(30)); // 输出: Hello, 30
 /// --------------------------
 </script> 
 
