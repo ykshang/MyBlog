@@ -45,10 +45,11 @@ const Database: DatabaseConstructor = class Database
 
   constructor(private connectionString: string) {
     // 初始化连接
+    console.log(`正在连接数据库 => ${connectionString}`);
   }
 
   async query(sql: string) {
-    console.log(`Executing: ${sql}`);
+    console.log(`正在执行 SQL => ${sql}`);
     return [
       /* 结果 */
     ];
@@ -66,6 +67,7 @@ db.query("SELECT * FROM users").then((res) => {
   console.log(res); // 执行查询
   db.close(); // 关闭连接
 });
+
 /// --------------------------
 </script> 
 
