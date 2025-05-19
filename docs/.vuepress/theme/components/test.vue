@@ -1,72 +1,24 @@
 <template>
-  <div class="test-container">
-    <h1>{{ title }}</h1>
-    <p>Count: {{ count }}</p>
-    <button @click="increment">+1</button>
-  </div>
+  <p>Count: {{ 1 }}</p>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
-// 响应式数据
-const count = ref(0);
-const title = ref("Vue3 + TS Component");
-
-// 方法
-const increment = () => {
-  count.value++;
-};
-
-/// ------------------
-console.clear();
-// 定义一个带泛型的构造函数类型
-type CommonConstructor<T> = new (...args: any[]) => T;
-
-// 用于动态创建类实例的工厂函数
-// @param ctor 构造函数
-// @param args 构造函数的参数列表
-// @returns 构造函数的实例
-function createInstance<T>(ctor: CommonConstructor<T>, ...args: any[]): T {
-  return new ctor(...args);
-}
-
-// 需要被动态创建的类
-class Car {
-  constructor(public model: string) {}
-  drive(): void {
-    console.log(`Driving ${this.model}`);
+class Point {
+  abc = 1;
+  x: number;
+  y: number;
+  add: () => number;
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+    this.add = function () {
+      return this.x + this.y;
+    }
   }
 }
-class Person {
-  constructor(public name: string, public age: number) {}
-  speak(): void {
-    console.log(`Hello!  I'm ${this.name}, ${this.age} years old.`);
-  }
-}
-// 实例
-const myCar = createInstance(Car, "Tesla Model 3");
-myCar.drive(); // Output: Driving Tesla Model 3
 
-const xiaoming = createInstance(Person, "Xiaoming", 18);
-xiaoming.speak(); // Output: Hello!  I'm Xiaoming, 18 years old.
 
-/// --------------------------
+let p = new Point(1, 2);
+console.log(p.add());
+console.log(Point.prototype.abc);
 </script> 
-
-<style scoped>
-.test-container {
-  text-align: center;
-  padding: 20px;
-  border: 1px solid #ccc;
-}
-
-button {
-  padding: 8px 16px;
-  background-color: #42b983;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-</style>
