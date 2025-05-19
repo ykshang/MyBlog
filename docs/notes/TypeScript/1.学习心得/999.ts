@@ -1,21 +1,21 @@
-interface Parent {
-  greet(name: string): string;
+// 定义一个带泛型的构造函数类型
+type CommonConstructor<T> = new (...args: any[]) => T;
+
+// 用于动态创建类实例的工厂函数
+// @param ctor 构造函数
+// @param args 构造函数的参数列表
+// @returns 构造函数的实例
+function createInstance<T>(ctor: CommonConstructor<T>, ...args: any[]): T {
+  return new ctor(...args);
 }
 
-interface Child extends Parent {
-  // 保持相同签名
-  greet(name: string): string;
-
-  // 添加重载
-  greet(name: string, age: number): string;
-
-  // 或者完全覆盖（不推荐，可能会导致类型不兼容）
-  greet(name: number): string;
-}
-class Nino implements Child {
-  greet(name: any): string {
-    return "Hello, " + name;
+// 需要被动态创建的类
+class Car {
+  constructor(public model: string) {}
+  drive(): void {
+    console.log(`Driving ${this.model}`);
   }
 }
-const child = new Nino();
-console.log(child.greet("John")); // 输出: Hello, John
+// 实例
+const myCar = createInstance(Car, "Tesla Model 3");
+myCar.drive(); // Output: Driving Tesla Model 3
