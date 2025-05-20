@@ -68,6 +68,10 @@ H~2~O
 
 [外部链接](https://github.com/pengzhanbo)
 
+**块状链接：**
+
+[前往 **VuePress 官网** 了解更多](https://v2.vuepress.vuejs.org/zh/){.read-more}
+
 **Badge：**
 
 - <Badge type="info" text="info badge" />
