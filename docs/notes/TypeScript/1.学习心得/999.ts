@@ -1,23 +1,17 @@
-function State(target: object, property: string) {
-  let value : any;
-  Object.defineProperty(target, property, {
-    get() {
-      return value;
-    },
-    set(newValue) {
-      console.log(`${property} 的最新值 ${value}`);
-      value = newValue;
-    }
-  })
-}
-class Person {
-  name: string;
-  // @State age: number;
-  age: number;
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
+class Dictionary {
+  private _data: { [key: string]: any } = {};
+
+  // 索引 getter
+  get(key: string): any {
+      return this._data[key];
+  }
+
+  // 索引 setter
+  set(key: string, value: any): void {
+      this._data[key] = value;
   }
 }
-const p = new Person('zs', 18);
-console.log(p);
+
+const dict = new Dictionary();
+dict.set('name', 'Alice');
+console.log(dict.get('name')); // 输出: Alice
