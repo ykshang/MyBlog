@@ -1,18 +1,23 @@
-class Point {
-  abc = 1;
-  x: number;
-  y: number;
-  add: () => number;
-  constructor(x: number, y: number) {
-    this.x = x;
-    this.y = y;
-    this.add = function () {
-      return this.x + this.y;
+function State(target: object, property: string) {
+  let value : any;
+  Object.defineProperty(target, property, {
+    get() {
+      return value;
+    },
+    set(newValue) {
+      console.log(`${property} 的最新值 ${value}`);
+      value = newValue;
     }
+  })
+}
+class Person {
+  name: string;
+  // @State age: number;
+  age: number;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
   }
 }
-
-
-let p = new Point(1, 2);
-console.log(p.add());
-console.log(Point);
+const p = new Person('zs', 18);
+console.log(p);
