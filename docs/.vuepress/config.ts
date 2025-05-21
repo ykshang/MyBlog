@@ -92,8 +92,8 @@ export default defineUserConfig({
      */
     codeHighlighter: {
       twoslash: true, // 启用 twoslash
-    //   whitespace: true, // 启用 空格/Tab 高亮
-    // lineNumbers: true, // 启用行号
+      // whitespace: true, // 启用 空格/Tab 高亮
+      lineNumbers: true, // 启用行号
     },
 
     /* 文章字数统计、阅读时间，设置为 false 则禁用 */
