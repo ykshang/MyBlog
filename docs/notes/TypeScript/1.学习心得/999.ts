@@ -1,15 +1,16 @@
-class A {
-  protected x = "x";
-}
-class B extends A {
-  public x = "x";
-  protected y = "y";
-  get_paren_x() {
-    return this.x;
+class C {
+  _prop = "init value";
+  get prop() {
+    console.log("读取 prop 属性：", this._prop);
+    return this._prop;
+  }
+  set prop(value) {
+    console.log("设置 prop 属性：", value);
+    this._prop = value;
   }
 }
-const b = new B();
-b.x; // "x"
-b.y; // "x"
-b.get_paren_x(); // "x"
-b.y; // 报错 类型“B”上不存在属性“y”。B.x; // 报错 类型“typeof A”上不存在属性“x”。
+// 实例化
+let c = new C();
+c.prop = "123"; // 调用 setter
+c.prop = 124; // 调用 setter
+console.log("打印 prop：", c.prop); // 调用 getter
