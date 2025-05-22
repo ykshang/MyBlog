@@ -3,13 +3,16 @@
 </template>
 
 <script setup lang="ts">
-class Point {
-  static a: number = 1;
-  constructor(public a: number) {
-    this.a = a;
+class A {
+  #name = 1;
+  getName() {
+    return this.#name;
   }
 }
-Point.a = 2;
-let aaa = new Point(3);
-console.log(Point.a, aaa.a);
-</script> 
+
+const a = new A();
+
+console.log(a.getName()); // 1
+console.log(a["#name"]); // undefined
+console.log(a["name"]); // 报错
+</script>

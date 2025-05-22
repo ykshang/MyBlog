@@ -1,9 +1,12 @@
-class Point {
-  static a: number = 1;
-  constructor(public a: number) {
-    this.a = a;
+class A {
+  #name = 1;
+  getName() {
+    return this.#name;
   }
 }
-Point.a = 2;
-let aaa = new Point(3);
-aaa.a;
+
+const a = new A();
+
+console.log(a.getName()); // 1
+console.log(a["#name"]); // undefined
+console.log(a["name"]); // 报错
