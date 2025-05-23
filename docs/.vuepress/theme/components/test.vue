@@ -3,14 +3,16 @@
 </template>
 
 <script setup lang="ts">
-class Point {
-  x: number;
-  y: number = 2;
-  z: number;
-  constructor(x: number) {
-    this.x = x;
+class Parent {
+  static greet() {
+    return "Hello from Parent";
   }
 }
-let point = new Point(1);
-console.log(point);
+
+class Child extends Parent {
+  static greet() {
+    return super.greet() + " and Child"; // ✅ 调用父类静态方法
+  }
+}
+console.log(Child.greet()); // "Hello from Parent and Child"
 </script>
