@@ -1,31 +1,10 @@
-interface Animal {
-  animalStuff: any;
-}
-
-interface Dog extends Animal {
-  dogStuff: any;
-}
-
-class AnimalHouse {
-  resident: Animal;
-
-  constructor(animal: Animal) {
-    this.resident = animal;
-  }
-}
-
-class DogHouse extends AnimalHouse {
-  resident: Dog;
-
-  constructor(dog: Dog) {
-    super(dog);
-  }
-}
-const dog = {
-  animalStuff: "animal",
-  dogStuff: "dog",
+type Country = {
+  name: string;
+  capital: string;
 };
 
-const dogHouse = new DogHouse(dog);
-
-console.log(dogHouse.resident); // 输出结果将不一致
+class MyCountry implements Country {
+  name = "";
+  capital = "";
+}
+let country = new MyCountry();
