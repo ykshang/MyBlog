@@ -20,7 +20,7 @@ class AnimalHouse {
 }
 
 class DogHouse extends AnimalHouse {
-  declare resident: Dog;
+  resident: Dog;
 
   constructor(dog: Dog) {
     super(dog);
