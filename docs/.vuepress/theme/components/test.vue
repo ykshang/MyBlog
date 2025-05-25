@@ -3,36 +3,24 @@
 </template>
 
 <script setup lang="ts">
-interface Animal {
-  animalStuff: any;
-}
-
-interface Dog extends Animal {
-  dogStuff: any;
-}
-
-class AnimalHouse {
-  resident: Animal;
-
-  constructor(animal: Animal) {
-    this.resident = animal;
+class TestA {
+  city: string;
+  constructor(city: string) {
+    this.city = city;
   }
 }
 
-class DogHouse extends AnimalHouse {
-  resident: Dog;
-
-  constructor(dog: Dog) {
-    super(dog);
+interface MyCountry extends TestA {
+  capital: string;
+  language: string;
+}
+class TestB implements MyCountry {
+  capital: string;
+  language: string;
+  constructor(capital, language) {
+    this.capital = capital;
+    this.language = language;
   }
 }
-const dog = {
-  animalStuff: "animal",
-  dogStuff: "dog",
-};
-
-const dogHouse = new DogHouse(dog);
-
-console.log(dogHouse.resident); // 输出结果将不一致
-
+let aaa = new TestB("北京", "中文");
 </script>

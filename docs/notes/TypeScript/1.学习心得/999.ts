@@ -1,10 +1,16 @@
-type Country = {
-  name: string;
-  capital: string;
-};
-
-class MyCountry implements Country {
-  name = "";
-  capital = "";
+class b {
+  constructor(
+    public a: string,
+    public b?: string,
+  ) {
+  }
 }
-let country = new MyCountry();
+
+class c extends b {
+  constructor(
+    public c: string,
+    public d?: string,
+  ) {
+    super(c);
+  }
+}
