@@ -1,9 +1,8 @@
-class b {
-  constructor(public a: string, public b?: string) {}
+class A {
+  readonly name: string;
+  age: number;
 }
-
-class c extends b {
-  constructor(public readonly a: string, public b: string, public d?: string) {
-    super(a);
-  }
+class B extends A {
+  declare name: string;
+  declare readonly age: number;
 }

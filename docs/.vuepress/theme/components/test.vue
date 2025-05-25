@@ -4,23 +4,13 @@
 
 <script setup lang="ts">
 class TestA {
-  city: string;
-  constructor(city: string) {
-    this.city = city;
-  }
+  static city: string = '1';
 }
 
-interface MyCountry extends TestA {
-  capital: string;
-  language: string;
+class TestB extends TestA {
+  school: string;
 }
-class TestB implements MyCountry {
-  capital: string;
-  language: string;
-  constructor(capital, language) {
-    this.capital = capital;
-    this.language = language;
-  }
-}
-let aaa = new TestB("北京", "中文");
+let aaa = new TestB();
+console.log(aaa);
+console.log(TestB.city);
 </script>
