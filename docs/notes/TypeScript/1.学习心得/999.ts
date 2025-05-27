@@ -1,8 +1,10 @@
-class A {
-  readonly name: string;
+type A = {
+  name: string;
   age: number;
 }
-class B extends A {
-  declare name: string;
-  declare readonly age: number;
+
+type B = {
+  name: string;
+  age: number;
+  sex: string;
 }
