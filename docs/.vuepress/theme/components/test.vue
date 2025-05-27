@@ -3,14 +3,21 @@
 </template>
 
 <script setup lang="ts">
-class TestA {
-  static city: string = '1';
+class Options {
+  name: string;
+  debug?: boolean;
+  log: string;
+  static version: string = "1.0.0";
+  version: string = "1.0.0";
 }
 
-class TestB extends TestA {
-  school: string;
+// 子接口可以使可选属性变为必需
+class StrictOptions extends Options {
+  // version: string;
+  static version: number;
 }
-let aaa = new TestB();
-console.log(aaa);
-console.log(TestB.city);
+
+let aa = new StrictOptions();
+// console.log(aa.version);
+console.log(StrictOptions.version);
 </script>
