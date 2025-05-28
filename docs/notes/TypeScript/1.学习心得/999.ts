@@ -1,24 +1,11 @@
-interface A {
-  get(name: string, n: number, aa: string): boolean | number;
+interface IUser {
+  name: string | number;
+  age: number;
+  speak: (val: number) => string;
 }
-
-class B implements A {
-  get(name: string, n: number): boolean {
-    // s 的类型是 any
-    return true;
-  }
+class User implements IUser {
+  name: string;
+  age: number;
+  width: number;
+  speak: (val: number | string) => string;
 }
-class C extends B {
-  get(name: string): boolean {
-    return true;
-  }
-}
-class D extends C {
-  get(): boolean {
-    return true;
-  }
-}
-let c = new C();
-let d = new D();
-c.get("1");
-d.get();
