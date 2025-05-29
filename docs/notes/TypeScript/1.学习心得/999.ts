@@ -1,11 +1,5 @@
-interface IUser {
-  name: string | number;
-  age: number;
-  speak: (val: number) => string;
+class A {
+    a: number;
+    b: number;
 }
-class User implements IUser {
-  name: string;
-  age: number;
-  width: number;
-  speak: (val: number | string) => string;
-}
+let ss: A = {a: 1, b: 2};
