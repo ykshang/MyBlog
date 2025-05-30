@@ -58,6 +58,7 @@ export default defineThemeConfig({
     lifetime: "session",
     contentFile: path.join(__dirname, '_bulletin.md'),
     border: true,
+    enablePage: false, // 暂时隐藏
   },
 
   /* 过渡动画 @see https://theme-plume.vuejs.press/config/basic/#transition */
