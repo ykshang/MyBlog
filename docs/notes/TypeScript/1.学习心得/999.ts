@@ -1,5 +1,7 @@
-class A {
-    a: number;
-    b: number;
+class Parent {
+  name: string;
 }
-let ss: A = {a: 1, b: 2};
+class Child extends Parent {
+  age: number;
+}
+
