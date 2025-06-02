@@ -1,9 +1,8 @@
-type IUser = {
+type Person = {
   name: string;
-  age: number;
+  gender: "man" | "women";
 };
-
-class aaa implements IUser {
-  name: string;
-  age: number;
-}
+let xiaoming: Person = {
+  name: "xiaoming",
+  gender: "man",
+};
