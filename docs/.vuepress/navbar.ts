@@ -3,7 +3,6 @@ import { defineNavbarConfig } from "vuepress-theme-plume";
 export const navbar = defineNavbarConfig([
   { text: "首页", link: "/" },
   { text: "博客", link: "/blog/" },
-  { text: "测试", link: "/article/llc3p6ni/" },
   // { text: '杂谈', link: '/blog/tags/' },
   // { text: '归档', link: '/blog/archives/' },
   {
@@ -14,7 +13,7 @@ export const navbar = defineNavbarConfig([
         items: [
           {
             text: "经典面试题",
-            icon: "fxemoji:bookmarktab",
+            icon: "streamline-flex-color:group-meeting-approval",
             link: "/notes/ClassicFrontInterview/",
           },
           {
@@ -196,7 +195,8 @@ export const navbar = defineNavbarConfig([
       },
       {
         text: "设计模式",
-        icon: "fxemoji:artistpalette",
+        icon: "fxemoji:bookmarktab",
+        // icon: "fxemoji:artistpalette",
         link: "/notes/DesignPattern/",
       },
       {
@@ -208,6 +208,21 @@ export const navbar = defineNavbarConfig([
         text: "信息安全",
         icon: "fluent-color:shield-checkmark-48",
         link: "/notes/Security/",
+      },
+    ],
+  },
+  {
+    text: "更多",
+    items: [
+      {
+        text: "站点导航",
+        icon: "streamline-freehand-color:task-list-clipboard-favorite-star",
+        link: "/sites-collect/",
+      },
+      {
+        text: "测试",
+        icon: "tdesign:play-demo",
+        link: "/article/llc3p6ni/",
       },
     ],
   },
