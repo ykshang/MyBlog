@@ -1,6 +1,8 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import { plumeTheme } from "vuepress-theme-plume";
+import { pwaPlugin } from '@vuepress/plugin-pwa'
+
 export default defineUserConfig({
   base: process.env.VUEPRESS_BASE === "/MyBlog/" ? "/MyBlog/" : "/",
   lang: "zh-CN",
@@ -180,6 +182,27 @@ export default defineUserConfig({
       // 如果您在此处直接声明为 true，则表示开发环境和生产环境都启用该功能
       git: process.env.NODE_ENV === "production",
       // git: true,
+
     },
   }),
+  plugins: [
+    // pwa 插件配置
+    pwaPlugin({
+      showInstall: true, // 是否显示安装提示
+      cacheHTML: true, // 是否缓存 HTML 文件
+      favicon: 'https://theme-plume.vuejs.press/favicon-32x32.png',
+      update: 'hint', // 提示用户更新
+      manifest: {
+        name: "kangkang blog",
+        start_url: "/",
+        icons: [
+          {
+            src: 'https://theme-plume.vuejs.press/favicon-32x32.png',
+            sizes: '192x192',
+            type: 'image/png'
+          }
+        ]
+      }
+    }),
+  ],
 });
