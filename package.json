@@ -1,0 +1,43 @@
+{
+  "name": "my-vuepress-site",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "packageManager": "pnpm@10.11.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild"
+    ],
+    "ignoredBuiltDependencies": [
+      "vue-demi"
+    ]
+  },
+  "author": "kangkang shang <535634238@qq.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "^20.6.0 || >=22.0.0"
+  },
+  "scripts": {
+    "start": "cross-env NODE_OPTIONS=--max-old-space-size=8192 vuepress dev docs",
+    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 vuepress dev docs --clean-cache --clean-temp",
+    "docs:build": "vuepress build docs --clean-cache --clean-temp",
+    "docs:preview": "http-server docs/.vuepress/dist",
+    "vp-update": "pnpm dlx vp-update"
+  },
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.23",
+    "http-server": "^14.1.1",
+    "sass-embedded": "^1.89.1",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.16",
+    "vuepress": "2.0.0-rc.23",
+    "vuepress-theme-plume": "1.0.0-rc.153"
+  },
+  "dependencies": {
+    "@vuepress/shiki-twoslash": "2.0.0-rc.108",
+    "cross-env": "^7.0.3",
+    "echarts": "^5.6.0",
+    "element-plus": "^2.10.1"
+  }
+}
