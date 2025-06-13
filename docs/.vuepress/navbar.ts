@@ -183,6 +183,16 @@ export const navbar = defineNavbarConfig([
           },
         ],
       },
+      {
+        text: "包管理",
+        items: [
+          {
+            text: "Pnpm",
+            // icon: "logos:pnpm",
+            link: "/notes/Pnpm/",
+          },
+        ],
+      },
     ],
   },
   {

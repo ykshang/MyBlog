@@ -1,183 +1,189 @@
-import { defineNoteConfig, defineNotesConfig } from 'vuepress-theme-plume'
+import { defineNoteConfig, defineNotesConfig } from "vuepress-theme-plume";
 
 // HTML 笔记配置
 const HtmlNote = defineNoteConfig({
-  dir: 'Html',
-  link: '/Html',
-  sidebar: 'auto',
-})
+  dir: "Html",
+  link: "/Html",
+  sidebar: "auto",
+});
 // CSS 笔记配置
 const CssNote = defineNoteConfig({
-  dir: 'CSS',
-  link: '/CSS',
-  sidebar: 'auto',
-})
+  dir: "CSS",
+  link: "/CSS",
+  sidebar: "auto",
+});
 // CSS 笔记配置
 const JavaScriptNote = defineNoteConfig({
-  dir: 'Javascript',
-  link: '/Javascript',
-  sidebar: 'auto',
-})
+  dir: "Javascript",
+  link: "/Javascript",
+  sidebar: "auto",
+});
 // Koa 笔记配置
 const KoaNote = defineNoteConfig({
-  dir: 'Koa',
-  link: '/Koa',
-  sidebar: 'auto',
-})
+  dir: "Koa",
+  link: "/Koa",
+  sidebar: "auto",
+});
 // Koa 笔记配置
 const ExpressNote = defineNoteConfig({
-  dir: 'Express',
-  link: '/Express',
-  sidebar: 'auto',
-})
+  dir: "Express",
+  link: "/Express",
+  sidebar: "auto",
+});
 // Git 笔记配置
 const GitNote = defineNoteConfig({
-  dir: 'Git',
-  link: '/Git',
-  sidebar: 'auto',
-})
+  dir: "Git",
+  link: "/Git",
+  sidebar: "auto",
+});
 // Vue 笔记配置
 const VueNote = defineNoteConfig({
-  dir: 'Vue',
-  link: '/Vue',
-  sidebar: 'auto',
-})
+  dir: "Vue",
+  link: "/Vue",
+  sidebar: "auto",
+});
 // React 笔记配置
 const ReactNote = defineNoteConfig({
-  dir: 'React',
-  link: '/React',
-  sidebar: 'auto',
-})
+  dir: "React",
+  link: "/React",
+  sidebar: "auto",
+});
 // Angular 笔记配置
 const AngularNote = defineNoteConfig({
-  dir: 'Angular',
-  link: '/Angular',
-  sidebar: 'auto',
-})
+  dir: "Angular",
+  link: "/Angular",
+  sidebar: "auto",
+});
 // Vite 笔记配置
 const ViteNote = defineNoteConfig({
-  dir: 'Vite',
-  link: '/Vite',
-  sidebar: 'auto',
-})
+  dir: "Vite",
+  link: "/Vite",
+  sidebar: "auto",
+});
 // Babel 笔记配置
 const BabelNote = defineNoteConfig({
-  dir: 'Babel',
-  link: '/Babel',
-  sidebar: 'auto',
-})
+  dir: "Babel",
+  link: "/Babel",
+  sidebar: "auto",
+});
 // NodeJs 笔记配置
 const NodeJsNote = defineNoteConfig({
-  dir: 'NodeJs',
-  link: '/NodeJs',
-  sidebar: 'auto',
-})
+  dir: "NodeJs",
+  link: "/NodeJs",
+  sidebar: "auto",
+});
 // UniApp 笔记配置
 const UniAppNote = defineNoteConfig({
-  dir: 'UniApp',
-  link: '/UniApp',
-  sidebar: 'auto',
-})
+  dir: "UniApp",
+  link: "/UniApp",
+  sidebar: "auto",
+});
 // Webpack 笔记配置
 const WebpackNote = defineNoteConfig({
-  dir: 'Webpack',
-  link: '/Webpack',
-  sidebar: 'auto',
-})
+  dir: "Webpack",
+  link: "/Webpack",
+  sidebar: "auto",
+});
 // DesignPattern 笔记配置
 const DesignPatternNote = defineNoteConfig({
-  dir: 'DesignPattern',
-  link: '/DesignPattern',
-  sidebar: 'auto',
-})
+  dir: "DesignPattern",
+  link: "/DesignPattern",
+  sidebar: "auto",
+});
 // Algorithm 笔记配置
 const AlgorithmNote = defineNoteConfig({
-  dir: 'Algorithm',
-  link: '/Algorithm',
-  sidebar: 'auto',
-})
+  dir: "Algorithm",
+  link: "/Algorithm",
+  sidebar: "auto",
+});
 // Security 笔记配置
 const SecurityNote = defineNoteConfig({
-  dir: 'Security',
-  link: '/Security',
-  sidebar: 'auto',
-})
+  dir: "Security",
+  link: "/Security",
+  sidebar: "auto",
+});
 // Network 笔记配置
 const NetworkNote = defineNoteConfig({
-  dir: 'Network',
-  link: '/Network',
-  sidebar: 'auto',
-})
+  dir: "Network",
+  link: "/Network",
+  sidebar: "auto",
+});
 // WebBasic 笔记配置
 const WebBasicNote = defineNoteConfig({
-  dir: 'WebBasic',
-  link: '/WebBasic',
-  sidebar: 'auto',
-})
+  dir: "WebBasic",
+  link: "/WebBasic",
+  sidebar: "auto",
+});
 
 // Grunt 笔记配置
 const GruntNote = defineNoteConfig({
-  dir: 'Grunt',
-  link: '/Grunt',
-  sidebar: 'auto',
-})
+  dir: "Grunt",
+  link: "/Grunt",
+  sidebar: "auto",
+});
 // Gulp 笔记配置
 const GulpNote = defineNoteConfig({
-  dir: 'Gulp',
-  link: '/Gulp',
-  sidebar: 'auto',
-})
+  dir: "Gulp",
+  link: "/Gulp",
+  sidebar: "auto",
+});
 // MongoDB 笔记配置
 const MongoDBNote = defineNoteConfig({
-  dir: 'MongoDB',
-  link: '/MongoDB',
-  sidebar: 'auto',
-})
+  dir: "MongoDB",
+  link: "/MongoDB",
+  sidebar: "auto",
+});
 // Sass 笔记配置
 const SassNote = defineNoteConfig({
-  dir: 'Sass',
-  link: '/Sass',
-  sidebar: 'auto',
-})
+  dir: "Sass",
+  link: "/Sass",
+  sidebar: "auto",
+});
 // Less 笔记配置
 const LessNote = defineNoteConfig({
-  dir: 'Less',
-  link: '/Less',
-  sidebar: 'auto',
-})
+  dir: "Less",
+  link: "/Less",
+  sidebar: "auto",
+});
 // Stylus
 const StylusNote = defineNoteConfig({
-  dir: 'Stylus',
-  link: '/Stylus',
-  sidebar: 'auto',
-})
+  dir: "Stylus",
+  link: "/Stylus",
+  sidebar: "auto",
+});
 // OtherToolForNodeJs 基于Node.js 的一些实用工具
 const OtherToolForNodeJsNote = defineNoteConfig({
-  dir: 'OtherToolForNodeJs',
-  link: '/OtherToolForNodeJs',
-  sidebar: 'auto',
-})
+  dir: "OtherToolForNodeJs",
+  link: "/OtherToolForNodeJs",
+  sidebar: "auto",
+});
 // Browser 浏览器 笔记配置
 const BrowserNote = defineNoteConfig({
-  dir: 'Browser',
-  link: '/Browser',
-  sidebar: 'auto',
-})
+  dir: "Browser",
+  link: "/Browser",
+  sidebar: "auto",
+});
 // ClassicFrontInterview js 经典面试题
 const ClassicFrontInterviewNote = defineNoteConfig({
-  dir: 'ClassicFrontInterview',
-  link: '/ClassicFrontInterview',
-  sidebar: 'auto',
-})
+  dir: "ClassicFrontInterview",
+  link: "/ClassicFrontInterview",
+  sidebar: "auto",
+});
 // TypeScript 笔记配置
 const TypeScriptNote = defineNoteConfig({
-  dir: 'TypeScript',
-  link: '/TypeScript',
-  sidebar: 'auto',
-})
+  dir: "TypeScript",
+  link: "/TypeScript",
+  sidebar: "auto",
+});
+// Pnpm 工作空间 笔记配置
+const PnpmNote = defineNoteConfig({
+  dir: "Pnpm",
+  link: "/Pnpm",
+  sidebar: "auto",
+});
 export const notes = defineNotesConfig({
-  dir: 'notes',
-  link: '/',
+  dir: "notes",
+  link: "/",
   notes: [
     AlgorithmNote,
     AngularNote,
@@ -198,6 +204,7 @@ export const notes = defineNotesConfig({
     NodeJsNote,
     NetworkNote,
     OtherToolForNodeJsNote,
+    PnpmNote,
     ReactNote,
     SassNote,
     SecurityNote,
@@ -209,4 +216,4 @@ export const notes = defineNotesConfig({
     WebBasicNote,
     WebpackNote,
   ],
-})
+});
