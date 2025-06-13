@@ -37,6 +37,14 @@ console.log(hello());
 }
 ```
 
+### 3、在 html 中导入模块
+
+在 html 导入 javascript 模块脚本是，需要在 `<script>` 标签中添加 `type="module"` 的属性声明
+
+```html
+<script type="module" src="/moduleA.js"></script>
+```
+
 ## 二、常用导入导出语法
 
 ### 1、命名导出与导入
@@ -126,6 +134,19 @@ import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+import { basename, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const _dirname =
+  typeof __dirname !== "undefined"
+    ? __dirname
+    : dirname(fileURLToPath(import.meta.url));
+
+const _filename =
+  typeof __filename !== "undefined"
+    ? __filename
+    : basename(fileURLToPath(import.meta.url));
 ```
 
 ### 4、导入 JSON 模块
