@@ -1,0 +1,43 @@
+// .vp-doc-container 
+//     background: radial-gradient(farthest-side at -33.33% 50%,#0000 52%,var(--vp-doc-blog-bg) 54% 57%,#0000 59%) 0 50px,radial-gradient(farthest-side at 50% 133.33%,#0000 52%,var(--vp-doc-blog-bg) 54% 57%,#0000 59%) 50px 0,radial-gradient(farthest-side at 133.33% 50%,#0000 52%,var(--vp-doc-blog-bg) 54% 57%,#0000 59%),radial-gradient(farthest-side at 50% -33.33%,#0000 52%,var(--vp-doc-blog-bg) 54% 57%,#0000 59%),#67917a00;
+//     background-size: calc(100px / 4.667) 100px,100px calc(100px / 4.667)
+
+.vp-doc
+  h2
+    font-size: 28px
+  h3
+    font-size: 24px
+  h4
+    font-size: 20px
+   
+  // 解决 card 内嵌代码时溢出的问题
+  .vp-card-grid
+    .vp-card-wrapper
+      overflow: hidden
+
+[data-theme="light"] 
+  @media screen and (min-width: 960px)
+    .vp-menu-group>.title
+      font-size: 14px
+      font-weight: 600
+      color: #555
+    .vp-sidebar-item.sidebar-item.level-0 .item>h2
+      font-size: 15px
+      font-weight: 600
+    .vp-sidebar-item.sidebar-item.level-0 .vp-link.link>.text span strong
+      color: #333
+
+[data-theme="dark"]
+  @media screen and (min-width: 960px)
+    .vp-menu-group>.title
+      font-size: 14px
+      font-weight: 600
+      color: #ddd
+    .vp-sidebar-item.sidebar-item.level-0 .vp-link.link>.text
+      color: #c5c5c5
+      font-size: 15px
+
+/* ----- 修改 `code` 代码的颜色 ----- */
+// code
+//   &[class="code-danger"]
+//      color: #f56c6c

@@ -1,0 +1,72 @@
+---
+title: 什么是 DevServer？如何配置使用？
+createTime: 2025/03/15 14:24:21
+permalink: /Webpack/0s36t6mg/
+---
+
+Webpack DevServer 是一个基于 Express 的开发服务器，它可以提供实时重新加载（live reloading）和热模块替换（Hot Module Replacement）等功能，以提高开发效率。
+
+配置 Webpack DevServer 需要进行以下步骤：
+
+## 一、安装 webpack-dev-server
+
+首先，确保在项目中安装了`webpack-dev-server`，可以使用以下命令进行安装：
+
+```bash
+npm install --save-dev webpack-dev-server
+```
+
+## 二、配置 devServer
+
+在 Webpack 的配置文件中添加如下配置来启动 DevServer
+
+```javascript
+const path = require("path");
+
+module.exports = {
+  devServer: {
+    contentBase: path.join(__dirname, "dist"), // 指定DevServer提供静态文件的目录
+    compress: true, // 启用gzip压缩
+    port: 9000, // 指定DevServer监听的端口号
+    hot: true, // 启用热模块替换
+    open: true, // 自动打开浏览器
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080", // 目标服务器
+        pathRewrite: { "^/api": "" }, // 重写路径，将 /api 替换掉
+        changeOrigin: true, // 修改请求的 Origin 为目标服务器的 Origin
+        secure: false, // 如果目标服务器使用 HTTPS，需要设置为 false
+      },
+     '/ws': {
+        target: 'ws://localhost:8080', // 目标服务器
+        ws: true, // 启用 WebSocket 代理
+      },
+    },
+  },
+};
+```
+
+在上述配置中：
+
+- `contentBase` 选项指定了 DevServer 提供静态文件的目录，可以是一个绝对路径或相对路径；
+- `compress` 选项启用了 gzip 压缩，可以减小传输文件的大小；
+- `port` 选项指定了 DevServer 监听的端口号；
+- `hot` 选项启用了热模块替换，它会在代码修改后自动更新页面而不刷新整个页面；
+- `open` 选项启动 DevServer 时会自动打开默认浏览器。
+- `proxy` 选项配置代理，用于解决开发环境的跨域请求。
+
+## 三、配置启动脚本
+
+在`package.json`文件中的`scripts`中添加一个命令来启动 DevServer：
+
+```js
+{
+  "scripts": {
+    "start": "webpack-dev-server --open webpack.dev.conf.js"
+  }
+}
+```
+
+上述命令将使用配置文件中的配置启动 `DevServer`，并自动打开默认浏览器。
+
+完成上述配置后，运行`npm start`命令，Webpack DevServer 将会在指定的端口号上启动，并且你可以在开发过程中实时查看修改的效果。

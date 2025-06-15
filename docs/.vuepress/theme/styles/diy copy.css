@@ -1,0 +1,4 @@
+.vp-doc-container {
+  background: radial-gradient(farthest-side at -33.33% 50%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%) 0 50px, radial-gradient(farthest-side at 50% 133.33%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%) 50px 0, radial-gradient(farthest-side at 133.33% 50%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%), radial-gradient(farthest-side at 50% -33.33%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%), #67917a00;
+  background-size: calc(100px / 4.667) 100px, 100px calc(100px / 4.667)
+}

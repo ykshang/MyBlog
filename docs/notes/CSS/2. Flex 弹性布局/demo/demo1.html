@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Max-content and Min-content Demo</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 20px;
+        background: #8e96aa24;
+      }
+
+      .max-content {
+        width: max-content;
+      }
+
+      .min-content {
+        width: min-content;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="box max-content">
+        这是一个使用 max-content
+        的盒子。它会根据内容的最大宽度来确定自身的宽度。这里有一较长的文本，用于展示max-content
+        的效果。
+      </div>
+      <div class="box min-content">
+        这是一个使用 min-content
+        的盒子。
+      </div>
+    </div>
+  </body>
+</html>

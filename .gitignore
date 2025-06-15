@@ -6,3 +6,5 @@ docs/.vuepress/dist
 
 .DS_Store
 *.log
+docs/.vuepress/config.ts.*.mjs
+docs/.vuepress/plume.config.ts.*.mjs

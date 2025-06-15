@@ -1,0 +1,72 @@
+---
+title: 如何实现对 ES6+语法的配置和支持
+createTime: 2025/03/15 14:24:21
+permalink: /Webpack/ca6yo1yw/
+---
+
+要在 Webpack 中使用 ES6+的语法和新特性，你需要进行以下配置：
+
+## 1、安装依赖
+
+首先确保你的项目中已经安装了 Babel 相关的依赖，包括`@babel/core`、`@babel/preset-env`和`babel-loader`。你可以使用以下命令安装它们
+
+```bash
+npm install --save-dev @babel/core @babel/preset-env babel-loader
+```
+
+## 2、Webpack配置
+
+在 Webpack 的配置文件中，引入`babel-loader`来处理 JavaScript 文件。
+
+在这个规则中，将`babel-loader`应用于所有以`.js`为扩展名的文件。你还需要指定`@babel/preset-env`作为 Babel 的预设
+
+```javascript
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+## 3、Babel配置文件
+
+在项目的根目录下创建一个名为`.babelrc`或`babel.config.js`的文件，并在其中指定 Babel 的配置。你可以使用以下配置来启用 ES Modules 和 Async/Await 的支持
+
+```json
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": "> 0.25%, not dead", // 兼容的浏览器
+        "useBuiltIns": "usage", // 将根据代码中使用的特性自动导入必要的 Polyfill
+        "corejs": 3 // 指定所使用的 Core.js 版本。
+      }
+    ]
+  ]
+}
+```
+
+完成上述配置后，Webpack 将使用 Babel 来转译你的 JavaScript 代码，使其兼容目标环境。你就可以在 Webpack 中使用 ES6+的语法和新特性了。
+
+## 4、core.js<Badge text="不推荐" />
+
+手动引入core.js 也可以解决兼容性问题，但是比较麻烦，建议使用bable的配置文件，交给babel自动处理
+
+```
+import "core-js"; // 导入全部
+import "core-js/es/promise"; // 按需导入
+```
+
