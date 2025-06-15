@@ -148,6 +148,7 @@ const words = welcome.contains(' ')
 ```
 
 ```ts twoslash
+// @errors: 2307 7006
 import express from 'express'
 const app = express()
 app.get('/', (req, res) => {
