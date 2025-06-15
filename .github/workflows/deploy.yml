@@ -1,56 +1,44 @@
-name: deploy
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the action will run. 
 on:
-  # 每当 push 到 main 分支时触发部署
-  # Deployment is triggered whenever a push is made to the main branch.
+  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [main]
-  # 手动触发部署
-  # Manually trigger deployment
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  docs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v4
-        with:
-          # “最近更新时间” 等 git 日志相关信息，需要拉取全部提交记录
-          # "Last updated time" and other git log-related information require fetching all commit records.
-          fetch-depth: 0
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          # 选择要使用的 node 版本
-          node-version: 22
-
-
-      # 安装依赖
-      # Install dependencies
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-
-
-      # 运行构建脚本
-      # Run the build script
-      - name: Build VuePress site
-        run: pnpm run docs:build
-
-
-      # 查看 workflow 的文档来获取更多信息
-      # @see https://github.com/crazy-max/ghaction-github-pages
-      - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v4
-        with:
-          # 部署到 gh-pages 分支
-          target_branch: gh-pages
-          # 部署目录为 VuePress 的默认输出目录
-          build_dir: docs/.vuepress/dist
+      - name: Setup install env
         env:
-          # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTION_DEPLOY_KEY: ${{ secrets.ACTION_DEPLOY_KEY }}
+        run: |
+          # set up private key for deploy
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      # Runs a set of commands using the runners shell
+      - name: build
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
+          VUEPRESS_BASE: /MyBlog/
+        run: |
+          bash deploy.sh
