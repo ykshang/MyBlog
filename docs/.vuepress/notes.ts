@@ -172,10 +172,10 @@ const StylusNote = defineNoteConfig({
   link: "/Stylus",
   sidebar: "auto",
 });
-// OtherToolForNodeJs 基于Node.js 的一些实用工具
-const OtherToolForNodeJsNote = defineNoteConfig({
-  dir: "OtherToolForNodeJs",
-  link: "/OtherToolForNodeJs",
+// PopularLibrary 基于Node.js 的一些实用工具
+const PopularLibraryNote = defineNoteConfig({
+  dir: "PopularLibrary",
+  link: "/PopularLibrary",
   sidebar: "auto",
 });
 // Browser 浏览器 笔记配置
@@ -230,7 +230,7 @@ export default defineNotesConfig({
     MongoDBNote,
     NodeJsNote,
     NetworkNote,
-    OtherToolForNodeJsNote,
+    PopularLibraryNote,
     PnpmNote,
     ReactNote,
     SassNote,

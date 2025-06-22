@@ -102,9 +102,9 @@ export default defineNavbarConfig([
             link: "/notes/Koa/",
           },
           {
-            text: "其他工具",
+            text: "主流工具库",
             icon: "icon-park:toolkit",
-            link: "/notes/OtherToolForNodeJs/",
+            link: "/notes/PopularLibrary/",
           },
         ],
       },
