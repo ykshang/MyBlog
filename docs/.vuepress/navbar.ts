@@ -103,7 +103,7 @@ export default defineNavbarConfig([
           },
           {
             text: "主流工具库",
-            icon: "icon-park:toolkit",
+            icon: "material-icon-theme:folder-project-open",
             link: "/notes/PopularLibrary/",
           },
         ],
