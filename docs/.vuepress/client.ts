@@ -5,6 +5,7 @@ import { defineClientConfig } from "vuepress/client";
 // import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
 
 import MyNavMenu from "./theme/components/MyNavMenu.vue";
+import File from "./theme/components/File.vue";
 import test from "./theme/components/test.vue";
 import gonglue from "./theme/gonglue/gonglue.vue";
 import CustomIndex from "./theme/CustomIndex/Custom.vue"; // 自定义组件
@@ -31,5 +32,6 @@ export default defineClientConfig({
     app.component("test", test);
     app.component("CustomIndex", CustomIndex);
     app.component("gonglue", gonglue);
+    app.component("file", File);
   },
 });
