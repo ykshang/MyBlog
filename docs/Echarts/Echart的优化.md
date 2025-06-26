@@ -106,11 +106,11 @@ body {
   function setBodyFontSize() {
     // 如果页面有 body 元素，就调整 body 字体大小
     if (document.body) {
-      document.body.style.fontSize = 12 * dpr + 'px';
+      document.body.style.fontSize = 12 * dpr + "px";
     }
     // 否则，就直接设置 html 元素的字体大小
     else {
-      docEl.style.fontSize = 12 * dpr + 'px';
+      docEl.style.fontSize = 12 * dpr + "px";
     }
   }
 
@@ -118,17 +118,19 @@ body {
   setBodyFontSize();
 
   // 监听页面的 resize 事件，当页面大小发生变化时，重新调整 body 字体大小
-  window.addEventListener('resize', setBodyFontSize);
+  window.addEventListener("resize", setBodyFontSize);
   // 监听页面的 pageshow 事件，当页面从缓存中加载时，重新调整 body 字体大小
-  window.addEventListener('pageshow', function (e) {
+  window.addEventListener("pageshow", function (e) {
     if (e.persisted) {
       setBodyFontSize();
     }
   });
+  // 监听页面的 load 事件，当页面加载完成时，重新调整 body 字体大小
+  window.addEventListener("load", setBodyFontSize);
+})();
 ```
 
 这是一种通过动态修改 html 元素的 font-size 属性，来实现 rem 适配的方案。
-
 
 ## 前端监控
 
@@ -136,6 +138,6 @@ body {
 
 用户行为上报
 
-### js报错
+### js 报错
 
-### 
+###
