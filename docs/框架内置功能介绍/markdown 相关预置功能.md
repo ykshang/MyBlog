@@ -6,15 +6,29 @@ tags:
   - markdown
 ---
 
-## 标题2
+## 标题 H2
 
-### 标题 3
+### 标题 H3
 
-#### 标题 4
+#### 标题 H4
 
-##### 标题 5
+##### 标题 H5
 
-###### 标题 6
+###### 标题 H6
+
+## 标题 2 Badge <Badge type="tip" text="Badge" />
+
+### 标题 3 Badge <Badge type="warning" text="Badge" />
+
+#### 标题 4 Badge <Badge type="danger" text="Badge" />
+
+正文内容。
+
+`@property` CSS at-rule 是 [CSS Houdini API](https://developer.mozilla.org/zh-CN/docs/Web/Guide/Houdini)
+的一部分，它允许开发者显式地定义他们的 [CSS 自定义属性](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*),
+允许进行属性类型检查、设定默认值以及定义该自定义属性是否可以被继承。
+
+`@property` 的出现，极大的增强了 CSS 的能力。
 
 加粗：**加粗文字**
 
@@ -41,24 +55,24 @@ H~2~O
 内容右对齐
 :::
 
-- 无序列表1
-- 无序列表2
-- 无序列表3
+- 无序列表 1
+- 无序列表 2
+- 无序列表 3
 
-1. 有序列表1
-2. 有序列表2
-3. 有序列表3
+1. 有序列表 1
+2. 有序列表 2
+3. 有序列表 3
 
-- [ ] 任务列表1
-- [ ] 任务列表2
-- [x] 任务列表3
-- [x] 任务列表4
+- [ ] 任务列表 1
+- [ ] 任务列表 2
+- [x] 任务列表 3
+- [x] 任务列表 4
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
+| Tables        |      Are      |  Cool |
+| ------------- | :-----------: | ----: |
 | col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| col 2 is      |   centered    |   $12 |
+| zebra stripes |   are neat    |    $1 |
 
 > 引用内容
 >
@@ -88,6 +102,7 @@ H~2~O
 **demo wrapper：**
 
 ::: demo-wrapper title="示例" no-padding height="200px"
+
 <style scoped>
 .open-door {
   display: flex;
@@ -109,9 +124,9 @@ H~2~O
 **代码：**
 
 ```js whitespace
-const a = 1
-const b = 2
-const c = a + b
+const a = 1;
+const b = 2;
+const c = a + b;
 
 // [!code word:obj]
 const obj = {
@@ -119,12 +134,79 @@ const obj = {
     deep: {
       deep: {
         deep: {
-          value: 'this is to long text. this is to long text. this is to long text. this is to long text.', // [!code highlight]
-        }
-      }
-    }
-  }
+          value:
+            "this is to long text. this is to long text. this is to long text. this is to long text.", // [!code highlight]
+        },
+      },
+    },
+  },
+};
+```
+
+**Code Blocks TwoSlash：**
+
+```ts twoslash
+// @errors: 2339
+const welcome = "Tudo bem gente?";
+const words = welcome.contains(" ");
+```
+
+```ts twoslash
+// @errors: 2307 7006
+import express from "express";
+const app = express();
+app.get("/", (req, res) => {
+  res.send;
+});
+app.listen(3000);
+```
+
+```ts twoslash
+import { createHighlighter } from "shiki";
+
+const highlighter = await createHighlighter({
+  themes: ["nord"],
+  langs: ["javascript"],
+});
+// @log: Custom log message
+const a = 1;
+// @error: Custom error message
+const b = 1;
+// @warn: Custom warning message
+const c = 1;
+// @annotate: Custom annotation message
+```
+
+```ts twoslash
+// @errors: 2540
+interface Todo {
+  title: string;
 }
+
+const todo: Readonly<Todo> = {
+  title: "Delete inactive users".toUpperCase(),
+  //  ^?
+};
+
+todo.title = "Hello";
+
+Number.parseInt("123", 10);
+//      ^|
+
+//
+//
+```
+
+```vue twoslash
+<script setup lang="ts">
+import { ref } from "vue";
+
+const count = ref(0);
+</script>
+
+<template>
+  <p>{{ count }}</p>
+</template>
 ```
 
 **代码分组：**
@@ -133,17 +215,17 @@ const obj = {
 @tab tab1
 
 ```js
-const a = 1
-const b = 2
-const c = a + b
+const a = 1;
+const b = 2;
+const c = a + b;
 ```
 
 @tab tab2
 
 ```ts
-const a: number = 1
-const b: number = 2
-const c: number = a + b
+const a: number = 1;
+const b: number = 2;
+const c: number = a + b;
 ```
 
 :::
@@ -152,15 +234,15 @@ const c: number = a + b
 
 ```ts
 function foo() {
-  const a = 1 // [!code highlight]
+  const a = 1; // [!code highlight]
 
-  console.log(a)
+  console.log(a);
 
-  const b = 2 // [!code ++]
-  const c = 3 // [!code --]
+  const b = 2; // [!code ++]
+  const c = 3; // [!code --]
 
-  console.log(a + b + c) // [!code error]
-  console.log(a + b) // [!code warning]
+  console.log(a + b + c); // [!code error]
+  console.log(a + b); // [!code warning]
 }
 ```
 
@@ -168,74 +250,76 @@ function foo() {
 
 ```ts
 function foo() {
-  const a = 1 // [!code focus]
+  const a = 1; // [!code focus]
 }
 ```
 
+::: tip 仅标题
+:::
+
 ::: note 注释
-注释内容 [link](https://github.com/pengzhanbo) `inline code`
 
 ```js
-const a = 1
-const b = 2
-const c = a + b
+const a = 1;
+const b = 2;
+const c = a + b;
 ```
 
 :::
 
 ::: info 信息
-信息内容 [link](https://github.com/pengzhanbo) `inline code`
 
 ```js
-const a = 1
-const b = 2
-const c = a + b
+const a = 1;
+const b = 2;
+const c = a + b;
 ```
 
 :::
 
 ::: tip 提示
-提示内容 [link](https://github.com/pengzhanbo) `inline code`
 
 ```js
-const a = 1
-const b = 2
-const c = a + b
+const a = 1;
+const b = 2;
+const c = a + b;
 ```
 
 :::
 
 ::: warning 警告
-警告内容 [link](https://github.com/pengzhanbo) `inline code`
 
 ```js
-const a = 1
-const b = 2
-const c = a + b
+const a = 1;
+const b = 2;
+const c = a + b;
 ```
 
 :::
 
 ::: caution 错误
-错误内容 [link](https://github.com/pengzhanbo) `inline code`
 
 ```js
-const a = 1
-const b = 2
-const c = a + b
+const a = 1;
+const b = 2;
+const c = a + b;
 ```
 
 :::
 
 ::: important 重要
-重要内容 [link](https://github.com/pengzhanbo) `inline code`
 
 ```js
-const a = 1
-const b = 2
-const c = a + b
+const a = 1;
+const b = 2;
+const c = a + b;
 ```
 
+:::
+
+::: details 详细标题
+
+这里是内容。
 :::
 
 **GFM alert：**
@@ -243,17 +327,27 @@ const c = a + b
 > [!note]
 > note
 
+---
+
 > [!info]
 > info
+
+---
 
 > [!tip]
 > tip
 
+---
+
 > [!warning]
 > warning
 
+---
+
 > [!caution]
 > caution
+
+---
 
 > [!important]
 > important
@@ -274,9 +368,9 @@ const c = a + b
 @tab Javascript
 
 ```js
-const a = 'So Awesome!'
-const app = document.querySelector('#app')
-app.appendChild(window.document.createElement('small')).textContent = a
+const a = "So Awesome!";
+const app = document.querySelector("#app");
+app.appendChild(window.document.createElement("small")).textContent = a;
 ```
 
 @tab CSS
@@ -294,19 +388,19 @@ app.appendChild(window.document.createElement('small')).textContent = a
 **选项卡：**
 
 ::: tabs
-@tab 标题1
+@tab 标题 1
 内容区块
 
-@tab 标题2
+@tab 标题 2
 内容区块
 :::
 
 :::: warning
 ::: tabs
-@tab 标题1
+@tab 标题 1
 内容区块
 
-@tab 标题2
+@tab 标题 2
 内容区块
 :::
 ::::

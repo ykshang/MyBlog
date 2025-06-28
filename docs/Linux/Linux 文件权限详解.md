@@ -97,7 +97,7 @@ chmod -R 755 directory/
 
 1. 使用`ls -l`查看：
 
-   ```
+   ```bash
    -rwsr-xr-x 1 root root 16384 Jan 1 10:00 special_program
    drwxr-sr-x 2 user group 4096 Jan 1 10:00 shared_dir/
    ```

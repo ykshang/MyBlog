@@ -8,3 +8,4 @@ docs/.vuepress/dist
 *.log
 docs/.vuepress/config.ts.*.mjs
 docs/.vuepress/plume.config.ts.*.mjs
+node_modules.tar
