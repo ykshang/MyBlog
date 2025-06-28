@@ -24,7 +24,7 @@
   "scripts": {
     "start": "cross-env NODE_OPTIONS=--max-old-space-size=8192 vuepress dev docs",
     "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 vuepress dev docs --clean-cache --clean-temp",
-    "docs:build": "vuepress build docs --clean-cache --clean-temp",
+    "docs:build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 vuepress build docs --clean-cache --clean-temp",
     "docs:preview": "http-server docs/.vuepress/dist",
     "vp-update": "pnpm dlx vp-update"
   },
