@@ -4,6 +4,7 @@
 set -e
 
 ## 安装依赖
+npm install -g pnpm
 pnpm install
 
 # 生成静态文件
