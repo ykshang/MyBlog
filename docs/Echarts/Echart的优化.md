@@ -1,5 +1,5 @@
 ---
-title: 1.Echart的优化
+title: Echart的优化
 createTime: 2025/06/26 22:40:24
 permalink: /article/9apaxrdv/
 ---
@@ -12,43 +12,45 @@ permalink: /article/9apaxrdv/
 比如我们只涉及到饼图
 
 ```js
-import * as echarts from "echarts/core";
-import "echarts/lib/chart/pie"; // 引入饼图模块
-import "echarts/lib/component/tooltip"; // 引入提示框组件
-import "echarts/lib/component/legend"; // 引入图例组件
+// 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
+import * as echarts from 'echarts/core';
+// 引入柱状图图表，图表后缀都为 Chart
+import { BarChart } from 'echarts/charts';
+// 引入标题，提示框，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
+import {
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  DatasetComponent,
+  TransformComponent
+} from 'echarts/components';
+// 标签自动布局、全局过渡动画等特性
+import { LabelLayout, UniversalTransition } from 'echarts/features';
+// 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
+import { CanvasRenderer } from 'echarts/renderers';
+
+// 注册必须的组件
 echarts.use([
   TitleComponent,
   TooltipComponent,
-  LegendComponent,
-  PieChart,
+  GridComponent,
+  DatasetComponent,
+  TransformComponent,
+  BarChart,
   LabelLayout,
   UniversalTransition,
+  CanvasRenderer
 ]);
 
-CanvasRenderer;
+// 接下来的使用就跟之前一样，初始化图表，设置配置项
+var myChart = echarts.init(document.getElementById('main'));
+myChart.setOption({
+  // ...
+});
 ```
 
 ### SVG 和 Canvas 渲染各自的优缺点
 
-## 代码压缩
-
-常见的的代码压缩 gzip brotli
-
-### 为什么要压缩代码不要超过 50kb
-
-因为 nginx 服务器默认的最大响应体大小是 100kb，超过 100kb 的响应体，nginx 会返回 413 请求实体过大的错误。
-
-如果压缩后的代码小于 50kb，那么用户在首次加载页面时，就会减少 50% 的请求时间，提升用户体验。
-
-### 什么时候选择 gzip 和什么时候选择 brotli
-
-gzip 压缩率高，但是压缩速度慢，brotli 压缩率低，但是压缩速度快。
-
-如果项目对压缩率要求高，那么可以选择 brotli 压缩。
-
-如果项目对压缩速度要求高，那么可以选择 gzip 压缩。
-
-一般来说，项目的代码压缩率在 50% 左右，压缩速度在 100ms 左右，因此我们可以根据项目的实际情况，选择合适的压缩方式。
 
 ## 大屏的等比适配 vh、vw
 
