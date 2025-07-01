@@ -45,12 +45,89 @@ permalink: /article/1qqwnfnc/
 - 带点简单的动画效果作为过渡，可以使用 `SVGRenderer`
 - 只要内容特别复杂，比如需要 3D 效果、动态交互等，优先选择 `CanvasRenderer`
 
+::: echarts 二者性能示意
+
+```js
+// const height = 260;
+const option = {
+  tooltip: {
+    trigger: "item",
+    formatter: "{a}",
+  },
+  legend: {
+    left: "left",
+  },
+  grid: {
+    containLabel: false,
+    bottom: 20,
+    height: 300,
+  },
+  xAxis: {
+    type: "category",
+    name: "内容复杂度",
+    nameTextStyle: {
+      align: "right",
+      verticalAlign: "top",
+      padding: [8, 30, 0, 0],
+    },
+    data: [1, 2, 3, 4, 5, 6, 7],
+    axisLabel: {
+      show: false,
+    },
+    axisLine: {
+      show: true,
+      symbol: ["none", "arrow"],
+      symbolSize: [6, 10],
+    },
+    axisTick: {
+      show: false,
+    },
+  },
+
+  yAxis: {
+    type: "value",
+    name: "消\n耗\n资\n源",
+    nameTextStyle: {
+      align: "right",
+      verticalAlign: "top",
+      padding: [32, 8, 0, 0],
+    },
+    max: 90,
+    min: 45,
+    axisLine: {
+      show: true,
+      symbol: ["none", "arrow"],
+      symbolSize: [5, 10],
+    },
+    axisTick: {
+      show: false,
+    },
+    axisLabel: {
+      show: false,
+    },
+  },
+  series: [
+    {
+      name: "SVG",
+      type: "line",
+      data: [50, 55, 60, 65, 70, 75, 80],
+      itemStyle: {
+        opacity: 0,
+      },
+    },
+    {
+      name: "Canvas",
+      type: "line",
+      data: [55, 58, 61, 64, 67, 70, 73],
+      itemStyle: {
+        opacity: 0,
+      },
+    },
+  ],
+};
+```
+
 :::
-
-
-:::
-
-
 
 ## 性能实测数据
 
