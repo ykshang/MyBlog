@@ -2,6 +2,8 @@
 title: Canvas vs SVG 两种渲染
 createTime: 2025/07/01 00:37:08
 permalink: /article/1qqwnfnc/
+tags: 
+- Echarts
 ---
 
 在数据可视化库（如 ECharts、Three.js 等）中，`CanvasRenderer` 和 `SVGRenderer` 是两种常见的渲染方式，它们的核心区别和选型建议如下：
@@ -118,14 +120,14 @@ const option = {
 
 ## 选型决策指南
 
-### 优先选择 `CanvasRenderer` 的场景
+### 适合 `CanvasRenderer` 的场景
 
 1. **数据量巨大**：如万级以上的散点图
 2. **高频动态更新**：如实时监控仪表盘
 3. **需要复杂视觉、动画效果**：如 3D、WebGL 混合渲染
 4. **移动端性能敏感场景**：减少 DOM 压力
 
-### 优先选择 `SVGRenderer` 的场景
+### 适合 `SVGRenderer` 的场景
 
 1. **需要矢量无损缩放**：如高精度地图
 2. **依赖 DOM 交互**：如复杂的图元点击检测
@@ -139,7 +141,7 @@ const option = {
 
 - 如果带一点交互，比如点击查看某个指标，优先选择 `SVGRenderer`
 - 如果不带交互，仅仅显示一些指标，或者带点简单的动画效果，选择 `SVGRenderer`，也可以使用 div + css
-- 只要内容特别复杂，比如需要 3D 效果、动态交互等，优先选择 `CanvasRenderer`
+- 只要内容特别复杂，比如需要 3D 效果、动态交互等，无脑选 `CanvasRenderer`
 
 ## 性能实测数据
 
