@@ -19,56 +19,43 @@ permalink: /article/1qqwnfnc/
 | **导出图片**   | ✅ 直接转 PNG/JPG                     | 需转换为位图（可能失真）                |
 | **动态效果**   | 适合复杂动画/游戏                     | 适合简单过渡效果                        |
 
-## 选型决策指南
+---
 
-### 优先选择 `CanvasRenderer` 的场景
-
-1. **数据量巨大**：如万级以上的散点图
-2. **高频动态更新**：如实时监控仪表盘
-3. **需要复杂视觉、动画效果**：如 3D、WebGL 混合渲染
-4. **移动端性能敏感场景**：减少 DOM 压力
-
-### 优先选择 `SVGRenderer` 的场景
-
-1. **需要矢量无损缩放**：如高精度地图
-2. **依赖 DOM 交互**：如复杂的图元点击检测
-3. **导出矢量图**：如 PDF/SVG 格式报表
-4. **SEO 友好需求**：SVG 内容可被爬虫解析
-5. **大量简单图表**：如几十个内容比较简单的图表
-
-### 总结起来
-
-大多数情况下，我们遇到的都是比较简单的图表，内容也比较少。
-
-- 如果带一点交互，比如点击查看某个指标，优先选择 `SVGRenderer`
-- 如果不带交互，仅仅显示一些指标，或者带点简单的动画效果，直接 div + css
-- 带点简单的动画效果作为过渡，可以使用 `SVGRenderer`
-- 只要内容特别复杂，比如需要 3D 效果、动态交互等，优先选择 `CanvasRenderer`
-
-::: echarts 二者性能示意
+::: echarts
 
 ```js
 // const height = 260;
 const option = {
+  title: {
+    text: "二者性能示意",
+    left: "left",
+    textStyle: {
+      fontSize: 18,
+      fontWeight: 500,
+    },
+  },
   tooltip: {
     trigger: "item",
     formatter: "{a}",
   },
   legend: {
-    left: "left",
+    left: "right",
   },
   grid: {
     containLabel: false,
     bottom: 20,
-    height: 300,
+    left: 20,
+    top: 60,
+    right: 20,
+    height: 280,
   },
   xAxis: {
     type: "category",
     name: "内容复杂度",
     nameTextStyle: {
       align: "right",
-      verticalAlign: "top",
-      padding: [8, 30, 0, 0],
+      verticalAlign: "bottom",
+      padding: [8, 30, 5, 0],
     },
     data: [1, 2, 3, 4, 5, 6, 7],
     axisLabel: {
@@ -88,9 +75,9 @@ const option = {
     type: "value",
     name: "消\n耗\n资\n源",
     nameTextStyle: {
-      align: "right",
+      align: "left",
       verticalAlign: "top",
-      padding: [32, 8, 0, 0],
+      padding: [32, 0, 0, 5],
     },
     max: 90,
     min: 45,
@@ -128,6 +115,31 @@ const option = {
 ```
 
 :::
+
+## 选型决策指南
+
+### 优先选择 `CanvasRenderer` 的场景
+
+1. **数据量巨大**：如万级以上的散点图
+2. **高频动态更新**：如实时监控仪表盘
+3. **需要复杂视觉、动画效果**：如 3D、WebGL 混合渲染
+4. **移动端性能敏感场景**：减少 DOM 压力
+
+### 优先选择 `SVGRenderer` 的场景
+
+1. **需要矢量无损缩放**：如高精度地图
+2. **依赖 DOM 交互**：如复杂的图元点击检测
+3. **导出矢量图**：如 PDF/SVG 格式报表
+4. **SEO 友好需求**：SVG 内容可被爬虫解析
+5. **大量简单图表**：如几十个内容比较简单的图表
+
+### 总结起来
+
+大多数情况下，我们遇到的都是比较简单的图表，内容也比较少。
+
+- 如果带一点交互，比如点击查看某个指标，优先选择 `SVGRenderer`
+- 如果不带交互，仅仅显示一些指标，或者带点简单的动画效果，选择 `SVGRenderer`，也可以使用 div + css
+- 只要内容特别复杂，比如需要 3D 效果、动态交互等，优先选择 `CanvasRenderer`
 
 ## 性能实测数据
 
