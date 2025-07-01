@@ -1,17 +1,15 @@
 ---
-title: Echart的优化
+title: 可视化大屏的优化方向
 createTime: 2025/06/26 22:40:24
 permalink: /article/9apaxrdv/
 ---
 
-## 如何按需引入
-
-### 按需引入 ECharts 模块
+## 1、按需引入 ECharts 模块
 
 按需引入 ECharts 模块，只引入需要的模块，避免引入整个 ECharts 库，减少代码体积。
 比如我们只涉及到饼图
 
-```js
+```js :collapsed-lines=10
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
 import * as echarts from "echarts/core";
 // 引入柱状图图表，图表后缀都为 Chart
@@ -49,27 +47,24 @@ myChart.setOption({
 });
 ```
 
-### SVG 和 Canvas 渲染各自的优缺点
+## 2、选择 SVGRenderer 还是 CanvasRenderer ？
 
-SVG 渲染的优缺点：
+### 适合 `CanvasRenderer` 的场景
 
-- 优点：
-  - 矢量图：支持无限缩放而不失真，适合打印和展示。
-  - 交互：原生支持 CSS 动画和事件，交互丰富。
-- 缺点：
-  - 性能：大量元素时性能下降明显。
-  - 不支持交互：如点击事件需要手动计算坐标。
+- **数据量巨大：** 如万级以上的散点图
+- **高频动态更新：** 如实时监控仪表盘
+- **需要复杂视觉、动画效果：** 如 3D、WebGL 混合渲染
+- **移动端性能敏感场景：** 减少 DOM 压力
 
-Canvas 渲染的优缺点：
+### 适合 `SVGRenderer` 的场景
 
-- 优点：
-  - 高性能：减少 DOM 操作，适合高频重绘。
-  - 事件处理：事件处理需手动计算坐标。
-- 缺点：
-  - 位图：不支持矢量图，缩放时会模糊。
-  - 不支持交互：如点击事件需要手动计算坐标。
+- **需要矢量无损缩放：** 如高精度地图
+- **依赖 DOM 交互：** 如复杂的图元点击检测
+- **导出矢量图：** 如 PDF/SVG 格式报表
+- **SEO 友好需求：** SVG 内容可被爬虫解析
+- **大量简单图表：** 如几十个内容比较简单的图表
 
-### 销毁图表
+## 3、销毁图表
 
 在 ECharts 中，销毁图表是一个重要的操作。当不再需要某个图表实例时，应该及时销毁它，以释放内存和资源。
 
@@ -82,7 +77,7 @@ Canvas 渲染的优缺点：
 myChart.dispose();
 ```
 
-## 大屏的等比适配 vh、vw
+## 4、分辨率适配
 
 使用 sass 来实现一个 vh、vw 的等比适配
 
@@ -103,31 +98,13 @@ body {
 }
 ```
 
-## rem 做适配
+### rem 方案 flexible.js
 
-rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实现一个等比适配。
+rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实现一个分辨率适配。
 
-缺点无法做到宽高自适应响应
+flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备的屏幕宽度，动态修改根元素的字体大小，从而实现响应式布局。
 
-```scss
-// 定义一个基准值
-$base-font-size: 16px;
-
-// 定义一个函数，根据基准值和比例计算字体大小
-@function px2rem($px) {
-  @return ($px / $base-font-size) * 1rem;
-}
-// 使用
-body {
-  font-size: px2rem(16px);
-}
-```
-
-## flexible.js
-
-这是一种通过动态修改 html 元素的 font-size 属性，来实现 rem 适配的方案。
-
-```js
+```js :collapsed-lines=10
 (function flexible(window, document) {
   // 获取 html 元素
   const docEl = document.documentElement;
