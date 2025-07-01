@@ -13,21 +13,21 @@ permalink: /article/9apaxrdv/
 
 ```js
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
-import * as echarts from 'echarts/core';
+import * as echarts from "echarts/core";
 // 引入柱状图图表，图表后缀都为 Chart
-import { BarChart } from 'echarts/charts';
+import { BarChart } from "echarts/charts";
 // 引入标题，提示框，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
 import {
   TitleComponent,
   TooltipComponent,
   GridComponent,
   DatasetComponent,
-  TransformComponent
-} from 'echarts/components';
+  TransformComponent,
+} from "echarts/components";
 // 标签自动布局、全局过渡动画等特性
-import { LabelLayout, UniversalTransition } from 'echarts/features';
+import { LabelLayout, UniversalTransition } from "echarts/features";
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
-import { CanvasRenderer } from 'echarts/renderers';
+import { CanvasRenderer } from "echarts/renderers";
 
 // 注册必须的组件
 echarts.use([
@@ -39,11 +39,11 @@ echarts.use([
   BarChart,
   LabelLayout,
   UniversalTransition,
-  CanvasRenderer
+  CanvasRenderer,
 ]);
 
 // 接下来的使用就跟之前一样，初始化图表，设置配置项
-var myChart = echarts.init(document.getElementById('main'));
+var myChart = echarts.init(document.getElementById("main"));
 myChart.setOption({
   // ...
 });
@@ -51,6 +51,36 @@ myChart.setOption({
 
 ### SVG 和 Canvas 渲染各自的优缺点
 
+SVG 渲染的优缺点：
+
+- 优点：
+  - 矢量图：支持无限缩放而不失真，适合打印和展示。
+  - 交互：原生支持 CSS 动画和事件，交互丰富。
+- 缺点：
+  - 性能：大量元素时性能下降明显。
+  - 不支持交互：如点击事件需要手动计算坐标。
+
+Canvas 渲染的优缺点：
+
+- 优点：
+  - 高性能：减少 DOM 操作，适合高频重绘。
+  - 事件处理：事件处理需手动计算坐标。
+- 缺点：
+  - 位图：不支持矢量图，缩放时会模糊。
+  - 不支持交互：如点击事件需要手动计算坐标。
+
+### 销毁图表
+
+在 ECharts 中，销毁图表是一个重要的操作。当不再需要某个图表实例时，应该及时销毁它，以释放内存和资源。
+
+- 释放内存：清除图表实例、事件监听、定时器等，避免内存泄漏。
+- 移除 DOM：删除图表生成的 canvas 或 svg 节点。
+- 解除引用：断开与 ECharts 容器的关联。
+
+```js
+// 销毁图表实例
+myChart.dispose();
+```
 
 ## 大屏的等比适配 vh、vw
 
