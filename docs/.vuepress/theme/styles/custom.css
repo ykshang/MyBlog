@@ -38,7 +38,11 @@
 
   /*语言 span 背景*/
   --about-me-skill-item-bg: #f4f2ed;
+
+  --base-width: 1920px;
+  --base-height: 1280px;
 }
+
 
 /** 深色模式 */
 [data-theme="dark"] {

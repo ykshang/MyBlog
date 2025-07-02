@@ -4,7 +4,7 @@ createTime: 2025/06/26 22:40:24
 permalink: /article/9apaxrdv/
 ---
 
-## 按需引入 ECharts 模块
+## ECharts 瘦身（按需引入）
 
 按需引入 ECharts 模块，只引入需要的模块，避免引入整个 ECharts 库，减少代码体积。
 比如我们只涉及到饼图
@@ -47,7 +47,26 @@ myChart.setOption({
 });
 ```
 
-## 选择 SVGRenderer 还是 CanvasRenderer ？
+## 轻量化图表库
+
+可以考虑一些更加轻量化的图表库，如 Chart.js，功能比较简单，但是占用的空间比较小。
+
+```js
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: ["Jan", "Feb"],
+    datasets: [
+      {
+        data: [10, 20],
+        backgroundColor: "#3498db",
+      },
+    ],
+  },
+});
+```
+
+## 选择合适的渲染器
 
 ### 适合 `CanvasRenderer` 的场景
 
@@ -114,6 +133,16 @@ myChart.dispose();
 // 定义一个设计稿的基准宽度 和 高度
 $base-width: 1920px;
 $base-height: 1080px;
+@media screen and (aspect-ratio: 16/9) {
+  // 750px 以下的屏幕宽度
+  $base-width: 1920px !global;
+  $base-height: 1080px !global;
+}
+@media screen and (aspect-ratio: 4/3) {
+  // 1080p 以上的屏幕宽度
+  $base-width: 1600px !global;
+  $base-height: 1200px !global;
+}
 // 定义一个函数，根据基准值和比例计算字体大小
 @function px2vw($px) {
   @return ($px / $base-width) * 100vw;
@@ -197,4 +226,30 @@ flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备�
 
 这是一种通过动态修改 html 元素的 font-size 属性，来实现 rem 适配的方案。
 
-## 3131 
+## 接口优化
+
+### 大量待计算的数据
+
+如果遇到接口返回的是大量数据，前端的计算比较复杂，可以考虑以下优化方案：
+
+- 利用 webwork 来进行计算
+- 后端定时任务，定期把计算好的数据存到表里，前端请求时，直接返回最新的计算结果。
+
+### 大量的接口请求
+
+可以考虑将多个接口请求合并为一个，减少接口请求的次数。
+
+## 防呆设计
+
+### loading 状态
+
+在接口请求期间，我们可以先显示一个 loading 状态，等数据返回后再刷新图表。
+
+### 显示空的图表
+
+毕竟接口需要时间才能返回数据，我们可以先按照一定的格式先把图表渲染拿出来，等拿到数据再刷新进去。
+
+### 缓存请求结果
+
+如果部分接口比较慢，可以考虑提前渲染上一次请求的结果，并在本次请求结束后重新刷新数据，并缓存本次的数据用于下一次请求前的渲染。
+
