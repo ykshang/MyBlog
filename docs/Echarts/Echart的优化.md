@@ -4,7 +4,7 @@ createTime: 2025/06/26 22:40:24
 permalink: /article/9apaxrdv/
 ---
 
-## 1、按需引入 ECharts 模块
+## 按需引入 ECharts 模块
 
 按需引入 ECharts 模块，只引入需要的模块，避免引入整个 ECharts 库，减少代码体积。
 比如我们只涉及到饼图
@@ -47,7 +47,7 @@ myChart.setOption({
 });
 ```
 
-## 2、选择 SVGRenderer 还是 CanvasRenderer ？
+## 选择 SVGRenderer 还是 CanvasRenderer ？
 
 ### 适合 `CanvasRenderer` 的场景
 
@@ -64,7 +64,7 @@ myChart.setOption({
 - **SEO 友好需求：** SVG 内容可被爬虫解析
 - **大量简单图表：** 如几十个内容比较简单的图表
 
-## 3、及时销毁图表
+## 及时销毁图表、释放内存
 
 在 ECharts 中，销毁图表是一个重要的操作。当不再需要某个图表实例时，应该及时销毁它，以释放内存和资源。
 
@@ -77,50 +77,34 @@ myChart.setOption({
 myChart.dispose();
 ```
 
-## 4、分辨率适配
+## 分辨率适配
 
-### rem 方案 flexible.js
+### 媒体查询 `@media` + flex、grid 自适应布局
 
-rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实现一个分辨率适配。
+一般情况下，我们可以根据屏幕的宽度、高度、方向来设计不同的设计稿，然后使用 flex、grid 实现整体的自适应布局。
 
-flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备的屏幕宽度，动态修改根元素的字体大小，从而实现响应式布局。
+具体到字号、边距等，可以根据不同的尺寸逐一设置，也可以使用 px、rem、vh、vw 等视口解决方案来实现适配。
 
 ```js :collapsed-lines=10
-(function flexible(window, document) {
-  // 获取 html 元素
-  const docEl = document.documentElement;
-  // dpr 物理像素比
-  const dpr = window.devicePixelRatio || 1;
-
-  // 调整 body 字体大小
-  function setBodyFontSize() {
-    // 如果页面有 body 元素，就调整 body 字体大小
-    if (document.body) {
-      document.body.style.fontSize = 12 * dpr + "px";
-    }
-    // 否则，就直接设置 html 元素的字体大小
-    else {
-      docEl.style.fontSize = 12 * dpr + "px";
-    }
+@media screen and (max-width: 768px) {
+  // 768px 以下的屏幕宽度
+  .container {
+    flex-direction: column;
   }
-
-  // 初始化
-  setBodyFontSize();
-
-  // 监听页面的 resize 事件，当页面大小发生变化时，重新调整 body 字体大小
-  window.addEventListener("resize", setBodyFontSize);
-  // 监听页面的 pageshow 事件，当页面从缓存中加载时，重新调整 body 字体大小
-  window.addEventListener("pageshow", function (e) {
-    if (e.persisted) {
-      setBodyFontSize();
-    }
-  });
-  // 监听页面的 load 事件，当页面加载完成时，重新调整 body 字体大小
-  window.addEventListener("load", setBodyFontSize);
-})();
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  // 768px 到 1024px 的屏幕宽度
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1024px) {
+  // 1024px 以上的屏幕宽度
+  .container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 ```
-
-这是一种通过动态修改 html 元素的 font-size 属性，来实现 rem 适配的方案。
 
 ### 等比适配 vh、vw
 
@@ -170,12 +154,47 @@ module.exports = {
 };
 ```
 
-## 前端监控
+### rem 方案 flexible.js <badge text="已经过时" type="danger" />
 
-### 数据埋点
+rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实现一个分辨率适配。
 
-用户行为上报
+flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备的屏幕宽度，动态修改根元素的字体大小，从而实现响应式布局。
 
-### js 报错
+```js :collapsed-lines=10
+(function flexible(window, document) {
+  // 获取 html 元素
+  const docEl = document.documentElement;
+  // dpr 物理像素比
+  const dpr = window.devicePixelRatio || 1;
 
-###
+  // 调整 body 字体大小
+  function setBodyFontSize() {
+    // 如果页面有 body 元素，就调整 body 字体大小
+    if (document.body) {
+      document.body.style.fontSize = 12 * dpr + "px";
+    }
+    // 否则，就直接设置 html 元素的字体大小
+    else {
+      docEl.style.fontSize = 12 * dpr + "px";
+    }
+  }
+
+  // 初始化
+  setBodyFontSize();
+
+  // 监听页面的 resize 事件，当页面大小发生变化时，重新调整 body 字体大小
+  window.addEventListener("resize", setBodyFontSize);
+  // 监听页面的 pageshow 事件，当页面从缓存中加载时，重新调整 body 字体大小
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted) {
+      setBodyFontSize();
+    }
+  });
+  // 监听页面的 load 事件，当页面加载完成时，重新调整 body 字体大小
+  window.addEventListener("load", setBodyFontSize);
+})();
+```
+
+这是一种通过动态修改 html 元素的 font-size 属性，来实现 rem 适配的方案。
+
+## 3131 
