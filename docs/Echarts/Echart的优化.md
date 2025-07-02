@@ -64,7 +64,7 @@ myChart.setOption({
 - **SEO 友好需求：** SVG 内容可被爬虫解析
 - **大量简单图表：** 如几十个内容比较简单的图表
 
-## 3、销毁图表
+## 3、及时销毁图表
 
 在 ECharts 中，销毁图表是一个重要的操作。当不再需要某个图表实例时，应该及时销毁它，以释放内存和资源。
 
@@ -78,25 +78,6 @@ myChart.dispose();
 ```
 
 ## 4、分辨率适配
-
-使用 sass 来实现一个 vh、vw 的等比适配
-
-```scss
-// 定义一个基准值
-$base-font-size: 16px;
-
-// 定义一个函数，根据基准值和比例计算字体大小
-@function px2vw($px) {
-  @return ($px / $base-font-size) * 100vw;
-}
-@function px2vh($px) {
-  @return ($px / $base-font-size) * 100vh;
-}
-// 使用
-body {
-  font-size: px2vw(16px);
-}
-```
 
 ### rem 方案 flexible.js
 
@@ -140,6 +121,54 @@ flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备�
 ```
 
 这是一种通过动态修改 html 元素的 font-size 属性，来实现 rem 适配的方案。
+
+### 等比适配 vh、vw
+
+#### 1、使用 sass 来实现一个 vh、vw 的等比适配
+
+```scss
+// 定义一个设计稿的基准宽度 和 高度
+$base-width: 1920px;
+$base-height: 1080px;
+// 定义一个函数，根据基准值和比例计算字体大小
+@function px2vw($px) {
+  @return ($px / $base-width) * 100vw;
+}
+@function px2vh($px) {
+  @return ($px / $base-height) * 100vh;
+}
+// 使用
+body {
+  font-size: px2vw(16px);
+}
+```
+
+#### 2、使用 postcss 插件 `postcss-px-to-viewport-8-plugin`
+
+```js title="postcss.config.js" :collapsed-lines=10
+module.exports = {
+  plugins: {
+    "postcss-px-to-viewport-8-plugin": {
+      viewportWidth: 750, // 设计稿的宽度，一般是750（适用于移动端）
+      unitToConvert: "px", // 要转换的单位
+      viewportHeight: 1334, // 设计稿的高度
+      unitPrecision: 5, // 转换后保留的小数位数
+      propList: ["*"], // 需要转换的属性列表，*表示所有属性
+      viewportUnit: "vw", // 转换后的单位
+      fontViewportUnit: "vw", // 字体使用的视口单位
+      selectorBlackList: [], // 不转换的选择器
+      minPixelValue: 1, // 最小转换值
+      mediaQuery: false, // 是否转换媒体查询中的px
+      replace: true, // 是否直接替换值而不添加备用
+      exclude: [], // 排除的文件
+      include: [], // 包含的文件
+      landscape: false, // 是否处理横屏情况
+      landscapeUnit: "vw", // 横屏时使用的单位
+      landscapeWidth: 1334, // 横屏时使用的视口宽度
+    },
+  },
+};
+```
 
 ## 前端监控
 
