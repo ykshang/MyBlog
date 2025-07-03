@@ -52,9 +52,20 @@ myChart.setOption({
 
 ### 组件、方法的按需引入
 
+按需引入公共组件和方法，从而避免整个组件库、方法库被打包进去，从而减少加载的文件体积。
+
+```js
+// 例如只引入下拉框和按钮
+import { ElSelect, ElButton } from "element-plus";
+// 引入深拷贝方法
+import { cloneDeep } from "lodash";
+```
+
 ## 轻量化图表库
 
-可以考虑一些更加轻量化的图表库，如 Chart.js，功能比较简单，但是占用的空间比较小。
+### Chart.js
+
+可以考虑一些更加轻量化的图表库，如 Chart.js，功能比较简单，优势在于占用的空间比较小。
 
 ```js
 new Chart(ctx, {
@@ -199,6 +210,21 @@ module.exports = {
 };
 ```
 
+#### 3、js 侧的 vh、vw 转换
+
+主要用于 Echart 等图标库数据源里的 px 转换。虽然图标内部也有类似百分比的解决方案，但是为了统一尺寸单位，保证一致的视觉效果，我们还是需要使用 vh、vw 进行转换。
+
+```js
+let baseWidth = 1024;
+let baseHeight = 768;
+function px2vw(px) {
+  return (px / baseWidth) * 100 + "vw";
+}
+function px2vh(px) {
+  return (px / baseHeight) * 100 + "vh";
+}
+```
+
 ### rem 方案 <badge text="已经过时" type="danger" />
 
 rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实现一个分辨率适配。
@@ -246,19 +272,63 @@ flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备�
 
 ### Http 2 多路复用
 
+在服务器端开启 Http 2 多路复用，可以利用其多路复用、减少 TCP 连接开销、减少请求延迟等优势。
+
 ### Gzip、Br、zstd 压缩
+
+利用 Gzip、Br、zstd 等压缩算法，可以减少传输数据的大小，从而减少请求时间。
+
+可以考虑服务端实时压缩、前端预压缩等方案。
 
 ### 避免 js 阻塞
 
+js 加载时，浏览器会阻塞页面渲染，直到 js 加载完成。可以考虑使用 defer 或者 async 来加载 js 文件，避免阻塞页面渲染。或者动态创建 script 标签，异步加载 js 文件。
+
 ### `prefetch`、`preload`、`preconnect`
 
+可以利用 `prefetch`、`preload`、`preconnect` 等 HTTP 头部来预加载资源，提前发起请求，减少延迟。
+
+- `prefetch`：低优先级预获取未来可能需要的资源（如下一页内容），不阻塞当前页面渲染。
+- `preload`：高优先级预加载当前页面关键资源（如首屏字体/样式），立即请求且不执行。
+- `preconnect`：提前建立与第三方域的 DNS/TLS/TCP 连接（如 CDN 域名），减少后续请求的延迟。
+
 ### 延迟加载、懒加载
+
+#### 图片的懒加载
+
+可以考虑 `lazy` 属性实现图片的懒加载。当页面滚动到图片位置时，浏览器才会加载图片。
+
+```html
+<img loading="lazy" src="large-image.jpg" alt="Large Image" />
+```
+
+也可以考虑 `IntersectionObserver` 来实现图片的懒加载。
+
+```js
+const images = document.querySelectorAll("img");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      observer.unobserve(img);
+    }
+  });
+});
+
+images.forEach((img) => {
+  observer.observe(img);
+});
+```
 
 ### 动态加载、按需加载
 
 对于一些当前不需要加载的组件或者页面，我们可以使用懒加载的方式，推迟组件、资源加载的时机。这种一般适用于图片、数据下钻的场景。
 
 ### 代码打包优化
+
+我们可以查看 f12 的 network 面板，查看当前项目的代码加载情况，如果发现有比较大的文件，影响到加载速度，我们可以考虑进行代码拆分、压缩、合并等优化。
 
 ## 内存优化
 
