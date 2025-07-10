@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-button type="info" @click="changeDiv" plain>{{ "当前为: " + isDiv }}</el-button>
-    <el-button type="info" @click="changeFlexFlag" plain>{{ "切换弹性元素: " + flg }}</el-button>
+    <el-button @click="changeDiv">{{ "当前为: " + isDiv }}</el-button>
+    <el-button @click="changeFlexFlag">{{ "切换弹性元素: " + flg }}</el-button>
     <br />
     <br />
     <div v-if="isDiv === 'div'" :class="'container' + flexFlag">
