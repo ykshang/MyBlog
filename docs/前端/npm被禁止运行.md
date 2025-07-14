@@ -57,3 +57,7 @@ npm -v               # 测试 npm 是否可用
   ```powershell
   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Restricted
   ```
+
+## 还有一种办法
+
+删除依赖重新安装，重装系统后，原来的代码未重新下载，以及没有重新安装依赖，导致新登录以后，必须以管理员身份访问
