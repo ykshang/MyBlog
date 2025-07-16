@@ -4,9 +4,9 @@ createTime: 2025/06/26 22:40:24
 permalink: /article/9apaxrdv/
 ---
 
-## 按需引入
+## 按需导入（精简第三方库）
 
-### ECharts 瘦身
+### Echarts
 
 按需引入 ECharts 模块，只引入需要的模块，避免引入整个 ECharts 库，减少代码体积。
 
@@ -50,9 +50,9 @@ myChart.setOption({
 });
 ```
 
-### 组件、方法的按需引入
+### UI 组件、公共方法
 
-按需引入公共组件和方法，从而避免整个组件库、方法库被打包进去，从而减少加载的文件体积。
+按需引入页面用到的公共组件和方法，从而避免整个组件库、方法库被打包进去，从而减少加载的文件体积。
 
 ```js
 // 例如只引入下拉框和按钮
@@ -60,6 +60,119 @@ import { ElSelect, ElButton } from "element-plus";
 // 引入深拷贝方法
 import { cloneDeep } from "lodash";
 ```
+
+## 按需加载
+
+### React 的 `lazy()` + `<Suspense>`
+
+React 的 `<Suspense>` 是用于管理异步组件加载状态的组件，通常与 React.lazy 搭配使用，实现代码分割和动态加载优化。
+
+我们通过 `fallback` 属性实现加载过程中的占位内容同，或者异步加载失败显示错误内容。
+
+```jsx
+import React from "react";
+const LazyComponent = React.lazy(() => import("./LazyComponent"));
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </Suspense>
+  );
+}
+```
+
+### Vue 的 `<Suspense>`
+
+Vue3 中的 Suspense 组件是一种特殊的组件，用于处理 适用于异步组件、异步数据请求和其他延迟加载的场景。
+
+- 默认插槽 (`default`)：当异步操作完成后，渲染异步组件或数据。
+- 等待中的插槽 (`fallback`)：在异步操作进行时显示的占位内容，通常用于显示加载动画或提示。
+- 错误插槽 (`error`)：在异步加载失败时显示的内容。
+
+```vue
+<template>
+  <div>
+    <suspense>
+      <template #default>
+        <async-component />
+      </template>
+      <template #fallback>
+        <div>正在加载...</div>
+      </template>
+    </suspense>
+  </div>
+</template>
+
+<script setup>
+import { defineAsyncComponent } from "vue";
+
+const AsyncComponent = defineAsyncComponent(() =>
+  import("./AsyncComponent.vue")
+);
+</script>
+```
+
+### 路由的懒加载
+
+前端的路由懒加载主要指的是 ESM 的 `import()` 动态导入。当用户访问该路由时，才动态加载对应的代码，减少初始的加载时间。
+
+## 延迟加载
+
+### `prefetch`、`preload`、`preconnect`
+
+可以利用 `prefetch`、`preload`、`preconnect` 等 HTTP 头部来预加载资源，提前发起请求，减少延迟。
+
+- `prefetch`：浏览器空闲时间，加载未来可能需要的资源（如下一页内容），不阻塞当前页面渲染。
+- `preload`：优先加载当前页面关键资源（如首屏字体/样式）。
+- `preconnect`：提前建立与第三方域的 DNS/TLS/TCP 连接（如 CDN 域名），减少后续请求的建立连接的延迟时间。
+
+### 图片的懒加载
+
+可以考虑 `lazy` 属性实现图片的懒加载。当页面滚动到图片位置时，或者图片进入视口时，浏览器才会加载图片。
+
+```html
+<img loading="lazy" src="large-image.jpg" alt="Large Image" />
+```
+
+也可以考虑 `IntersectionObserver` 来实现图片的懒加载。
+
+```js
+const images = document.querySelectorAll("img");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      observer.unobserve(img);
+    }
+  });
+});
+
+images.forEach((img) => {
+  observer.observe(img);
+});
+```
+
+### 滚动加载
+
+滚动加载指的是，通过监听用户滚动行为自动加载内容，当页面滚动到底部的时候，再触发加载对应区域的数据。一般用于流式列表、图文信息流、长表格等。
+
+## 代码拆分
+
+### 多入口拆分
+
+我们首先应该考虑是，可视化大屏能否单独拆分成一个入口。
+
+在大多数情况下，可视化大屏都是单独的一个页面。他不包含整体布局模块、CRUD 等，是可以被单独拆分出来的。
+
+而把大屏页面拆分出来以后，对应的代码也需要拆分出来，对应页面需要加载的代码就大大的减少了：
+
+拆分成单独的页面以后，对应的需要单独引入一个 Vue 实例，对应的国际化文件、样式文件、js 文件都可以单独拆分出来。
+
+### CSS 拆分
+
+### 关键 CSS 提取
 
 ## 轻量化图表库
 
@@ -296,46 +409,6 @@ flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备�
 ### 避免 js 阻塞
 
 js 加载时，浏览器会阻塞页面渲染，直到 js 加载完成。可以考虑使用 defer 或者 async 来加载 js 文件，避免阻塞页面渲染。或者动态创建 script 标签，异步加载 js 文件。
-
-### `prefetch`、`preload`、`preconnect`
-
-可以利用 `prefetch`、`preload`、`preconnect` 等 HTTP 头部来预加载资源，提前发起请求，减少延迟。
-
-- `prefetch`：低优先级预获取未来可能需要的资源（如下一页内容），不阻塞当前页面渲染。
-- `preload`：高优先级预加载当前页面关键资源（如首屏字体/样式），立即请求且不执行。
-- `preconnect`：提前建立与第三方域的 DNS/TLS/TCP 连接（如 CDN 域名），减少后续请求的延迟。
-
-### 图片的懒加载
-
-可以考虑 `lazy` 属性实现图片的懒加载。当页面滚动到图片位置时，浏览器才会加载图片。
-
-```html
-<img loading="lazy" src="large-image.jpg" alt="Large Image" />
-```
-
-也可以考虑 `IntersectionObserver` 来实现图片的懒加载。
-
-```js
-const images = document.querySelectorAll("img");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      img.src = img.dataset.src;
-      observer.unobserve(img);
-    }
-  });
-});
-
-images.forEach((img) => {
-  observer.observe(img);
-});
-```
-
-### 动态按需加载
-
-对于一些当前不需要加载的组件或者页面，我们可以使用动态加载的方式，推迟组件、资源加载的时机。这种一般适用于图片、数据下钻的场景。
 
 ### 代码打包优化
 
