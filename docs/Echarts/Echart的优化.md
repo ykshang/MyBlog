@@ -81,6 +81,12 @@ import { ElSelect, ElButton } from "element-plus";
 import { cloneDeep } from "lodash";
 ```
 
+### babel-plugin-import
+
+`babel-plugin-import`是一个基于 webpack 和 babel 的插件，其核心用途是 **实现组件和样式的按需加载**，从而显著减少打包体积。
+
+[babel-plugin-import 插件介绍](/PopularLibrary/ar4au96n/){.read-more}
+
 ## 按需加载
 
 ### React 的 `lazy()` + `<Suspense>`
