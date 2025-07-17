@@ -2,6 +2,7 @@
 title: 可视化大屏的优化方向
 createTime: 2025/06/26 22:40:24
 permalink: /article/9apaxrdv/
+outline: [2, 4]
 ---
 
 ## 按需导入
@@ -204,20 +205,49 @@ images.forEach((img) => {
 
 要么人工分析，要么使用第三方库。
 
-人工分析的话，主要是根据指定的视口大小，去分析用到了哪些 css 样式，手动提取，并通过 `<style>` 标签内联到页面中。这样做比较费时费力，而市面上有一些第三方库可以代替我们做这些事情，比如 `critical.js`
+##### 人工分析并提取
 
-一般来说，可以使用
+人工分析的话，我们可以使用 Chrome 浏览器：
 
-##### 方案一
+1. 打开 F12 控制台，在 more tool 里找到 Coverage。
+2. 打开以后，刷新页面，开始记录。
+3. 等页面加载完成后，查看一下 `Unused Bytes` 列的数据。
 
-- HtmlWebpackPlugin：生成 HTML 文件并注入 JS/CSS。
-- MiniCssExtractPlugin：提取 CSS 为独立文件（非内联）。
-- HtmlCriticalWebpackPlugin：提取关键 CSS 并内联到 `<head>`。
+例如下边的图片中，红色的部分代表未使用代码。点开的对应 CSS 资源，被红色标记的都是首屏加载时 `Unused` 的代码。剩下的没被标记的都是首屏加载用到的关键 CSS。我们可以直接将这些 CSS 拷贝出来，复制到页面的 `<head>` 标签下。
+
+![coverage](./assert/1.png)
+
+::: note 有的浏览器的标记可能是蓝色，需要根据实际情况来判断
+:::
+
+##### 使用第三方插件
+
+这样做比较费时费力，并且如果代码有更新，我们就需要重新分析。市面上有一些第三方库可以代替我们做这些事情，比如 `critical.js`
+
+基于 `critical` 封装的 Webpack 插件有很多，以下是比较推荐的：
+
+- 优先使用 critters-webpack-plugin（简单高效）。
+
+```js
+const Critters = require("critters-webpack-plugin");
+
+module.exports = {
+  plugins: [
+    new Critters({
+      // 关键配置项
+      preload: "swap", // 异步加载方式（可选值：'swap'|'js'|'media'）
+      inlineThreshold: 5000, // 小于5KB的CSS直接内联
+      compress: true, // 压缩内联CSS
+      pruneSource: true, // 移除已内联的重复规则
+    }),
+  ],
+};
+```
+
+- 复杂项目可尝试 html-critical-webpack-plugin 或 critical。
 
 ```js
 // webpack.config.js
-const Critters = require("critters-webpack-plugin");
-
 const WebpackCritical = require("webpack-critical");
 module.exports = {
   plugins: [
@@ -229,18 +259,6 @@ module.exports = {
       extract: true, // 提取关键CSS
       width: 1300, // 视口宽度
       height: 900, // 视口高度
-    }),
-  ],
-};
-
-module.exports = {
-  plugins: [
-    new Critters({
-      // 关键配置项
-      preload: "swap", // 异步加载方式（可选值：'swap'|'js'|'media'）
-      inlineThreshold: 5000, // 小于5KB的CSS直接内联
-      compress: true, // 压缩内联CSS
-      pruneSource: true, // 移除已内联的重复规则
     }),
   ],
 };
@@ -286,11 +304,131 @@ new Chart(ctx, {
 
 ## 分辨率适配
 
-### 优先搭配 flex、grid 布局
+### Rem 方案
 
-flex、grid 布局在适配不同屏幕尺寸时，会自动调整元素的大小和位置，从而保证页面的布局和内容的显示。
+rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实现一个分辨率适配。但是逐渐被 vw/vh 方案取代。
+
+#### 优缺点
+
+1. 优点：
+   1. 兼容性好，支持老版本的浏览器和设备
+   2. 等比缩放，不会导致整体比例失调变化
+2. 缺点：
+   1. 比较依赖 JS，可能影响首屏渲染
+   2. 无法完美适配所有场景：比如大屏场景下，字体过大，同时想显示更多的内容。
+   3. 字体大小，容易在大屏上字号过大，小屏上字号过小，影响体验。
+   4. 逐渐被 vw/vh 方案取代
+
+#### flexiable.js
+
+flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备的屏幕宽度，动态修改根元素的字体大小，从而实现响应式布局。优点是
+
+```js :collapsed-lines=10
+(function flexible(window, document) {
+  // 获取 html 元素
+  const docEl = document.documentElement;
+  // dpr 物理像素比
+  const dpr = window.devicePixelRatio || 1;
+
+  // 调整 body 字体大小
+  function setBodyFontSize() {
+    // 如果页面有 body 元素，就调整 body 字体大小
+    if (document.body) {
+      document.body.style.fontSize = 12 * dpr + "px";
+    }
+    // 否则，就直接设置 html 元素的字体大小
+    else {
+      docEl.style.fontSize = 12 * dpr + "px";
+    }
+  }
+
+  // 初始化
+  setBodyFontSize();
+
+  // 监听页面的 resize 事件，当页面大小发生变化时，重新调整 body 字体大小
+  window.addEventListener("resize", setBodyFontSize);
+  // 监听页面的 pageshow 事件，当页面从缓存中加载时，重新调整 body 字体大小
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted) {
+      setBodyFontSize();
+    }
+  });
+  // 监听页面的 load 事件，当页面加载完成时，重新调整 body 字体大小
+  window.addEventListener("load", setBodyFontSize);
+})();
+```
+
+这是一种通过动态修改 html 元素的 font-size 属性，来实现 rem 适配的方案。
+
+#### px2rem
+
+我们也可以使用一些 postCss 的插件，比如 postcss-pxtorem：
+
+```js
+// postcss.config.js 示例
+module.exports = {
+  plugins: {
+    "postcss-pxtorem": {
+      rootValue: 75, // 750px 设计稿 → 1rem = 75px (750/10)
+      propList: ["*"], // 转换所有属性的 px 值
+    },
+  },
+};
+```
+
+### CSS scale 缩放方案
+
+通过 `CSS transform: scale()` 属性动态缩放容器，保持内容比例不变，适合固定尺寸的页面（如大屏数据可视化）。
+
+在使用过程中存在两大缺点：
+
+- 热区偏移；由于缩放只是视觉上缩放，但是元素布局、大小、尺寸没有跟着变化，可能会导致事件热区偏移，导致交互事件混乱。
+- 两侧留白：当屏幕的宽高比例和设计稿不一致时，就容易出现两侧，或者顶部留白的情况。
+
+```vue
+<template>
+  <div ref="container" id="container">
+    <!-- 页面内容 -->
+  </div>
+</template>
+<script setup lang="ts">
+screenScale(document.getElementById("container"));
+// 动态计算缩放比例
+function screenScale(element) {
+  let width = "1920";
+  let height = "1080";
+  let offsetWidth = window.innerWidth;
+  let offsetHeight = window.innerHeight;
+  let scaleX = offsetWidth / width;
+  let scaleY = offsetHeight / height;
+  let scale = Math.min(scaleX, scaleY);
+  //核心代码
+  const transform = `scale(${scale})`;
+  element.width(width);
+  element.height(height);
+  element.css({ transform: transform });
+}
+window.onresize = function () {
+  screenScale(document.getElementById("container"));
+};
+</script>
+<style>
+.scale-container {
+  width: 1920px; /* 设计稿基准宽度 */
+  height: 1080px; /* 设计稿基准高度 */
+  transform-origin: 0 0; /* 缩放基准点（左上角） */
+}
+</style>
+```
+
+### Viewport 视口缩放
+
+通过动态修改 `<meta name="viewport">` 的 `initial-scale`，让浏览器自动缩放页面。
 
 ### 媒体查询 `@media`
+
+::: info 优先搭配 flex、grid 布局
+:::
 
 一般情况下，我们可以根据屏幕的宽度、高度、方向来设计不同的设计稿，然后使用 flex、grid 实现整体的自适应布局。
 
@@ -409,51 +547,6 @@ function px2vh(px) {
   return (px / baseHeight) * 100 + "vh";
 }
 ```
-
-### rem 方案 <badge text="已经过时" type="danger" />
-
-rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实现一个分辨率适配。
-
-flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备的屏幕宽度，动态修改根元素的字体大小，从而实现响应式布局。
-
-```js :collapsed-lines=10
-(function flexible(window, document) {
-  // 获取 html 元素
-  const docEl = document.documentElement;
-  // dpr 物理像素比
-  const dpr = window.devicePixelRatio || 1;
-
-  // 调整 body 字体大小
-  function setBodyFontSize() {
-    // 如果页面有 body 元素，就调整 body 字体大小
-    if (document.body) {
-      document.body.style.fontSize = 12 * dpr + "px";
-    }
-    // 否则，就直接设置 html 元素的字体大小
-    else {
-      docEl.style.fontSize = 12 * dpr + "px";
-    }
-  }
-
-  // 初始化
-  setBodyFontSize();
-
-  // 监听页面的 resize 事件，当页面大小发生变化时，重新调整 body 字体大小
-  window.addEventListener("resize", setBodyFontSize);
-  // 监听页面的 pageshow 事件，当页面从缓存中加载时，重新调整 body 字体大小
-  window.addEventListener("pageshow", function (e) {
-    if (e.persisted) {
-      setBodyFontSize();
-    }
-  });
-  // 监听页面的 load 事件，当页面加载完成时，重新调整 body 字体大小
-  window.addEventListener("load", setBodyFontSize);
-})();
-```
-
-这是一种通过动态修改 html 元素的 font-size 属性，来实现 rem 适配的方案。
-
-### scale 缩放方案
 
 ## DOM 操作相关
 
