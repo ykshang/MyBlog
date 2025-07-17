@@ -4,9 +4,22 @@ createTime: 2025/06/26 22:40:24
 permalink: /article/9apaxrdv/
 ---
 
-## 按需导入（精简第三方库）
+## 按需导入
 
-### Echarts
+按需导入其实就是对引入的代码进行精简，主要涉及到 UI 组件、公共组件、公共方法等一些第三方库、内部封装代码等。
+
+### 精简内部代码的引入
+
+我们按照模块组织代码，然后通过按需引入，只引入需要的部分。
+
+```js
+import { DashBoard } from "./compoent";
+import { getOptions } from "./utils";
+```
+
+### 精简第三方库
+
+#### Echarts
 
 按需引入 ECharts 模块，只引入需要的模块，避免引入整个 ECharts 库，减少代码体积。
 
@@ -50,13 +63,20 @@ myChart.setOption({
 });
 ```
 
-### UI 组件、公共方法
+#### UI 组件
 
-按需引入页面用到的公共组件和方法，从而避免整个组件库、方法库被打包进去，从而减少加载的文件体积。
+我们可以按需引入页面用到的 UI 组件，从而避免整个组件库被打包进去，从而减少加载的文件体积。因此要求 UI 组件库要支持按需引入，常见的 UI 组件库主要有：`element-plus`、`mui`、`ant-design` 等
 
 ```js
 // 例如只引入下拉框和按钮
 import { ElSelect, ElButton } from "element-plus";
+```
+
+#### 其他库
+
+比如前端常用的 `lodash`：
+
+```js
 // 引入深拷贝方法
 import { cloneDeep } from "lodash";
 ```
@@ -128,11 +148,15 @@ const AsyncComponent = defineAsyncComponent(() =>
 
 ### 图片的懒加载
 
+#### `loading="lazy"`
+
 可以考虑 `lazy` 属性实现图片的懒加载。当页面滚动到图片位置时，或者图片进入视口时，浏览器才会加载图片。
 
 ```html
 <img loading="lazy" src="large-image.jpg" alt="Large Image" />
 ```
+
+#### IntersectionObserver API
 
 也可以考虑 `IntersectionObserver` 来实现图片的懒加载。
 
@@ -158,25 +182,73 @@ images.forEach((img) => {
 
 滚动加载指的是，通过监听用户滚动行为自动加载内容，当页面滚动到底部的时候，再触发加载对应区域的数据。一般用于流式列表、图文信息流、长表格等。
 
+滚动加载一般通过 **IntersectionObserver API** 来实现。
+
 ## 代码拆分
 
 ### 多入口拆分
 
-我们首先应该考虑是，可视化大屏能否单独拆分成一个入口。
+我们首先应该考虑是，可视化大屏能否单独拆分成一个入口。在大多数情况下，可视化大屏都是单独的一个页面。他不包含整体布局、管理等模块，是可以被单独拆分出来的。
 
-在大多数情况下，可视化大屏都是单独的一个页面。他不包含整体布局模块、CRUD 等，是可以被单独拆分出来的。
+同样，新入口对应的 是一个 html 文件，相关 Js、Css、国际化及其他静态资源文件也需要拆分出来，这样对应页面需要加载的代码就大大的减少了：
 
-而把大屏页面拆分出来以后，对应的代码也需要拆分出来，对应页面需要加载的代码就大大的减少了：
+### 关键 CSS
 
-拆分成单独的页面以后，对应的需要单独引入一个 Vue 实例，对应的国际化文件、样式文件、js 文件都可以单独拆分出来。
+#### 什么是关键 CSS？
 
-### CSS 拆分
+构建页面的渲染树需要 CSS，而 JavaScript 在页面的初始构建过程中通常会阻塞 CSS。
 
-### 关键 CSS 提取
+因此，开发者应该确保任何非必要的 CSS 都被标记为非关键（例如：打印和其他媒体查询）。并且关键 CSS 体积应该足够小，仅包含网页首屏渲染所必需的最小 CSS 集合，同时加载时间要尽可能短，通过内联或优先加载这些样式来加速页面呈现，提升用户体验 ‌。
 
-## 轻量化图表库
+#### 如何提取并内联到代码中？
 
-### Chart.js
+要么人工分析，要么使用第三方库。
+
+人工分析的话，主要是根据指定的视口大小，去分析用到了哪些 css 样式，手动提取，并通过 `<style>` 标签内联到页面中。这样做比较费时费力，而市面上有一些第三方库可以代替我们做这些事情，比如 `critical.js`
+
+一般来说，可以使用
+
+##### 方案一
+
+- HtmlWebpackPlugin：生成 HTML 文件并注入 JS/CSS。
+- MiniCssExtractPlugin：提取 CSS 为独立文件（非内联）。
+- HtmlCriticalWebpackPlugin：提取关键 CSS 并内联到 `<head>`。
+
+```js
+// webpack.config.js
+const Critters = require("critters-webpack-plugin");
+
+const WebpackCritical = require("webpack-critical");
+module.exports = {
+  plugins: [
+    new WebpackCritical({
+      base: "dist", // 输出目录
+      src: "index.html", // 源HTML文件
+      dest: "index.html", // 目标HTML文件
+      inline: true, // 内联关键CSS
+      extract: true, // 提取关键CSS
+      width: 1300, // 视口宽度
+      height: 900, // 视口高度
+    }),
+  ],
+};
+
+module.exports = {
+  plugins: [
+    new Critters({
+      // 关键配置项
+      preload: "swap", // 异步加载方式（可选值：'swap'|'js'|'media'）
+      inlineThreshold: 5000, // 小于5KB的CSS直接内联
+      compress: true, // 压缩内联CSS
+      pruneSource: true, // 移除已内联的重复规则
+    }),
+  ],
+};
+```
+
+## 图表库优化
+
+### 选择轻量化图表库
 
 可以考虑一些更加轻量化的图表库，如 Chart.js，功能比较简单，优势在于占用的空间比较小。
 
@@ -195,16 +267,16 @@ new Chart(ctx, {
 });
 ```
 
-## 选择合适的渲染器
+### CanvasRender vs SVGRender
 
-### 适合 `CanvasRenderer` 的场景
+#### 适合 `CanvasRender` 的场景
 
 - **数据量巨大：** 如万级以上的散点图
 - **高频动态更新：** 如实时监控仪表盘
 - **需要复杂视觉、动画效果：** 如 3D、WebGL 混合渲染
 - **移动端性能敏感场景：** 减少 DOM 压力
 
-### 适合 `SVGRenderer` 的场景
+#### 适合 `SVGRender` 的场景
 
 - **需要矢量无损缩放：** 如高精度地图
 - **依赖 DOM 交互：** 如复杂的图元点击检测
