@@ -2,7 +2,6 @@
 title: 可视化大屏的优化方向
 createTime: 2025/06/26 22:40:24
 permalink: /article/9apaxrdv/
-outline: [2, 4]
 ---
 
 ## 按需导入
@@ -304,6 +303,133 @@ new Chart(ctx, {
 
 ## 分辨率适配
 
+### 媒体查询 `@media`
+
+::: info 优先搭配 flex、grid 布局
+:::
+
+一般情况下，我们可以根据屏幕的宽度、高度、方向来设计不同的设计稿，然后使用 flex、grid 实现整体的自适应布局。
+
+具体到字号、边距等，可以根据不同的尺寸逐一设置，也可以搭配使用 px、rem、vh、vw 等 CSS 尺寸解决方案来实现多种不同尺寸下的适配。
+
+```js :collapsed-lines=10
+@media screen and (max-width: 768px) {
+  // 768px 以下的屏幕宽度
+  .container {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  // 768px 到 1024px 的屏幕宽度
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1024px) {
+  // 1024px 以上的屏幕宽度
+  .container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+```
+
+### `vh`、`vw` 方案
+
+等比适配 `vh`、`vw` 可以实现等比适配，基于设计稿的基准宽度和高度，两侧及顶部不会留白。但是需要设备和浏览器支持 css3
+
+#### 使用 sass 等 css 预处理器 来实现
+
+```scss
+// 定义一个设计稿的基准宽度 和 高度
+@function px2vw($px, $baseWidth) {
+  @return calc($px / $baseWidth) * 100vw;
+}
+@function px2vh($px, $baseHeight) {
+  @return calc($px / $baseHeight) * 100vh;
+}
+@media screen and (min-width: 1024px) {
+  $width: 1024px;
+  $height: 768px;
+  .test1 {
+    border: 1px solid;
+    width: px2vw(200px, $width);
+    height: px2vh(100px, $height);
+  }
+}
+@media screen and (min-width: 1200px) {
+  $width: 1200px;
+  $height: 900px;
+  .test1 {
+    border: 1px solid;
+    width: px2vw(200px, $width);
+    height: px2vh(100px, $height);
+  }
+}
+```
+
+编译完
+
+```css
+@media screen and (min-width: 1200px) {
+  .test1 {
+    border: 1px solid;
+    width: 16.6666666667vw;
+    height: 11.1111111111vh;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .test1 {
+    border: 1px solid;
+    width: 19.53125vw;
+    height: 13.0208333333vh;
+  }
+}
+```
+
+#### postcss 插件 `postcss-px-to-viewport-8-plugin`
+
+postcss 插件只能解决 css 里的尺寸转换，无法解决 JS 里的尺寸转换。
+
+```js title="postcss.config.js" :collapsed-lines=10
+module.exports = {
+  plugins: {
+    "postcss-px-to-viewport-8-plugin": {
+      viewportWidth: 750, // 设计稿的宽度，一般是750（适用于移动端）
+      unitToConvert: "px", // 要转换的单位
+      viewportHeight: 1334, // 设计稿的高度
+      unitPrecision: 5, // 转换后保留的小数位数
+      propList: ["*"], // 需要转换的属性列表，*表示所有属性
+      viewportUnit: "vw", // 转换后的单位
+      fontViewportUnit: "vw", // 字体使用的视口单位
+      selectorBlackList: [], // 不转换的选择器
+      minPixelValue: 1, // 最小转换值
+      mediaQuery: false, // 是否转换媒体查询中的px
+      replace: true, // 是否直接替换值而不添加备用
+      exclude: [], // 排除的文件
+      include: [], // 包含的文件
+      landscape: false, // 是否处理横屏情况
+      landscapeUnit: "vw", // 横屏时使用的单位
+      landscapeWidth: 1334, // 横屏时使用的视口宽度
+    },
+  },
+};
+```
+
+#### js 侧的 vh、vw 转换
+
+主要用于 Echart 等图标库数据源里的 px 转换。虽然图标内部也有类似百分比的解决方案，但是为了统一尺寸单位，保证一致的视觉效果，我们还是需要使用 vh、vw 进行转换。
+
+```js
+let baseWidth = 1024;
+let baseHeight = 768;
+function px2vw(px) {
+  return (px / baseWidth) * 100 + "vw";
+}
+function px2vh(px) {
+  return (px / baseHeight) * 100 + "vh";
+}
+```
+
 ### Rem 方案
 
 rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实现一个分辨率适配。但是逐渐被 vw/vh 方案取代。
@@ -321,7 +447,7 @@ rem 是相对于根元素的字体大小，因此我们可以使用 rem 来实�
 
 #### flexiable.js
 
-flexible.js 是淘宝团队提出的一种方案，它的原理是根据设备的屏幕宽度，动态修改根元素的字体大小，从而实现响应式布局。优点是
+flexible.js 是淘宝团队提出的一种 Rem 方案，它的原理是根据设备的屏幕宽度，动态修改根元素的字体大小，从而实现响应式布局。优点是
 
 ```js :collapsed-lines=10
 (function flexible(window, document) {
@@ -385,7 +511,7 @@ module.exports = {
 - 热区偏移；由于缩放只是视觉上缩放，但是元素布局、大小、尺寸没有跟着变化，可能会导致事件热区偏移，导致交互事件混乱。
 - 两侧留白：当屏幕的宽高比例和设计稿不一致时，就容易出现两侧，或者顶部留白的情况。
 
-```vue
+```vue :collapsed-lines=10
 <template>
   <div ref="container" id="container">
     <!-- 页面内容 -->
@@ -424,129 +550,6 @@ window.onresize = function () {
 ### Viewport 视口缩放
 
 通过动态修改 `<meta name="viewport">` 的 `initial-scale`，让浏览器自动缩放页面。
-
-### 媒体查询 `@media`
-
-::: info 优先搭配 flex、grid 布局
-:::
-
-一般情况下，我们可以根据屏幕的宽度、高度、方向来设计不同的设计稿，然后使用 flex、grid 实现整体的自适应布局。
-
-具体到字号、边距等，可以根据不同的尺寸逐一设置，也可以使用 px、rem、vh、vw 等视口解决方案来实现适配。
-
-```js :collapsed-lines=10
-@media screen and (max-width: 768px) {
-  // 768px 以下的屏幕宽度
-  .container {
-    flex-direction: column;
-  }
-}
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  // 768px 到 1024px 的屏幕宽度
-  .container {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media screen and (min-width: 1024px) {
-  // 1024px 以上的屏幕宽度
-  .container {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-```
-
-### 等比适配 `vh`、`vw`
-
-#### 1、使用 sass 等 css 预处理器 来实现
-
-```scss
-// 定义一个设计稿的基准宽度 和 高度
-@function px2vw($px, $baseWidth) {
-  @return calc($px / $baseWidth) * 100vw;
-}
-@function px2vh($px, $baseHeight) {
-  @return calc($px / $baseHeight) * 100vh;
-}
-@media screen and (min-width: 1024px) {
-  $width: 1024px;
-  $height: 768px;
-  .test1 {
-    border: 1px solid;
-    width: px2vw(200px, $width);
-    height: px2vh(100px, $height);
-  }
-}
-@media screen and (min-width: 1200px) {
-  $width: 1200px;
-  $height: 900px;
-  .test1 {
-    border: 1px solid;
-    width: px2vw(200px, $width);
-    height: px2vh(100px, $height);
-  }
-}
-```
-
-编译完
-
-```css
-@media screen and (min-width: 1200px) {
-  .test1 {
-    border: 1px solid;
-    width: 16.6666666667vw;
-    height: 11.1111111111vh;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .test1 {
-    border: 1px solid;
-    width: 19.53125vw;
-    height: 13.0208333333vh;
-  }
-}
-```
-
-#### 2、使用 postcss 插件 `postcss-px-to-viewport-8-plugin`
-
-```js title="postcss.config.js" :collapsed-lines=10
-module.exports = {
-  plugins: {
-    "postcss-px-to-viewport-8-plugin": {
-      viewportWidth: 750, // 设计稿的宽度，一般是750（适用于移动端）
-      unitToConvert: "px", // 要转换的单位
-      viewportHeight: 1334, // 设计稿的高度
-      unitPrecision: 5, // 转换后保留的小数位数
-      propList: ["*"], // 需要转换的属性列表，*表示所有属性
-      viewportUnit: "vw", // 转换后的单位
-      fontViewportUnit: "vw", // 字体使用的视口单位
-      selectorBlackList: [], // 不转换的选择器
-      minPixelValue: 1, // 最小转换值
-      mediaQuery: false, // 是否转换媒体查询中的px
-      replace: true, // 是否直接替换值而不添加备用
-      exclude: [], // 排除的文件
-      include: [], // 包含的文件
-      landscape: false, // 是否处理横屏情况
-      landscapeUnit: "vw", // 横屏时使用的单位
-      landscapeWidth: 1334, // 横屏时使用的视口宽度
-    },
-  },
-};
-```
-
-#### 3、js 侧的 vh、vw 转换
-
-主要用于 Echart 等图标库数据源里的 px 转换。虽然图标内部也有类似百分比的解决方案，但是为了统一尺寸单位，保证一致的视觉效果，我们还是需要使用 vh、vw 进行转换。
-
-```js
-let baseWidth = 1024;
-let baseHeight = 768;
-function px2vw(px) {
-  return (px / baseWidth) * 100 + "vw";
-}
-function px2vh(px) {
-  return (px / baseHeight) * 100 + "vh";
-}
-```
 
 ## DOM 操作相关
 
