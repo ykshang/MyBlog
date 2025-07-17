@@ -303,6 +303,8 @@ new Chart(ctx, {
 
 ## 分辨率适配
 
+大多数情况下，比较推荐媒体查询和 vw、vh 方案
+
 ### 媒体查询 `@media`
 
 ::: info 优先搭配 flex、grid 布局
@@ -550,6 +552,30 @@ window.onresize = function () {
 ### Viewport 视口缩放
 
 通过动态修改 `<meta name="viewport">` 的 `initial-scale`，让浏览器自动缩放页面。
+
+- ✅ 原生支持：浏览器自动处理缩放。
+- ❌ 影响所有元素：可能导致字体和边框粗细不一致。
+
+```html
+<meta
+  name="viewport"
+  id="viewportMeta"
+  content="width=device-width, initial-scale=1.0"
+/>
+<script>
+  function setViewportScale() {
+    const designWidth = 1920; // 设计稿宽度
+    const currentWidth = window.innerWidth;
+    const scale = currentWidth / designWidth;
+
+    const meta = document.getElementById("viewportMeta");
+    meta.content = `width=${designWidth}, initial-scale=${scale}`;
+  }
+
+  window.addEventListener("resize", setViewportScale);
+  setViewportScale(); // 初始化
+</script>
+```
 
 ## DOM 操作相关
 
