@@ -83,7 +83,28 @@ import { cloneDeep } from "lodash";
 
 ### babel-plugin-import
 
-`babel-plugin-import`是一个基于 webpack 和 babel 的插件，其核心用途是 **实现组件和样式的按需加载**，从而显著减少打包体积。
+`babel-plugin-import`是一个基于 webpack 的 babel 插件，其核心用途是 **实现组件和样式的按需加载**，从而显著减少打包体积。
+
+一般我们引入组件、第三方库可能像这样以按需引入的方式去写：
+
+```js
+import { Button, Select } from "element-ui";
+
+Vue.use(Button);
+Vue.use(Select);
+```
+
+但是实际上呢，这个按需引入可能并不是真正的按需引入，甚至可能只是看起来是按需引入。内部依旧可能会有全量引入的情况。
+
+而使用了 `babel-plugin-import` 插件后，Babel 会将上边的代码转换为类似下面的形式，彻彻底底的变成按需引入：
+
+```javascript
+import Button from "element-ui/lib/button"; // 仅加载Button组件
+import "element-ui/lib/button/style.css"; // 自动引入Button样式
+
+import Select from "element-ui/lib/select"; // 仅加载Select组件
+import "element-ui/lib/select/style.css"; // 自动引入Select样式
+```
 
 [babel-plugin-import 插件介绍](/PopularLibrary/ar4au96n/){.read-more}
 
