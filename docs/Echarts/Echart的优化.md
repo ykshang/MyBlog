@@ -556,6 +556,37 @@ window.onresize = function () {
 </script>
 ```
 
+## 代码压缩
+
+### 压缩算法
+
+<badge type="danger">各自特点</badge><badge type="danger">横向对比</badge><badge type="danger">适应场景</badge>
+
+- Gzip
+- Brotli
+- zstand
+
+### 压缩方案
+
+<badge type="danger">如何配置</badge><badge type="danger">如何选择</badge>
+
+- 前端预压缩
+- 服务端实时压缩
+- 服务器实时压缩的进阶方案：渐进式压缩。
+- CDN 动态压缩
+
+### 压缩阈值和等级选择
+
+<badge type="danger">为什么这么配置？</badge>
+
+- **< 10kb**：不压缩
+- **10kb - 50kb**：压缩、解压缩效率对比传输效率，不明显，根据实际情况配置。
+- **> 50kb**： 压缩比拉最高 `gzip 9`，`brotli 11`。
+
+## 缓存优化
+
+强缓存、协商缓存
+
 ## DOM 操作相关
 
 ### 集中操作，避免边读边写
@@ -572,20 +603,6 @@ window.onresize = function () {
 ### Http 2 多路复用
 
 在服务器端开启 Http 2 多路复用，可以利用其多路复用、减少 TCP 连接开销、减少请求延迟等优势。
-
-### Gzip、Br、zstd 压缩
-
-利用 Gzip、Br、zstd 等压缩算法，可以减少传输数据的大小，从而减少请求时间。
-
-可以考虑服务端实时压缩、前端预压缩等方案。
-
-### 避免 js 阻塞
-
-js 加载时，浏览器会阻塞页面渲染，直到 js 加载完成。可以考虑使用 defer 或者 async 来加载 js 文件，避免阻塞页面渲染。或者动态创建 script 标签，异步加载 js 文件。
-
-### 代码打包优化
-
-我们可以查看 f12 的 network 面板，查看当前项目的代码加载情况，如果发现有比较大的文件，影响到加载速度，我们可以考虑进行代码拆分、压缩、合并等优化。
 
 ## 内存优化
 
