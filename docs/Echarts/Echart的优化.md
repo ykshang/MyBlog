@@ -111,36 +111,13 @@ function App() {
 
 Vue3 中的 Suspense 组件是一种特殊的组件，用于处理 适用于异步组件、异步数据请求和其他延迟加载的场景。
 
-- 默认插槽 (`default`)：当异步操作完成后，渲染异步组件或数据。
-- 等待中的插槽 (`fallback`)：在异步操作进行时显示的占位内容，通常用于显示加载动画或提示。
-- 错误插槽 (`error`)：在异步加载失败时显示的内容。
-
-```vue
-<template>
-  <div>
-    <suspense>
-      <template #default>
-        <async-component />
-      </template>
-      <template #fallback>
-        <div>正在加载...</div>
-      </template>
-    </suspense>
-  </div>
-</template>
-
-<script setup>
-import { defineAsyncComponent } from "vue";
-
-const AsyncComponent = defineAsyncComponent(() =>
-  import("./AsyncComponent.vue")
-);
-</script>
-```
+[Vue 的 `<Suspense>` 组件](/Vue/7jyliwsm/){.read-more}
 
 ### 路由的懒加载
 
 前端的路由懒加载主要指的是 ESM 的 `import()` 动态导入。当用户访问该路由时，才动态加载对应的代码，减少初始的加载时间。
+
+[路由懒加载](/Webpack/1fbrhqld/){.read-more}
 
 ## 延迟加载
 
@@ -200,74 +177,16 @@ images.forEach((img) => {
 
 ### 关键 CSS
 
-#### 什么是关键 CSS？
+构建页面的渲染树需要 CSS，而关键 CSS 指的是首屏加载过程中所必需的 CSS 代码。
 
-构建页面的渲染树需要 CSS，而 JavaScript 在页面的初始构建过程中通常会阻塞 CSS。
+这部分代码往往体积比较小，加载时间短，可以通过 **内联** 或 **优先加载** 这些 css 资源来加速页面呈现，提升用户体验。
 
-因此，开发者应该确保任何非必要的 CSS 都被标记为非关键（例如：打印和其他媒体查询）。并且关键 CSS 体积应该足够小，仅包含网页首屏渲染所必需的最小 CSS 集合，同时加载时间要尽可能短，通过内联或优先加载这些样式来加速页面呈现，提升用户体验 ‌。
+因此我们可以将这部分代码提取出来，内联到 html 中。主要的技术手段有两种：
 
-#### 如何提取并内联到代码中？
+1. 手动提取：借助工具分析，手动提取关键 CSS 代码。
+2. 自动提取：借助插件自动分析并提取关键 CSS 代码。
 
-要么人工分析，要么使用第三方库。
-
-##### 人工分析并提取
-
-人工分析的话，我们可以使用 Chrome 浏览器：
-
-1. 打开 F12 控制台，在 more tool 里找到 Coverage。
-2. 打开以后，刷新页面，开始记录。
-3. 等页面加载完成后，查看一下 `Unused Bytes` 列的数据。
-
-例如下边的图片中，红色的部分代表未使用代码。点开的对应 CSS 资源，被红色标记的都是首屏加载时 `Unused` 的代码。剩下的没被标记的都是首屏加载用到的关键 CSS。我们可以直接将这些 CSS 拷贝出来，复制到页面的 `<head>` 标签下。
-
-![coverage](./assert/1.png)
-
-::: note 有的浏览器的标记可能是蓝色，需要根据实际情况来判断
-:::
-
-##### 使用第三方插件
-
-这样做比较费时费力，并且如果代码有更新，我们就需要重新分析。市面上有一些第三方库可以代替我们做这些事情，比如 `critical.js`
-
-基于 `critical` 封装的 Webpack 插件有很多，以下是比较推荐的：
-
-- 优先使用 critters-webpack-plugin（简单高效）。
-
-```js
-const Critters = require("critters-webpack-plugin");
-
-module.exports = {
-  plugins: [
-    new Critters({
-      // 关键配置项
-      preload: "swap", // 异步加载方式（可选值：'swap'|'js'|'media'）
-      inlineThreshold: 5000, // 小于5KB的CSS直接内联
-      compress: true, // 压缩内联CSS
-      pruneSource: true, // 移除已内联的重复规则
-    }),
-  ],
-};
-```
-
-- 复杂项目可尝试 html-critical-webpack-plugin 或 critical。
-
-```js
-// webpack.config.js
-const WebpackCritical = require("webpack-critical");
-module.exports = {
-  plugins: [
-    new WebpackCritical({
-      base: "dist", // 输出目录
-      src: "index.html", // 源HTML文件
-      dest: "index.html", // 目标HTML文件
-      inline: true, // 内联关键CSS
-      extract: true, // 提取关键CSS
-      width: 1300, // 视口宽度
-      height: 900, // 视口高度
-    }),
-  ],
-};
-```
+[参考《关键 CSS 优化》](/article/9cu263lp/){.read-more}
 
 ## 图表库优化
 
