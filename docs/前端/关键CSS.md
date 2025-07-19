@@ -1,7 +1,10 @@
 ---
-title: 关键CSS
+title: 如何识别关键 CSS ?
 createTime: 2025/07/18 11:54:55
 permalink: /article/9cu263lp/
+tags:
+  - CSS
+  - 性能优化
 ---
 
 ## 什么是关键 CSS？
