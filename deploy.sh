@@ -4,11 +4,10 @@
 set -e
 
 ## 安装依赖
-npm install -g pnpm
-pnpm install
+npm install
 
 # 生成静态文件
-pnpm run docs:build
+npm run docs:build
 
 # 进入生成的文件夹
 cd docs/.vuepress/dist
