@@ -25,7 +25,7 @@ PolyRepo 的尽头是 MonoRepo。MonoRepo 的尽头是 HybridRepo（MonoRepo 核
 
 我们提取这些重复的代码或功能，将其发布成一个单独的 项目，通过 npm 包的方式引入到其他项目中，是一个非常好的选择。
 
-![1](./assert/2.svg)
+![1](./assert/2.png)
 
 如上图所示，在传统架构中，我们将项目分为以下几大部分：
 
