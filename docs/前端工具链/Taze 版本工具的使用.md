@@ -38,9 +38,9 @@ pnpm taze -r
 
 - **`-r`** 表示递归检查所有 workspace 项目。
 
-## 3. 在 pnpm workspace 中的进阶用法
+## 进阶用法
 
-### 1、仅检查特定 workspace 项目
+### 1、仅检查特定的子项目
 
 ```bash
 # 仅检查 apps/web-app 的依赖
@@ -92,7 +92,9 @@ pnpm up --latest
 pnpm up lodash@latest
 ```
 
-## 配置 Taze
+## 配置文件
+
+### package.json
 
 可以在 `package.json` 中配置 Taze 的默认行为：
 
@@ -104,6 +106,33 @@ pnpm up lodash@latest
     "exclude": ["@types/*"] // 忽略某些包
   }
 }
+```
+
+### taze.config.js
+
+也可以使用一个单独的 `taze.config.js` 文件来配置 Taze。
+
+```js
+import { defineConfig } from "taze";
+
+export default defineConfig({
+  exclude: ["webpack"], // 排除不需要更新的包
+  force: true, // 强制从 registry 中获取最新的包信息，忽略缓存。
+  write: true, // 更新后直接写入 package.json
+  install: true, // 更新后立即运行 npm/yarn/pnpm install。
+  ignorePaths: ["**/node_modules/**", "**/test/**"], // 在单仓库多项目结构中忽略某些路径。
+  ignoreOtherWorkspaces: true, // 忽略其他工作空间的 package.json
+  // 为特定包设置不同的升级模式
+  packageMode: {
+    typescript: "major",
+    unocss: "ignore",
+    "/vue/": "latest",
+  },
+  // 禁用对 "overrides" 字段的检查
+  depFields: {
+    overrides: false,
+  },
+});
 ```
 
 ## 与 `pnpm up` 的区别
@@ -129,7 +158,6 @@ pnpm up lodash@latest
      pnpm test
      ```
    - 确保无兼容性问题后再提交 `pnpm-lock.yaml`。
-
 
 ## 总结
 
