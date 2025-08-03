@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "packageManager": "pnpm@10.13.0+sha512.e08cbfa5d0c47e148d9d92965513af3d06a42ff99b6e0e82a7d10512858d0fb680a03c1e6772d369a2305c79306c9257989a3576b7057d6877469c9a1c7563f0",
+  "packageManager": "pnpm@10.14.0",
   "pnpm": {
     "overrides": {
       "@vueuse/core": "13.3.0"
@@ -31,17 +31,18 @@
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.24",
     "http-server": "^14.1.1",
-    "sass-embedded": "^1.89.1",
-    "typescript": "^5.8.3",
-    "vue": "^3.5.17",
+    "sass-embedded": "^1.89.2",
+    "taze": "^19.1.0",
+    "typescript": "^5.9.2",
+    "vue": "^3.5.18",
     "vuepress": "2.0.0-rc.24",
     "vuepress-theme-plume": "1.0.0-rc.157"
   },
   "dependencies": {
     "@vuepress/shiki-twoslash": "2.0.0-rc.112",
-    "cross-env": "^7.0.3",
-    "echarts": "^5.6.0",
-    "element-plus": "^2.10.4",
+    "cross-env": "^10.0.0",
+    "echarts": "^6.0.0",
+    "element-plus": "^2.10.5",
     "mermaid": "^11.9.0"
   }
 }
