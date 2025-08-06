@@ -108,3 +108,7 @@
   color: var(--vp-c-brand-1);
 }
 
+/**全局样式**/
+.m_5 {
+  margin: 5px;
+}

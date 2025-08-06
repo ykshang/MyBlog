@@ -13,6 +13,7 @@ import CustomIndex from "./theme/CustomIndex/Custom.vue"; // 自定义组件
 import "./theme/styles/custom.css";
 import "./theme/styles/index.css";
 import "./theme/styles/diy.sass";
+import "./theme/styles/component.scss"
 
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
