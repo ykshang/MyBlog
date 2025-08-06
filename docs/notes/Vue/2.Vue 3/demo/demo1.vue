@@ -1,7 +1,7 @@
 <template>
   <div class="person">
-    <h2>姓名：{{ name }}</h2>
-    <h2>年龄：{{ age }}</h2>
+    <h3>姓名：{{ name }}</h3>
+    <h3>年龄：{{ age }}</h3>
     <button @click="changeName">修改名字</button>
     <button @click="changeAge">年龄+1</button>
     <button @click="showTel">点我查看联系方式</button>
