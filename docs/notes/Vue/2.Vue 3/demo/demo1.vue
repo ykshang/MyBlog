@@ -1,40 +1,87 @@
 <template>
   <div class="person">
-    <h3>姓名：{{ name }}</h3>
-    <h3>年龄：{{ age }}</h3>
-    <button @click="changeName">修改名字</button>
-    <button @click="changeAge">年龄+1</button>
-    <button @click="showTel">点我查看联系方式</button>
+    <div class="left">
+      <div>
+        <span>计数器：</span>
+        <span>{{ count }}</span>
+      </div>
+      <div>
+        <span>深层对象obj：</span>
+        <span>{{ obj.a.b.c }}</span>
+      </div>
+      <div>
+        <span>用户：</span>
+        <span>{{ user.name }}</span>
+      </div>
+      <div>
+        <span>年龄：</span>
+        <span>{{ user.age }}</span>
+      </div>
+    </div>
+    <div class="right">
+      <button class="demo-btn m_5" @click="changeCount">计数器 + 1</button>
+      <button class="demo-btn m_5" @click="changeObj">obj.a.b.c</button>
+      <button class="demo-btn m_5" @click="changeName">修改名字</button>
+      <button class="demo-btn m_5" @click="changeAge">年龄 + 1</button>
+      <button class="demo-btn m_5" @click="changeUser">替换用户</button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts" name="Person">
 import { ref } from "vue";
-// name和age是一个RefImpl的实例对象，简称ref对象，它们的value属性是响应式的。
-let name = ref("张三");
-let age = ref(18);
-// tel就是一个普通的字符串，不是响应式的
-let tel = "13888888888";
+// 基本类型
+const count = ref(0);
+// 引用类型
+const user = ref({ name: "John", age: 30 });
+const obj = ref({ a: { b: { c: 1 } } });
 
+console.log(count.value);
+console.log(user.value);
+// 替换值
+changeObj;
+function changeCount() {
+  count.value += 1;
+}
+function changeObj() {
+  obj.value.a.b.c += 1;
+}
 function changeName() {
-  // JS中操作ref对象时候需要.value
-  name.value = "李四";
-  console.log(name.value);
+  user.value.name += "6";
+}
 
-  // 注意：name不是响应式的，name.value是响应式的，所以如下代码并不会引起页面的更新。
-  // name = ref('zhang-san')
-}
 function changeAge() {
-  // JS中操作ref对象时候需要.value
-  age.value += 1;
-  console.log(age.value);
+  user.value.age += 1;
 }
-function showTel() {
-  alert(tel);
+
+function changeUser() {
+  user.value = { name: "zhangsan", age: 40 };
 }
 </script>
-<style scoped>
-button {
-  margin: 10px 10px 10px 0;
+<style lang="scss" scoped>
+.person {
+  display: flex;
+  flex-direction: row;
+}
+.left {
+  flex: 3;
+  margin-right: 20px;
+  font-size: 16px;
+  div {
+    display: flex;
+    margin-bottom: 10px;
+    span {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      word-break: break-all;
+    }
+  }
+}
+.right {
+  flex: 2;
+  button {
+    margin: 5px 10px;
+  }
 }
 </style>
