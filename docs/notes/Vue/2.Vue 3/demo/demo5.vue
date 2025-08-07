@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts" setup>
+import { ElMessage } from "element-plus";
+import { ref, watch, watchEffect, defineOptions } from "vue";
 defineOptions({
   name: "Person",
 });
-import { ElMessage } from "element-plus";
-import { ref, watch, watchEffect, defineOptions } from "vue";
 // 数据
 let temp = ref(0);
 let height = ref(0);
