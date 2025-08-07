@@ -12,9 +12,11 @@
   </div>
 </template>
 
-<script lang="ts" setup name="Person">
-import { reactive } from "vue";
-
+<script setup lang="ts">
+import { reactive, defineOptions } from "vue";
+defineOptions({
+  name: "Person",
+});
 // 数据
 let car = reactive({ brand: "奔驰", price: 100 });
 let games = reactive([

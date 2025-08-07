@@ -16,9 +16,11 @@
     </button>
   </div>
 </template>
-
-<script setup lang="ts" name="App">
-import { ref, computed } from "vue";
+<script lang="ts" setup>
+import { ref, computed, defineOptions } from "vue";
+defineOptions({
+  name: "Person",
+});
 
 let firstName = ref("zhang");
 let lastName = ref("san");

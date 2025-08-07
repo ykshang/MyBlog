@@ -28,8 +28,11 @@
   </div>
 </template>
 
-<script setup lang="ts" name="Person">
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref, defineOptions } from "vue";
+defineOptions({
+  name: "Person123",
+});
 // 基本类型
 const count = ref(0);
 // 引用类型

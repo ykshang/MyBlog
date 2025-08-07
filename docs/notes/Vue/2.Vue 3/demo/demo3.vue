@@ -10,8 +10,11 @@
   </div>
 </template>
 
-<script lang="ts" setup name="Person">
-import { ref, reactive, toRefs, toRef } from "vue";
+<script lang="ts" setup>
+import { ref, reactive, toRefs, toRef, defineOptions } from "vue";
+defineOptions({
+  name: "Person",
+});
 
 // 数据
 let person = reactive({ name: "张三", age: 18, gender: "男" });
