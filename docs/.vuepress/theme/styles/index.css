@@ -115,6 +115,9 @@
 .flex_0 {
   flex: 0;
 }
+.flex_1 {
+  flex: 1;
+}
 .min_0 {
   min-width: 0;
 }
