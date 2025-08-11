@@ -1,15 +1,13 @@
 <template>
   <div class="parent">
-    <el-text tag="b">父组件</el-text>
     <div class="body">
-      <div class="list">
-        <el-tag class="m_5">{{ a }}</el-tag>
-        <el-tag class="m_5">{{ b }}</el-tag>
-        <el-tag class="m_5">{{ c }}</el-tag>
-        <el-tag class="m_5">{{ d }}</el-tag>
-      </div>
-      <Child :a="a" :b="b" :c="c" :d="d"></Child>
+      <el-text tag="b">父组件</el-text>
+      <el-tag class="m_5">{{ a }}</el-tag>
+      <el-tag class="m_5">{{ b }}</el-tag>
+      <el-tag class="m_5">{{ c }}</el-tag>
+      <el-tag class="m_5">{{ d }}</el-tag>
     </div>
+    <Child :a="a" :b="b" :c="c" :d="d"></Child>
   </div>
 </template>
 <script setup lang="ts">

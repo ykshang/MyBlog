@@ -26,7 +26,7 @@ const e = ref("e");
 </script>
 <style lang="scss" scoped>
 .child {
-  margin: 0 0 0 20px;
+  margin: 10px 0 0 0;
   flex: 1;
   padding: 10px;
   border: 2px dashed var(--el-color-primary);
