@@ -23,9 +23,6 @@ defineOptions({
 });
 defineProps(["a", "b"]);
 const e = ref("e");
-// 在 setup中获取 ＄attrs
-const attr = useAttrs();
-console.log(attr);
 </script>
 <style lang="scss" scoped>
 .child {
