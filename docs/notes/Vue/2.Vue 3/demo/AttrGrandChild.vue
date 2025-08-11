@@ -1,19 +1,22 @@
 <template>
   <div class="GrandChild">
-    <div>孙组件</div>
-    <div>{{ $attrs }}</div>
+    <el-text tag="b">孙组件</el-text>
+    <br />
+    <el-text type="warning">props：</el-text>
+    <br />
+    <el-text type="warning">$attrs：</el-text>
+    <el-tag class="m_5">{{ $attrs }}</el-tag>
   </div>
 </template>
 <script setup lang="ts">
 defineOptions({
-  name: 'GrandChild',
-})
+  name: "GrandChild",
+});
 </script>
 <style scoped>
 .GrandChild {
-  display: flex;
-  margin: 10px;
-  padding: 20px;
+  margin: 0 0 0 10px;
+  padding: 10px;
   border: 2px dashed var(--el-color-primary);
   flex: 1;
 }

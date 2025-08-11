@@ -1,13 +1,15 @@
 <template>
   <div class="parent">
-    <div>
-      <div>父组件</div>
-      <div>a：{{ a }}</div>
-      <div>b：{{ b }}</div>
-      <div>c：{{ c }}</div>
-      <div>d：{{ d }}</div>
+    <el-text tag="b">父组件</el-text>
+    <div class="body">
+      <div class="list">
+        <el-tag class="m_5">{{ a }}</el-tag>
+        <el-tag class="m_5">{{ b }}</el-tag>
+        <el-tag class="m_5">{{ c }}</el-tag>
+        <el-tag class="m_5">{{ d }}</el-tag>
+      </div>
+      <Child :a="a" :b="b" :c="c" :d="d"></Child>
     </div>
-    <Child :a="a" :b="b" :c="c" :d="d"></Child>
   </div>
 </template>
 <script setup lang="ts">
@@ -23,10 +25,16 @@ const b = ref("b");
 const c = ref("c");
 const d = ref("d");
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .parent {
-  display: flex;
-  padding: 20px;
+  padding: 10px;
   border: 2px dashed var(--el-color-primary);
+  .body {
+    display: flex;
+    .list {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 </style>

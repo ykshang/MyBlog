@@ -1,12 +1,17 @@
 <template>
   <div class="child">
-    <div>
-      <div>子组件</div>
-      <div>a：{{ a }}</div>
-      <div>b：{{ b }}</div>
-      <div>{{ $attrs }}</div>
+    <el-text tag="b">子组件</el-text>
+    <div class="body">
+      <div class="list">
+        <el-text type="warning">props：</el-text>
+        <el-tag class="m_5 min_0">{{ a }}</el-tag>
+        <el-tag class="m_5 min_0">{{ b }}</el-tag>
+        <br />
+        <el-text type="warning">$attrs：</el-text>
+        <el-tag class="m_5">{{ $attrs }}</el-tag>
+      </div>
+      <GrandChild :e="e" v-bind="$attrs"></GrandChild>
     </div>
-    <GrandChild :e="e" v-bind="$attrs"></GrandChild>
   </div>
 </template>
 <script setup lang="ts">
@@ -22,12 +27,14 @@ const e = ref("e");
 const attr = useAttrs();
 console.log(attr);
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .child {
-  display: flex;
-  margin: 10px;
-  padding: 20px;
-  border: 2px dashed var(--el-color-primary);
+  margin: 0 0 0 20px;
   flex: 1;
+  padding: 10px;
+  border: 2px dashed var(--el-color-primary);
+  .body {
+    display: flex;
+  }
 }
 </style>
