@@ -112,3 +112,9 @@
 .m_5 {
   margin: 5px;
 }
+.flex_0 {
+  flex: 0;
+}
+.min_0 {
+  min-width: 0;
+}
