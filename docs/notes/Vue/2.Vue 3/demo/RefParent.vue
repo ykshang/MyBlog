@@ -3,9 +3,9 @@
     <el-card class="left flex_1" header="父组件">
       <div>父: {{ parentText }}</div>
       <div>子: {{ childVal }}</div>
-      <el-button type="primary" class="btn" @click="viewChildRef"
-        >获取子数据</el-button
-      >
+      <el-button type="primary" class="btn" @click="viewChildRef" plain>
+        获取子数据
+      </el-button>
     </el-card>
     <RefChild ref="childRef"></RefChild>
   </div>
@@ -51,7 +51,7 @@ defineExpose({ parentText, sayHello });
 .btn {
   margin-top: 10px;
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .RefParent {
     flex-direction: column;
   }

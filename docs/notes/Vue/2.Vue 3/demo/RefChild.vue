@@ -2,9 +2,9 @@
   <el-card class="RefChild" header="子组件">
     <div>子：{{ childText }}</div>
     <div>父：{{ parentVal }}</div>
-    <el-button class="btn" type="primary" @click="getParent"
-      >获取父数据</el-button
-    >
+    <el-button class="btn" type="primary" @click="getParent" plain>
+      获取父数据
+    </el-button>
   </el-card>
 </template>
 <script lang="ts" setup>
