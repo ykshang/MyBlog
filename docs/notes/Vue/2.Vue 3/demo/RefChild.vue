@@ -1,30 +1,38 @@
 <template>
-  <div class="RefChild">
-    <el-text tag="b" size="large">子组件</el-text>
-    <br />
-    <br />
-    <div>child：{{ child }}</div>
-    <div>parent: {{ parentVal }}</div>
-    <br />
-    <el-button type="primary" @click="getParent">获取父数据</el-button>
-  </div>
+  <el-card class="RefChild" header="子组件">
+    <div>子：{{ childText }}</div>
+    <div>父：{{ parentVal }}</div>
+    <el-button class="btn" type="primary" @click="getParent">获取父数据</el-button>
+  </el-card>
 </template>
 <script lang="ts" setup>
+import { ElNotification } from "element-plus";
 import { ref, defineExpose, getCurrentInstance } from "vue";
+
 defineOptions({ name: "RefChild" });
 const instance = getCurrentInstance();
-const child = ref("hello child");
+const childText = ref("孩子");
 const parentVal = ref("");
-//  主动对外暴露 age 和 name
 function getParent() {
-// oxlint-disable-next-line no-unsafe-optional-chaining
-console.log(instance?.parent);
-  // parentVal.value = (1 as any).setupState?.parent as string; // 获取父组件实例
+  parentVal.value = instance?.parent?.exposed?.parentText.value;
+  instance?.parent?.exposed?.sayHello("子组件");
 }
-defineExpose({ child });
+function sayHello(value) {
+  ElNotification({
+    title: "From 子组件",
+    message: "调用方：" + value,
+    type: "success",
+  });
+}
+// 主动对外暴露
+defineExpose({ childText, sayHello });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .RefChild {
   flex: 1;
+  margin: 5px;
+  .btn {
+    margin-top: 10px;
+  }
 }
 </style>
