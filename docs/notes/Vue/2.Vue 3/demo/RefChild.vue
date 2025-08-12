@@ -18,7 +18,8 @@ const parentVal = ref("");
 //  主动对外暴露 age 和 name
 function getParent() {
 // oxlint-disable-next-line no-unsafe-optional-chaining
-  parentVal.value = (1 as any).setupState?.parent as string; // 获取父组件实例
+console.log(instance?.parent);
+  // parentVal.value = (1 as any).setupState?.parent as string; // 获取父组件实例
 }
 defineExpose({ child });
 </script>

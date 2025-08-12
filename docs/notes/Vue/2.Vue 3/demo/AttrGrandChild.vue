@@ -15,7 +15,7 @@ defineOptions({
 </script>
 <style scoped>
 .GrandChild {
-  margin: 0 0 0 10px;
+  margin-top: 10px;
   padding: 10px;
   border: 2px dashed var(--el-color-primary);
   flex: 1;

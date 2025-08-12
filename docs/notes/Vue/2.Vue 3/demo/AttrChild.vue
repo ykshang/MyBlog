@@ -32,6 +32,7 @@ const e = ref("e");
   border: 2px dashed var(--el-color-primary);
   .body {
     display: flex;
+    flex-direction: column;
   }
 }
 </style>
