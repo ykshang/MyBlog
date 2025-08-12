@@ -1,5 +1,5 @@
 <template>
-  <div class="child">
+  <el-card class="child">
     <el-text tag="b">子组件</el-text>
     <div class="body">
       <div class="list">
@@ -12,7 +12,7 @@
       </div>
       <GrandChild :e="e" v-bind="$attrs"></GrandChild>
     </div>
-  </div>
+  </el-card>
 </template>
 <script setup lang="ts">
 import { ref, useAttrs } from "vue";
@@ -28,8 +28,6 @@ const e = ref("e");
 .child {
   margin: 10px 0 0 0;
   flex: 1;
-  padding: 10px;
-  border: 2px dashed var(--el-color-primary);
   .body {
     display: flex;
     flex-direction: column;

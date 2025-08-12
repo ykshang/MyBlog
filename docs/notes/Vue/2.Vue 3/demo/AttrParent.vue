@@ -1,5 +1,5 @@
 <template>
-  <div class="parent">
+  <el-card class="parent">
     <div class="body">
       <el-text tag="b">父组件</el-text>
       <el-tag class="m_5">{{ a }}</el-tag>
@@ -8,7 +8,7 @@
       <el-tag class="m_5">{{ d }}</el-tag>
     </div>
     <Child :a="a" :b="b" :c="c" :d="d"></Child>
-  </div>
+  </el-card>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
@@ -25,8 +25,6 @@ const d = ref("d");
 </script>
 <style lang="scss" scoped>
 .parent {
-  padding: 10px;
-  border: 2px dashed var(--el-color-primary);
   .body {
     display: flex;
     .list {

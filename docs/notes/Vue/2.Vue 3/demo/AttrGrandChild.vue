@@ -1,12 +1,12 @@
 <template>
-  <div class="GrandChild">
+  <el-card class="GrandChild">
     <el-text tag="b">孙组件</el-text>
     <br />
     <el-text type="warning">props：</el-text>
     <br />
     <el-text type="warning">$attrs：</el-text>
     <el-tag class="m_5">{{ $attrs }}</el-tag>
-  </div>
+  </el-card>
 </template>
 <script setup lang="ts">
 defineOptions({
@@ -17,7 +17,6 @@ defineOptions({
 .GrandChild {
   margin-top: 10px;
   padding: 10px;
-  border: 2px dashed var(--el-color-primary);
   flex: 1;
 }
 </style>
