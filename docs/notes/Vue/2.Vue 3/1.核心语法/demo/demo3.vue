@@ -20,13 +20,11 @@ defineOptions({
 let person = reactive({ name: "张三", age: 18, gender: "男" });
 
 let person1 = toRefs(person);
-console.log(person1);
 
 // 通过toRefs将person对象中的n个属性批量取出，且依然保持响应式的能力
 let { name, gender } = toRefs(person);
 // 通过toRef将person对象中的gender属性取出，且依然保持响应式的能力
 let age = toRef(person, "age");
-console.log(age);
 
 // 方法
 function changeName() {

@@ -39,8 +39,6 @@ const count = ref(0);
 const user = ref({ name: "John", age: 30 });
 const obj = ref({ a: { b: { c: 1 } } });
 
-console.log(count.value);
-console.log(user.value);
 // 替换值
 changeObj;
 function changeCount() {
