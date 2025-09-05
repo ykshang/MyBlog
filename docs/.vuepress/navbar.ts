@@ -193,7 +193,7 @@ export default defineNavbarConfig([
         items: [
           {
             text: "Pnpm",
-            // icon: "logos:pnpm",
+            icon: "skill-icons:pnpm-light",
             link: "/notes/Pnpm/",
           },
         ],
