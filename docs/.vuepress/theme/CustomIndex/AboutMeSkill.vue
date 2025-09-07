@@ -50,7 +50,7 @@ const technology = ref([
   { type: "Sass", icon: "skill-icons:sass" },
   { type: "Less", icon: "logos:less" },
   { type: "Stylus", icon: "material-icon-theme:stylus" },
-  { type: "Element-UI", icon: "logos:element" },
+  { type: "Element", icon: "logos:element" },
   { type: "Pinia", icon: "logos:pinia" },
   { type: "Vuex", icon: "material-icon-theme:vuex-store" },
   { type: "Node.js", icon: "devicon:nodejs" },
