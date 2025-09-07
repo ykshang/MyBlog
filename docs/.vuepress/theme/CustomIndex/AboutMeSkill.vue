@@ -122,7 +122,7 @@ const tools = ref([
     align-items: center;
     margin: 0 6px 6px 0;
     border-radius: 8px;
-    padding: 7px;
+    padding: 3px 5px;
     font-size: 16px;
     color: var(--vp-c-text-2);
     background-color: var(--home-action-bnt-bg);
