@@ -69,6 +69,11 @@ const technology = ref([
   { type: "Prettier", icon: "logos:prettier" },
   { type: "jQuery", icon: "skill-icons:jquery" },
   { type: "Bootstrap", icon: "skill-icons:bootstrap" },
+  { type: "UnoCSS", icon: "material-icon-theme:unocss" },
+  { type: "commitlint", icon: "material-icon-theme:commitlint" },
+  { type: "stylelint", icon: "material-icon-theme:stylelint-light" },
+  { type: "turbo", icon: "material-icon-theme:turborepo" },
+  { type: "Lerna", icon: "material-icon-theme:lerna" },
 ]);
 
 const tools = ref([
