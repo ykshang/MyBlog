@@ -14,10 +14,10 @@
 <style lang="scss" scoped>
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(4, 30px);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
   .item {
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
