@@ -3,9 +3,10 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.17.1",
   "pnpm": {
     "overrides": {
+      "echarts": "6.0.0",
       "@vueuse/core": "13.3.0"
     },
     "onlyBuiltDependencies": [
@@ -31,20 +32,20 @@
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.24",
     "http-server": "^14.1.1",
-    "sass-embedded": "^1.89.2",
-    "taze": "^19.1.0",
+    "sass-embedded": "^1.93.1",
+    "taze": "^19.7.0",
     "typescript": "^5.9.2",
-    "unplugin-auto-import": "^20.0.0",
-    "unplugin-vue-components": "^29.0.0",
-    "vue": "^3.5.18",
+    "unplugin-auto-import": "^20.1.0",
+    "unplugin-vue-components": "^29.1.0",
+    "vue": "^3.5.21",
     "vuepress": "2.0.0-rc.24",
-    "vuepress-theme-plume": "1.0.0-rc.157"
+    "vuepress-theme-plume": "1.0.0-rc.164",
+    "@vuepress/shiki-twoslash": "2.0.0-rc.112"
   },
   "dependencies": {
-    "@vuepress/shiki-twoslash": "2.0.0-rc.112",
     "cross-env": "^10.0.0",
     "echarts": "^6.0.0",
-    "element-plus": "^2.10.5",
-    "mermaid": "^11.9.0"
+    "element-plus": "^2.11.3",
+    "mermaid": "^11.12.0"
   }
 }
