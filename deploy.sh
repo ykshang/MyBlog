@@ -1,15 +1,15 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 # 确保脚本抛出遇到的错误
 set -e
 
 ## 安装依赖
-npm install -g pnpm
+# npm install -g pnpm
 
-pnpm install
+# pnpm install
 
 # 生成静态文件
-pnpm run docs:build
+# pnpm run docs:build
 
 # 进入生成的文件夹
 cd docs/.vuepress/dist
