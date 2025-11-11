@@ -9,7 +9,7 @@ set -e
 # pnpm install
 
 # 生成静态文件
-pnpm cross-env NODE_OPTIONS=--max-old-space-size=6192 VUEPRESS_BASE=/MyBlog/ vuepress build docs --clean-cache --clean-temp
+pnpm cross-env NODE_OPTIONS=--max-old-space-size=6192 VUEPRESS_BASE="/MyBlog/" vuepress build docs --clean-cache --clean-temp
 
 # 进入生成的文件夹
 cd docs/.vuepress/dist

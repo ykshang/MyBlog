@@ -73,7 +73,7 @@ export default defineNavbarConfig([
           },
           {
             text: "UniApp",
-            icon: "/logo/uni-app.png",
+            icon: "logos:unito-icon",
             link: "/notes/UniApp/",
           },
         ],
