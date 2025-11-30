@@ -1,7 +1,7 @@
 ---
 title: 你遇到过那些 Webpack 的打包问题？
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/07ndljzb/
+permalink: /notes/Webpack/07ndljzb/
 ---
 
 遇到的打包报错主要集中在以下几类问题上

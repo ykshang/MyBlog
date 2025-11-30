@@ -1,7 +1,7 @@
 ---
 title: 什么是预加载（Preload、Prefetch）
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/af5iw7rx/
+permalink: /notes/Webpack/af5iw7rx/
 ---
 
 ::: tip 总结

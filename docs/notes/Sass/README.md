@@ -1,7 +1,7 @@
 ---
 title: Sass
 createTime: 2025/04/01 20:35:30
-permalink: /Sass/
+permalink: /notes/Sass/
 ---
 
 

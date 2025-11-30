@@ -1,7 +1,7 @@
 ---
 title: 动态导入（Dynamic Imports）和预加载（Preloading）的区别？
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/lyiknj0o/
+permalink: /notes/Webpack/lyiknj0o/
 ---
 
 在 Webpack 中，**按需加载（Lazy Loading）** 和 **预加载（Preloading）** 是两种不同的优化策略，它们的目标和使用场景有所不同。以下是它们的区别和具体应用：

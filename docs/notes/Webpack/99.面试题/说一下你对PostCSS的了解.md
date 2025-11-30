@@ -1,7 +1,7 @@
 ---
 title: 说一下你对PostCSS的了解
 createTime: 2025/03/15 14:24:59
-permalink: /Webpack/aa7apozb/
+permalink: /notes/Webpack/aa7apozb/
 tags:
   - PostCSS
   - 前端

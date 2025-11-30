@@ -1,7 +1,7 @@
 ---
 title: 如何控制和调整 Loader 和 Plugin 的执行顺序
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/ca1plgxx/
+permalink: /notes/Webpack/ca1plgxx/
 ---
 
 > 在 Webpack 中，Loader 和 Plugin 的执行顺序是不同的。

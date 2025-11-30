@@ -1,7 +1,7 @@
 ---
 title: 请介绍一下 Webpack，并列举其常见的配置选项。
 createTime: 2025/03/15 14:24:59
-permalink: /Webpack/oq2ve55x/
+permalink: /notes/Webpack/oq2ve55x/
 ---
 
 ## 一、简介

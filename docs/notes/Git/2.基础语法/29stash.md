@@ -1,7 +1,7 @@
 ---
 title: stash
 createTime: 2025/03/13 20:17:00
-permalink: /Git/kxa4/
+permalink: /notes/Git/kxa4/
 ---
 
 ::: tip 主要作用

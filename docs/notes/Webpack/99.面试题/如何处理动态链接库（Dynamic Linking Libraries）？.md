@@ -1,7 +1,7 @@
 ---
 title: 如何处理动态链接库（Dynamic Linking Libraries）？
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/761m9oaw/
+permalink: /notes/Webpack/761m9oaw/
 ---
 
 <font color='red'>该功能属于Webpack 4，新版本已弃用，改用缓存机制</font>

@@ -1,7 +1,7 @@
 ---
 title: 如何实现对 ES6+语法的配置和支持
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/ca6yo1yw/
+permalink: /notes/Webpack/ca6yo1yw/
 ---
 
 要在 Webpack 中使用 ES6+的语法和新特性，你需要进行以下配置：

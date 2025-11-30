@@ -1,7 +1,7 @@
 ---
 title: Webpack 简介
 createTime: 2025/03/15 11:39:45
-permalink: /Webpack/
+permalink: /notes/Webpack/
 ---
 
 ## 前置知识

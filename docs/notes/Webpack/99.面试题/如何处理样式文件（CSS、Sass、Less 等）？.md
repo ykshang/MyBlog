@@ -1,7 +1,7 @@
 ---
 title: 如何处理样式文件（CSS、Sass、Less 等）？
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/sz2z3ct0/
+permalink: /notes/Webpack/sz2z3ct0/
 ---
 
 # 31、如何处理样式文件（CSS、Sass、Less 等）？

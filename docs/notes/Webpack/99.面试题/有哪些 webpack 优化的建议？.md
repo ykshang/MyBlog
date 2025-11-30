@@ -1,7 +1,7 @@
 ---
 title: 有哪些 webpack 优化的建议？
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/98ejm3gb/
+permalink: /notes/Webpack/98ejm3gb/
 ---
 
 对于 Webpack 的性能优化，以下是一些方面需要注意并采取最佳实践的建议：

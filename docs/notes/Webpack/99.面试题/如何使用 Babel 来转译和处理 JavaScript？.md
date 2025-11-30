@@ -1,7 +1,7 @@
 ---
 title: 如何使用 Babel 来转译和处理 JavaScript？
 createTime: 2025/03/15 14:24:21
-permalink: /Webpack/m0oko6pf/
+permalink: /notes/Webpack/m0oko6pf/
 ---
 
 # 29、如何使用 Babel 来转译和处理 JavaScript？

@@ -1,7 +1,7 @@
 ---
 title: Git 笔记
 createTime: 2025/03/13 19:58:09
-permalink: /Git/
+permalink: /notes/Git/
 ---
 
 ## 基本介绍

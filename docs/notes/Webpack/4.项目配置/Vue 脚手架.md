@@ -1,7 +1,7 @@
 ---
 title: Vue 脚手架
 createTime: 2025/03/15 14:15:54
-permalink: /Webpack/ktvw4hoc/
+permalink: /notes/Webpack/ktvw4hoc/
 ---
 
 ## 开发模式配置

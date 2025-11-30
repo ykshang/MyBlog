@@ -1,7 +1,7 @@
 ---
 title: Stylus
 createTime: 2025/04/16 18:31:46
-permalink: /Stylus/
+permalink: /notes/Stylus/
 ---
 
 Stylus 是一款功能强大的 CSS 预处理器，它提供了比传统 CSS 更简洁、更灵活的语法，同时兼容标准 CSS 语法。

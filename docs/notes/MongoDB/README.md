@@ -1,6 +1,6 @@
 ---
 title: MongoDB
 createTime: 2025/03/15 12:37:11
-permalink: /MongoDB/
+permalink: /notes/MongoDB/
 ---
 11

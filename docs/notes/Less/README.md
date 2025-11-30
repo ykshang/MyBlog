@@ -1,7 +1,7 @@
 ---
 title: Less
 createTime: 2025/04/13 15:11:40
-permalink: /Less/
+permalink: /notes/Less/
 ---
 
 ## **一、LESS 简介**

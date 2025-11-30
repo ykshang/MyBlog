@@ -1,7 +1,7 @@
 ---
 title: 如何在前端项目中使用 MongoDB？
 createTime: 2025/03/15 14:26:42
-permalink: /MongoDB/wkva9f59/
+permalink: /notes/MongoDB/wkva9f59/
 tags:
   - MongoDB
   - 数据库

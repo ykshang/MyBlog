@@ -1,7 +1,7 @@
 ---
 title: React 脚手架
 createTime: 2025/03/15 14:15:54
-permalink: /Webpack/znezxzbk/
+permalink: /notes/Webpack/znezxzbk/
 ---
 
 ## 开发模式配置

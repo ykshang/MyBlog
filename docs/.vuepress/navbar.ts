@@ -3,13 +3,12 @@
  *
  * Navbar 配置文件，它在 `.vuepress/plume.config.ts` 中被导入。
  */
+
 import { defineNavbarConfig } from "vuepress-theme-plume";
 
 export default defineNavbarConfig([
   { text: "首页", link: "/" },
   { text: "博客", link: "/blog/" },
-  // { text: '杂谈', link: '/blog/tags/' },
-  // { text: '归档', link: '/blog/archives/' },
   {
     text: "前端基础",
     items: [
@@ -146,11 +145,11 @@ export default defineNavbarConfig([
             icon: "vscode-icons:file-type-light-babel2",
             link: "/notes/Babel/",
           },
-          {
-            text: "Gulp",
-            icon: "vscode-icons:file-type-gulp",
-            link: "/notes/Gulp/",
-          },
+          // {
+          //   text: "Gulp",
+          //   icon: "vscode-icons:file-type-gulp",
+          //   link: "/notes/Gulp/",
+          // },
           {
             text: "Grunt",
             icon: "vscode-icons:file-type-grunt",
@@ -211,11 +210,10 @@ export default defineNavbarConfig([
       {
         text: "设计模式",
         icon: "fxemoji:bookmarktab",
-        // icon: "fxemoji:artistpalette",
         link: "/notes/DesignPattern/",
       },
       {
-        text: "网络相关",
+        text: "计算机网络",
         icon: "marketeq:signal-2",
         link: "/notes/Network/",
       },
@@ -237,7 +235,7 @@ export default defineNavbarConfig([
       {
         text: "测试",
         icon: "tdesign:play-demo",
-        link: "/article/llc3p6ni/",
+        link: "/blog/llc3p6ni/",
       },
     ],
   },
