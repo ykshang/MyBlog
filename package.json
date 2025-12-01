@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.24.0",
   "author": "kangkang shang <535634238@qq.com>",
   "license": "MIT",
   "engines": {
@@ -37,6 +37,7 @@
     "cross-env": "^10.1.0",
     "http-server": "^14.1.1",
     "sass-embedded": "^1.93.3",
+    "taze": "^19.9.2",
     "typescript": "^5.9.3",
     "vue": "^3.5.25",
     "vuepress": "2.0.0-rc.26",
