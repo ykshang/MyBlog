@@ -306,6 +306,14 @@ const UniAppNote = defineCollection({
   title: "UniApp",
   sidebar: "auto",
 });
+// Rollup 文档
+const RollupNote = defineCollection({
+  type: "doc",
+  dir: "notes/Rollup",
+  linkPrefix: "/notes/Rollup",
+  title: "Rollup",
+  sidebar: "auto",
+});
 /**
  * 导出所有的 collections
  * (blog 为博客示例，如果不需要博客功能，请删除)
@@ -344,4 +352,5 @@ export default defineCollections([
   ReactNote,
   AngularNote,
   UniAppNote,
+  RollupNote,
 ]);

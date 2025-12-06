@@ -145,6 +145,11 @@ export default defineNavbarConfig([
             icon: "vscode-icons:file-type-light-babel2",
             link: "/notes/Babel/",
           },
+          {
+            text: "Rollup",
+            icon: "vscode-icons:file-type-rollup",
+            link: "/notes/Rollup/",
+          },
           // {
           //   text: "Gulp",
           //   icon: "vscode-icons:file-type-gulp",
