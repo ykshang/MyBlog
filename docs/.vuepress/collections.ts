@@ -242,12 +242,12 @@ const HtmlNote = defineCollection({
   title: "Html",
   sidebar: "auto",
 });
-// Css 文档
-const CssNote = defineCollection({
+// CSS 文档
+const CSSNote = defineCollection({
   type: "doc",
-  dir: "notes/Css",
-  linkPrefix: "/notes/Css",
-  title: "Css",
+  dir: "notes/CSS",
+  linkPrefix: "/notes/CSS",
+  title: "CSS",
   sidebar: "auto",
 });
 // Javascript 文档
@@ -344,7 +344,7 @@ export default defineCollections([
   ClassicFrontInterviewNote,
   WebBasicNote,
   HtmlNote,
-  CssNote,
+  CSSNote,
   JavascriptNote,
   TypeScriptNote,
   BrowserNote,
